@@ -20,13 +20,13 @@ public class MainActivity extends AppCompatActivity {
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                open calender();
+                calender();
             }
         });
     }
 
     public void calender(){
-        Intent intent = new Intent(this, Calender.class);
+        Intent intent = new Intent(this, Calendar.class);
         startActivity(intent);
     }
 }
