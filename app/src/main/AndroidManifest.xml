@@ -16,7 +16,7 @@
             android:name=".ajout_entrainement"
             android:exported="false" />
         <activity
-            android:name=".Calendar"
+            android:name=".calendrier"
             android:exported="false" />
         <activity
             android:name=".MainActivity"

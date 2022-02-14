@@ -7,10 +7,13 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
-public class Calendar extends AppCompatActivity {
+public class calendrier extends AppCompatActivity {
     private Button ButtonCalendrier;
     private Button ButtonEntrainement;
     private Button Buttonhome;
+
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -46,7 +49,7 @@ public class Calendar extends AppCompatActivity {
         startActivity(intent);
     }
     public void calender(){
-        Intent intent = new Intent(this, Calendar.class);
+        Intent intent = new Intent(this, calendrier.class);
         startActivity(intent);
     }
     public void entrainement(){

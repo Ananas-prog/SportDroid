@@ -61,7 +61,7 @@ public class MainActivity extends AppCompatActivity {
         startActivity(intent);
     }
     public void calender(){
-        Intent intent = new Intent(this, Calendar.class);
+        Intent intent = new Intent(this, calendrier.class);
         startActivity(intent);
     }
     public void entrainement(){
