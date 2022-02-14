@@ -11,6 +11,8 @@ public class MainActivity extends AppCompatActivity {
 
     private Button ButtonCalendrier;
     private Button ButtonEntrainement;
+    private Button Buttonhome;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -18,6 +20,13 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
 
+        Buttonhome =(Button) findViewById(R.id.ButtonHome);
+        Buttonhome.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                home();
+            }
+        });
         ButtonCalendrier = (Button) findViewById(R.id.ButtonCalendrier);
         ButtonCalendrier.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -36,6 +45,10 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    public void home(){
+        Intent intent = new Intent(this, MainActivity.class);
+        startActivity(intent);
+    }
     public void calender(){
         Intent intent = new Intent(this, Calendar.class);
         startActivity(intent);
