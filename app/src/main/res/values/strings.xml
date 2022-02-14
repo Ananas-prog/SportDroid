@@ -1,4 +1,8 @@
 <resources>
     <string name="app_name">SportDroid</string>
-    <string name="titleCalendar">Calendrier</string>
+    <string name="ButtonCalendrier">Calendrier</string>
+    <string name="ButtonHome">Home</string>
+    <string name="ButtonEntrainement">Entrainement</string>
+
+
 </resources>
