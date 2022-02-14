@@ -12,6 +12,7 @@ public class MainActivity extends AppCompatActivity {
     private Button ButtonCalendrier;
     private Button ButtonEntrainement;
     private Button Buttonhome;
+    private Button ButtonAjouterEntrainement;
 
 
     @Override
@@ -19,6 +20,13 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        ButtonAjouterEntrainement =(Button) findViewById(R.id.ButtonAjouterEntrainement);
+        ButtonAjouterEntrainement.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                ajouterEntrainement();
+            }
+        });
 
         Buttonhome =(Button) findViewById(R.id.ButtonHome);
         Buttonhome.setOnClickListener(new View.OnClickListener() {
@@ -44,7 +52,10 @@ public class MainActivity extends AppCompatActivity {
         });
 
     }
-
+    public void ajouterEntrainement(){
+        Intent intent = new Intent(this, ajout_entrainement.class);
+        startActivity(intent);
+    }
     public void home(){
         Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);

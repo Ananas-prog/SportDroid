@@ -6,46 +6,23 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Hello World!"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
     <LinearLayout
-        android:layout_width="316dp"
-        android:layout_height="107dp"
-        android:layout_marginStart="32dp"
-        android:layout_marginEnd="63dp"
-        android:layout_marginBottom="249dp"
-        android:orientation="horizontal"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView">
-
-    </LinearLayout>
-
-    <LinearLayout
+        android:id="@+id/linearLayout"
         android:layout_width="409dp"
         android:layout_height="88dp"
         android:layout_marginStart="1dp"
         android:layout_marginEnd="1dp"
         android:layout_marginBottom="1dp"
         android:orientation="horizontal"
+        android:weightSum="1"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        android:weightSum="1">
+        app:layout_constraintStart_toStartOf="parent">
 
         <LinearLayout
-            android:layout_weight="0.33"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:layout_weight="0.33"
             android:orientation="vertical">
 
             <Button
@@ -55,11 +32,12 @@
                 android:layout_weight="1"
                 android:text="@string/ButtonCalendrier" />
         </LinearLayout>
+
         <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
             android:layout_weight="0.33"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
+            android:orientation="vertical">
 
             <Button
                 android:id="@+id/ButtonHome"
@@ -69,9 +47,9 @@
         </LinearLayout>
 
         <LinearLayout
-            android:layout_weight="0.33"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:layout_weight="0.33"
             android:orientation="vertical">
 
             <Button
@@ -80,6 +58,25 @@
                 android:layout_height="match_parent"
                 android:text="@string/ButtonEntrainement" />
         </LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="384dp"
+        android:layout_height="54dp"
+        android:layout_marginStart="13dp"
+        android:layout_marginEnd="14dp"
+        android:layout_marginBottom="37dp"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toTopOf="@+id/linearLayout"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <Button
+            android:id="@+id/ButtonAjouterEntrainement"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/ButtonAjoutEntrainement" />
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
