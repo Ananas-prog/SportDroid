@@ -53,16 +53,16 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="0"
                 android:text="@string/date" />
+
             <Button
                 android:id="@+id/date_picker_Button"
+                style="?android:spinnerStyle"
                 android:layout_width="250dp"
                 android:layout_height="wrap_content"
-                android:text="JAN 01 2020"
-                android:textSize="30sp"
-                android:textColor="@color/black"
-                style="?android:spinnerStyle"
                 android:onClick="openDatePicker"
-                />
+                android:text="JAN 01 2020"
+                android:textColor="@color/black"
+                android:textSize="30sp" />
 
 
         </LinearLayout>
@@ -71,6 +71,7 @@
     </LinearLayout>
 
     <LinearLayout
+        android:id="@+id/linearLayout2"
         android:layout_width="407dp"
         android:layout_height="44dp"
         android:layout_marginStart="1dp"
@@ -90,6 +91,7 @@
 
             <Button
                 android:id="@+id/button"
+                android:onClick="AjoutActivite"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/etape" />
@@ -108,6 +110,16 @@
                 android:text="@string/repetition" />
         </LinearLayout>
     </LinearLayout>
+
+    <ListView
+        android:id="@+id/listView"
+        android:layout_width="410dp"
+        android:layout_height="478dp"
+        android:layout_marginStart="2dp"
+        android:layout_marginBottom="7dp"
+        app:layout_constraintBottom_toTopOf="@+id/linearLayout2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

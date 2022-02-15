@@ -4,23 +4,57 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.AlertDialog;
 import android.app.DatePickerDialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.DatePicker;
+import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 
+
+class activite implements Serializable{
+    private String TypeDeSport;
+    private String Commentaire;
+
+    public activite(String TypeDeSport,String Commentaire){
+        this.Commentaire=Commentaire;
+        this.TypeDeSport=TypeDeSport;
+    }
+
+    public String getCommentaire() {
+        return Commentaire;
+    }
+
+    public void setCommentaire(String commentaire) {
+        Commentaire = commentaire;
+    }
+    public String TypeDeSport() {
+        return TypeDeSport;
+    }
+    public void setTypeDeSport(String typeDeSport) {
+        TypeDeSport = typeDeSport;
+    }
+    public String toString(){
+        return this.TypeDeSport+"  "+ this.Commentaire;
+    }
+}
 public class ajout_entrainement extends AppCompatActivity {
 
     public DatePickerDialog datePickerDialog;
     public Button dateButton;
     Spinner spinner;
+    //ListView listView;
+    public ArrayList<activite> block=new ArrayList<activite>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,7 +62,12 @@ public class ajout_entrainement extends AppCompatActivity {
         setContentView(R.layout.activity_ajout_entrainement);
         
         TextView t1 = (TextView) findViewById(R.id.textView);
-        
+        ListView listView=(ListView) findViewById(R.id.listView);
+
+
+
+
+
         //Récupération du Spinner déclaré dans le fichier main.xml de res/layout
         spinner = (Spinner) findViewById(R.id.typeDeSport);
         //Création d'une liste d'élément à mettre dans le Spinner(pour l'exemple)
@@ -61,6 +100,31 @@ public class ajout_entrainement extends AppCompatActivity {
         dateButton=findViewById(R.id.date_picker_Button);
         dateButton.setText(getTodaysDate());
 
+
+
+
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            // i est la postion ou on clique
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                Toast.makeText(ajout_entrainement.this,"clique sur l 'item "+ i+ ""+block.get(i).toString(),Toast.LENGTH_LONG).show();
+                block.get(i).setTypeDeSport("swim");
+                rafraichissementListe();
+               // startActivity(new Intent(ajout_entrainement.this,pop.class));
+
+            }
+        });
+
+    }
+    public void rafraichissementListe(){
+        ListView listView=(ListView) findViewById(R.id.listView);
+        ArrayAdapter blockAdapter=new ArrayAdapter(this, android.R.layout.simple_list_item_1,block);
+        listView.setAdapter(blockAdapter);
+    }
+    public void AjoutActivite(View view){
+        activite un = new activite("Echauffement ","?");
+        block.add(un);
+        rafraichissementListe();
     }
 
     private String getTodaysDate() {
@@ -129,4 +193,5 @@ public class ajout_entrainement extends AppCompatActivity {
         datePickerDialog.show();
 
     }
+
 }
