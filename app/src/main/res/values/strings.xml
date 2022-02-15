@@ -9,8 +9,10 @@
     <string name="date">date</string>
     <string name="etape">Ajouter étape</string>
     <string name="repetition">Ajouter répétition</string>
-
-
+    <string name="valider">valider</string>
+    <string name="etapetitre">etape</string>
+    <string name="duree">duree</string>
+    <string name="note">note</string>
 
 
 

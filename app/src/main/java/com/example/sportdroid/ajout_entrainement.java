@@ -23,29 +23,49 @@ import java.util.List;
 
 
 class activite implements Serializable{
-    private String TypeDeSport;
-    private String Commentaire;
+    private String typeDetape;
+    private String notes;
+    private String typeDeDuree;
+    private int duree;
 
-    public activite(String TypeDeSport,String Commentaire){
-        this.Commentaire=Commentaire;
-        this.TypeDeSport=TypeDeSport;
+
+
+    public activite(String typeDetape, String notes, String typeDeDuree, int duree){
+        this.typeDetape=typeDetape;
+        this.notes=notes;
+        this.typeDeDuree=typeDeDuree;
+        this.duree=duree;
     }
 
-    public String getCommentaire() {
-        return Commentaire;
+    public void settypeDetape(String typeDetape) {
+        this.typeDetape = typeDetape;
+    }
+    public String gettypeDetape() {
+        return typeDetape;
+    }
+    public void setnotes(String notes) {
+        this.notes = notes;
+    }
+    public String getnotes() {
+        return notes;
+    }
+    public void settypeDeDuree(String typeDeDuree) {
+        this.typeDeDuree = typeDeDuree;
+    }
+    public String gettypeDeDuree() {
+        return typeDeDuree;
+    }
+    public void setduree(int duree) {
+        this.duree = duree;
+    }
+    public int getduree() {
+        return duree;
     }
 
-    public void setCommentaire(String commentaire) {
-        Commentaire = commentaire;
-    }
-    public String TypeDeSport() {
-        return TypeDeSport;
-    }
-    public void setTypeDeSport(String typeDeSport) {
-        TypeDeSport = typeDeSport;
-    }
+
+
     public String toString(){
-        return this.TypeDeSport+"  "+ this.Commentaire;
+        return  this.typeDetape+"  "+ this.notes+"  "+ this.typeDeDuree+"  "+ this.duree;
     }
 }
 public class ajout_entrainement extends AppCompatActivity {
@@ -108,8 +128,12 @@ public class ajout_entrainement extends AppCompatActivity {
             // i est la postion ou on clique
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 Toast.makeText(ajout_entrainement.this,"clique sur l 'item "+ i+ ""+block.get(i).toString(),Toast.LENGTH_LONG).show();
-                block.get(i).setTypeDeSport("swim");
+                block.get(i).settypeDetape("ddd");
                 rafraichissementListe();
+                Intent intent = new Intent(ajout_entrainement.this, detail_block.class);
+                intent.putExtra("case", block.get(i));
+                startActivity(intent);
+
                // startActivity(new Intent(ajout_entrainement.this,pop.class));
 
             }
@@ -122,7 +146,7 @@ public class ajout_entrainement extends AppCompatActivity {
         listView.setAdapter(blockAdapter);
     }
     public void AjoutActivite(View view){
-        activite un = new activite("Echauffement ","?");
+        activite un = new activite("recup","?","temps",15);
         block.add(un);
         rafraichissementListe();
     }
@@ -191,7 +215,10 @@ public class ajout_entrainement extends AppCompatActivity {
 
     public void openDatePicker(View view){
         datePickerDialog.show();
+    }
 
+    public void valider(View view){
+        Toast.makeText(ajout_entrainement.this,"valider",Toast.LENGTH_LONG).show();
     }
 
 }

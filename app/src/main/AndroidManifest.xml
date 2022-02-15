@@ -10,6 +10,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.SportDroid">
         <activity
+            android:name=".detail_block"
+            android:exported="false" />
+        <activity
             android:name=".entrainement"
             android:exported="false" />
         <activity
