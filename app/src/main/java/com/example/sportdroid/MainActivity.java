@@ -131,7 +131,6 @@ public class MainActivity extends AppCompatActivity {
                         rafraichissementListe();
                 }
             }
-
             @Override
             public void onCancelled(DatabaseError error) {
                 // Failed to read value
@@ -158,12 +157,12 @@ public class MainActivity extends AppCompatActivity {
         activite un = new activite("running","16/03/2020");
         tabActivite.add(un);
         FirebaseDatabase database = FirebaseDatabase.getInstance();
-        DatabaseReference myRef = database.getReference("activite");
-        myRef.setValue(tabActivite);
+        DatabaseReference myRef = database.getReference("activite/"+tabActivite.size());
+        myRef.setValue(un);
         rafraichissementListe();
 
         Intent intent = new Intent(this, ajout_entrainement.class);
-        intent.putExtra("nEntrainement", String.valueOf(tabActivite.size()-1));
+        intent.putExtra("nEntrainement", String.valueOf(tabActivite.size()));
         startActivity(intent);
 
 

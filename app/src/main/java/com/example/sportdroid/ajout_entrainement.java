@@ -178,22 +178,62 @@ private TextView test;
 
                 // pour modifier le block
                 Intent intent = new Intent(ajout_entrainement.this, detail_block.class);
-                intent.putExtra("case",str);
-                intent.putExtra("block",String.valueOf(i));
+                intent.putExtra("nActivite",str);
+                intent.putExtra("nBlock",String.valueOf(i));
                 startActivity(intent);
 
 
 
                // startActivity(new Intent(ajout_entrainement.this,pop.class));
                 FirebaseDatabase database = FirebaseDatabase.getInstance();
-                DatabaseReference blockr = database.getReference("Activite/block");
+                DatabaseReference blockr = database.getReference("activite/"+str+"/block");
                 blockr.setValue(block);
 
 
             }
         });
 
+
+
+
+        FirebaseDatabase database = FirebaseDatabase.getInstance();
+        DatabaseReference myRef = database.getReference("activite/1/block/0");
+        //myRef.setValue("Hello, World!");
+
+        myRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                // This method is called once with the initial value and again
+                // whenever data at this location is updated.
+                block.clear();
+                for(DataSnapshot ds : dataSnapshot.getChildren()) {
+                    String typeDetape = String.valueOf(dataSnapshot.child("/typeDetape").getValue());
+                    String notes = String.valueOf(dataSnapshot.child("/notes").getValue());
+                    String typeDeDuree = String.valueOf(dataSnapshot.child("/typeDeDuree").getValue());
+                    String duree = String.valueOf(dataSnapshot.child("/duree").getValue());
+
+                    block.add(new detaille_entrainement(typeDetape, notes,typeDeDuree,Integer.getInteger(duree)));
+                    rafraichissementListe();
+                }
+            }
+
+            @Override
+            public void onCancelled(DatabaseError error) {
+                // Failed to read value
+            }
+        });
+
+
+
     }
+
+
+
+
+
+
+
+
 
 
     private TextView retrieveTV;

@@ -28,15 +28,19 @@ public class detail_block extends AppCompatActivity {
 
     public int i;
     private EditText TexteDuree;
-    public String str;
+    public String nActivite;
+    public String nBlock;
+    TextView test;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detail_block);
 
         Intent intent = getIntent();
-        if (intent.hasExtra("case")){ // vérifie qu'une valeur est associée à la clé “edittext”
-             str = intent.getStringExtra("case"); // on récupère la valeur associée à la clé
+        if (intent.hasExtra("nActivite")){ // vérifie qu'une valeur est associée à la clé “edittext”
+            nActivite = intent.getStringExtra("nActivite"); // on récupère la valeur associée à la clé
+            nBlock = intent.getStringExtra("nBlock"); // on récupère la valeur associée à la clé
         }
 
 
@@ -62,11 +66,6 @@ public class detail_block extends AppCompatActivity {
 
 
 
-
-
-
-
-
 //SPINNER TYPE DE DUREE
         spinnerDuree = (Spinner) findViewById(R.id.typeDuree);
         List typeDureee = new ArrayList();
@@ -82,28 +81,22 @@ public class detail_block extends AppCompatActivity {
         spinnerDuree.setAdapter(adapterDuree);
 
 
-
-
-
-
-
-
     }
 
     public void valider(View view){
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         this.duree =(EditText) findViewById(R.id.intduree);
-        DatabaseReference test = database.getReference("activite/block/"+Integer.toString(this.i)+"/duree");
+        DatabaseReference test = database.getReference("activite/"+nActivite+"/block/"+nBlock+"/duree");
         test.setValue(this.duree.getText().toString());
 
         this.note =(EditText) findViewById(R.id.texteEtape);
-        DatabaseReference note = database.getReference("activite/block/"+Integer.toString(this.i)+"/notes");
+        DatabaseReference note = database.getReference("activite/"+nActivite+"/block/"+nBlock+"/notes");
         note.setValue(this.note.getText().toString());
 
-        DatabaseReference typeDetape = database.getReference("activite/block/"+Integer.toString(this.i)+"/typeDetape");
+        DatabaseReference typeDetape = database.getReference("activite/"+nActivite+"/block/"+nBlock+"/typeDetape");
         typeDetape.setValue(spinnerEtape.getSelectedItem().toString());
 
-        DatabaseReference typeDuree = database.getReference("activite/block/"+Integer.toString(this.i)+"/typeDeDuree");
+        DatabaseReference typeDuree = database.getReference("activite/"+nActivite+"/block/"+nBlock+"/typeDeDuree");
         typeDuree.setValue(spinnerDuree.getSelectedItem().toString());
         finish();
 
