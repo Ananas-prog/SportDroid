@@ -16,6 +16,9 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -144,6 +147,10 @@ public class ajout_entrainement extends AppCompatActivity {
         ListView listView=(ListView) findViewById(R.id.listView);
         ArrayAdapter blockAdapter=new ArrayAdapter(this, android.R.layout.simple_list_item_1,block);
         listView.setAdapter(blockAdapter);
+        // Write a message to the database
+        FirebaseDatabase database = FirebaseDatabase.getInstance();
+        DatabaseReference myRef = database.getReference("message");
+        myRef.setValue("Hello, World!");
     }
     public void AjoutActivite(View view){
         activite un = new activite("recup","?","temps",15);
