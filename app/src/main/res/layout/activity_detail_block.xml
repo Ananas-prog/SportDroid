@@ -101,11 +101,14 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/linearLayout7">
 
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/texteDuree"
-            android:layout_width="match_parent"
+        <EditText
+            android:id="@+id/intduree"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:hint="@string/duree" />
+            android:layout_weight="1"
+            android:ems="10"
+            android:hint="@string/duree"
+            android:inputType="phone" />
     </LinearLayout>
 
     <LinearLayout
@@ -127,4 +130,5 @@
             android:text="@string/valider"
             android:onClick="valider"/>
     </LinearLayout>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

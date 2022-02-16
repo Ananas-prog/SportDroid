@@ -6,6 +6,7 @@ import android.app.AlertDialog;
 import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -16,10 +17,15 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
+import com.google.firebase.database.ValueEventListener;
 
 import java.io.Serializable;
+import java.net.HttpCookie;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
@@ -73,6 +79,7 @@ class activite implements Serializable{
 }
 public class ajout_entrainement extends AppCompatActivity {
 
+    private static final String TAG = "";
     public DatePickerDialog datePickerDialog;
     public Button dateButton;
     Spinner spinner;
@@ -86,8 +93,6 @@ public class ajout_entrainement extends AppCompatActivity {
         
         TextView t1 = (TextView) findViewById(R.id.textView);
         ListView listView=(ListView) findViewById(R.id.listView);
-
-
 
 
 
@@ -125,32 +130,43 @@ public class ajout_entrainement extends AppCompatActivity {
 
 
 
-
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             // i est la postion ou on clique
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 Toast.makeText(ajout_entrainement.this,"clique sur l 'item "+ i+ ""+block.get(i).toString(),Toast.LENGTH_LONG).show();
-                block.get(i).settypeDetape("ddd");
-                rafraichissementListe();
-                Intent intent = new Intent(ajout_entrainement.this, detail_block.class);
-                intent.putExtra("case", block.get(i));
-                startActivity(intent);
 
+                // pour modifier le block
+                Intent intent = new Intent(ajout_entrainement.this, detail_block.class);
+                Bundle bundle = new Bundle();
+                bundle.putInt("case ", i);
+                intent.putExtras(bundle);
+                startActivity(intent);
                // startActivity(new Intent(ajout_entrainement.this,pop.class));
+                FirebaseDatabase database = FirebaseDatabase.getInstance();
+                DatabaseReference blockr = database.getReference("Activite/block");
+                blockr.setValue(block);
+
+
+
+
+
+
+
+
 
             }
         });
 
     }
+
+
     public void rafraichissementListe(){
+
         ListView listView=(ListView) findViewById(R.id.listView);
         ArrayAdapter blockAdapter=new ArrayAdapter(this, android.R.layout.simple_list_item_1,block);
         listView.setAdapter(blockAdapter);
         // Write a message to the database
-        FirebaseDatabase database = FirebaseDatabase.getInstance();
-        DatabaseReference myRef = database.getReference("message");
-        myRef.setValue("Hello, World!");
     }
     public void AjoutActivite(View view){
         activite un = new activite("recup","?","temps",15);
@@ -226,6 +242,13 @@ public class ajout_entrainement extends AppCompatActivity {
 
     public void valider(View view){
         Toast.makeText(ajout_entrainement.this,"valider",Toast.LENGTH_LONG).show();
+        FirebaseDatabase database = FirebaseDatabase.getInstance();
+
+        DatabaseReference typeSport = database.getReference("Activite/typeDeSport");
+        typeSport.setValue(spinner.getSelectedItem().toString());
+
+        DatabaseReference date = database.getReference("Activite/date");
+        date.setValue(dateButton.getText());
     }
 
 }

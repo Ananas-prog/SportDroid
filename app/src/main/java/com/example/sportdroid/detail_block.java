@@ -8,7 +8,11 @@ import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
+
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -22,17 +26,17 @@ public class detail_block extends AppCompatActivity {
     EditText note;
     EditText duree;
 
-
+    public int i;
+    private EditText TexteDuree;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detail_block);
+
         Intent intent = getIntent();
-
-        //String monString = intent.getStringExtra("case");
-        
-
+        Bundle bundle = getIntent().getExtras();
+        this.i = bundle.getInt("case");
 // SPINNER Etape
         spinnerEtape = (Spinner) findViewById(R.id.typeEtape);
         List typeEtape = new ArrayList();
@@ -53,13 +57,11 @@ public class detail_block extends AppCompatActivity {
         spinnerEtape.setAdapter(adapterEtape);
 
 
-               //str. settypeDetape(settypeDetape(spinnerEtape.getSelectedItem().toString() ));
 
 
-        // TEXTEFILED NOTE
 
-        note = (EditText) findViewById (R.id.texteEtape);
-        String TexteNote = note.getText().toString();
+
+
 
 
 //SPINNER TYPE DE DUREE
@@ -76,19 +78,31 @@ public class detail_block extends AppCompatActivity {
         adapterDuree.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinnerDuree.setAdapter(adapterDuree);
 
-        //t1.settypeDetape(spinnerEtape.getSelectedItem().toString() );
 
 
 
-        // TEXTEFILED duree
 
-        duree = (EditText) findViewById (R.id.texteDuree);
-        String TexteDuree = duree.getText().toString();
+
+
 
     }
 
     public void valider(View view){
-        Toast.makeText(detail_block.this,"valider",Toast.LENGTH_LONG).show();
+        FirebaseDatabase database = FirebaseDatabase.getInstance();
+        this.duree =(EditText) findViewById(R.id.intduree);
+        DatabaseReference test = database.getReference("Activite/block/"+Integer.toString(this.i)+"/duree");
+        test.setValue(this.duree.getText().toString());
+
+        this.note =(EditText) findViewById(R.id.texteEtape);
+        DatabaseReference note = database.getReference("Activite/block/"+Integer.toString(this.i)+"/notes");
+        note.setValue(this.note.getText().toString());
+
+        DatabaseReference typeDetape = database.getReference("Activite/block/"+Integer.toString(this.i)+"/typeDetape");
+        typeDetape.setValue(spinnerEtape.getSelectedItem().toString());
+
+        DatabaseReference typeDuree = database.getReference("Activite/block/"+Integer.toString(this.i)+"/typeDeDuree");
+        typeDuree.setValue(spinnerDuree.getSelectedItem().toString());
         finish();
+
     }
 }
