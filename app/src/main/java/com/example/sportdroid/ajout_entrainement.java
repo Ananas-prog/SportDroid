@@ -86,6 +86,7 @@ public class ajout_entrainement extends AppCompatActivity {
     //ListView listView;
     public ArrayList<detaille_entrainement> block=new ArrayList<>();
     public DatabaseReference databaseReference;
+    public String str = "";
 
 
 
@@ -98,6 +99,10 @@ private TextView test;
         TextView t1 = (TextView) findViewById(R.id.textView);
         ListView listView=(ListView) findViewById(R.id.listView);
 
+        Intent intent = getIntent();
+        if (intent.hasExtra("nEntrainement")){ // vérifie qu'une valeur est associée à la clé “edittext”
+            str = intent.getStringExtra("nEntrainement"); // on récupère la valeur associée à la clé
+        }
 
 
         //Récupération du Spinner déclaré dans le fichier main.xml de res/layout
@@ -290,9 +295,9 @@ private TextView test;
 
     public void valider(View view){
         FirebaseDatabase database = FirebaseDatabase.getInstance();
-        DatabaseReference typeSport = database.getReference("Activite/typeDeSport");
+        DatabaseReference typeSport = database.getReference("activite/"+str+"/typeDeSport");
         typeSport.setValue(spinner.getSelectedItem().toString());
-        DatabaseReference date = database.getReference("Activite/date");
+        DatabaseReference date = database.getReference("activite/"+str+"/date");
         date.setValue(dateButton.getText());
         finish();
     }

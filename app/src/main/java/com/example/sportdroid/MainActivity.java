@@ -19,11 +19,38 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
 
+class activite implements Serializable {
+    private String typeDeSport;
+    private String date;
+    //private ArrayList<detaille_entrainement> block=new ArrayList<>();
 
+    public activite(String typeDeSport,String date) {
+        this.typeDeSport=typeDeSport;
+        this.date=date;
+        // block= new ArrayList<detaille_entrainement>("Echauffement","aucune","Temps",30);
+    }
+    public String getDate() {
+        return date;
+    }
+    public String getTypeDeSport() {
+        return typeDeSport;
+    }
+    public void setDate(String date) {
+        this.date = date;
+    }
+    public void setTypeDeSport(String typeDeSport) {
+        this.typeDeSport = typeDeSport;
+    }
+    public String toString(){
+        return  this.typeDeSport+"  "+ this.date;
+    }
+
+}
 public class MainActivity extends AppCompatActivity {
 
     private Button ButtonCalendrier;
@@ -31,7 +58,7 @@ public class MainActivity extends AppCompatActivity {
     private Button Buttonhome;
     private Button ButtonAjouterEntrainement;
     public ArrayList<Object> listeEntrainement=new ArrayList<>();
-    public ArrayList<activite> activite= new ArrayList<>();
+    public ArrayList<activite> tabActivite= new ArrayList<>();
 
 
     @Override
@@ -70,10 +97,6 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-
-
-
-
         ListView listView=(ListView) findViewById(R.id.listViewPrincipal);
 
 
@@ -81,11 +104,41 @@ public class MainActivity extends AppCompatActivity {
             @Override
             // i est la postion ou on clique
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                Toast.makeText(MainActivity.this,"clique sur l 'item "+ i+ ""+activite.get(i).toString(),Toast.LENGTH_LONG).show();
+                Toast.makeText(MainActivity.this,"clique sur l 'item "+ i+ ""+tabActivite.get(i).toString(),Toast.LENGTH_LONG).show();
 
 
             }
         });
+
+
+
+
+        FirebaseDatabase database = FirebaseDatabase.getInstance();
+        DatabaseReference myRef = database.getReference("activite/0");
+
+        //myRef.setValue("Hello, World!");
+
+        myRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                // This method is called once with the initial value and again
+                // whenever data at this location is updated.
+                    for(DataSnapshot ds : dataSnapshot.getChildren()) {
+                        String sport = String.valueOf(dataSnapshot.child("/typeDeSport").getValue());
+                        String date = String.valueOf(dataSnapshot.child("/date").getValue());
+                        tabActivite.clear();
+                        tabActivite.add(new activite(sport, date));
+                        rafraichissementListe();
+                }
+            }
+
+            @Override
+            public void onCancelled(DatabaseError error) {
+                // Failed to read value
+            }
+        });
+
+
 
 
 
@@ -96,39 +149,24 @@ public class MainActivity extends AppCompatActivity {
     public void rafraichissementListe(){
 
         ListView listView=(ListView) findViewById(R.id.listViewPrincipal);
-        ArrayAdapter blockAdapter=new ArrayAdapter(this, android.R.layout.simple_list_item_1,activite);
+        ArrayAdapter blockAdapter=new ArrayAdapter(this, android.R.layout.simple_list_item_1,tabActivite);
         listView.setAdapter(blockAdapter);
         // Write a message to the database
     }
     public void ajouterEntrainement(){
-        Intent intent = new Intent(this, ajout_entrainement.class);
-        startActivity(intent);
-        // Write a message to the database
-        FirebaseDatabase database = FirebaseDatabase.getInstance();
-        DatabaseReference myRef = database.getReference("message");
-
-        myRef.setValue("Hello, World!");
         activite un = new activite("running","16/03/2020");
-        activite.add(un);
+        tabActivite.add(un);
+        FirebaseDatabase database = FirebaseDatabase.getInstance();
+        DatabaseReference myRef = database.getReference("activite");
+        myRef.setValue(tabActivite);
         rafraichissementListe();
 
+        Intent intent = new Intent(this, ajout_entrainement.class);
+        intent.putExtra("nEntrainement", String.valueOf(tabActivite.size()-1));
+        startActivity(intent);
 
-        myRef.addValueEventListener(new ValueEventListener() {
-            private static final String TAG = "";
 
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                // This method is called once with the initial value and again
-                // whenever data at this location is updated.
-                String value = dataSnapshot.getValue(String.class);
-            }
 
-            @Override
-            public void onCancelled(DatabaseError error) {
-                // Failed to read value
-                Log.w(TAG, "Failed to read value.", error.toException());
-            }
-        });
 
     }
     public void home(){
