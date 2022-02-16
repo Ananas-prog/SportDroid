@@ -154,6 +154,7 @@ public class MainActivity extends AppCompatActivity {
         // Write a message to the database
     }
     public void ajouterEntrainement(){
+        //activiter par default
         activite un = new activite("running","16/03/2020");
         tabActivite.add(un);
         FirebaseDatabase database = FirebaseDatabase.getInstance();

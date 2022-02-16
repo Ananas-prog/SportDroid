@@ -178,10 +178,12 @@ private TextView test;
 
                 // pour modifier le block
                 Intent intent = new Intent(ajout_entrainement.this, detail_block.class);
-                Bundle bundle = new Bundle();
-                bundle.putInt("case ", i);
-                intent.putExtras(bundle);
+                intent.putExtra("case",str);
+                intent.putExtra("block",String.valueOf(i));
                 startActivity(intent);
+
+
+
                // startActivity(new Intent(ajout_entrainement.this,pop.class));
                 FirebaseDatabase database = FirebaseDatabase.getInstance();
                 DatabaseReference blockr = database.getReference("Activite/block");
