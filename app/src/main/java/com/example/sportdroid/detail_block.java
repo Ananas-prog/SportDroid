@@ -37,6 +37,9 @@ public class detail_block extends AppCompatActivity {
         Intent intent = getIntent();
         Bundle bundle = getIntent().getExtras();
         this.i = bundle.getInt("case");
+
+
+
 // SPINNER Etape
         spinnerEtape = (Spinner) findViewById(R.id.typeEtape);
         List typeEtape = new ArrayList();

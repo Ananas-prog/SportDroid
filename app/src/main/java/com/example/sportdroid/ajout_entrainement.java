@@ -1,5 +1,6 @@
 package com.example.sportdroid;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.AlertDialog;
@@ -23,15 +24,17 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.ktx.Firebase;
 
 import java.io.Serializable;
 import java.net.HttpCookie;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
+import java.util.Map;
 
 
-class activite implements Serializable{
+class detaille_entrainement implements Serializable{
     private String typeDetape;
     private String notes;
     private String typeDeDuree;
@@ -39,7 +42,7 @@ class activite implements Serializable{
 
 
 
-    public activite(String typeDetape, String notes, String typeDeDuree, int duree){
+    public detaille_entrainement(String typeDetape, String notes, String typeDeDuree, int duree){
         this.typeDetape=typeDetape;
         this.notes=notes;
         this.typeDeDuree=typeDeDuree;
@@ -70,9 +73,6 @@ class activite implements Serializable{
     public int getduree() {
         return duree;
     }
-
-
-
     public String toString(){
         return  this.typeDetape+"  "+ this.notes+"  "+ this.typeDeDuree+"  "+ this.duree;
     }
@@ -84,8 +84,12 @@ public class ajout_entrainement extends AppCompatActivity {
     public Button dateButton;
     Spinner spinner;
     //ListView listView;
-    public ArrayList<activite> block=new ArrayList<activite>();
+    public ArrayList<detaille_entrainement> block=new ArrayList<>();
+    public DatabaseReference databaseReference;
 
+
+
+private TextView test;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -130,6 +134,37 @@ public class ajout_entrainement extends AppCompatActivity {
 
 
 
+
+
+       // test=(TextView)findViewById(R.id.textView2);
+
+       // FirebaseDatabase database = FirebaseDatabase.getInstance();
+       // DatabaseReference myRef = database.getReference("Activite/block/0/duree");
+
+       // myRef.setValue("30");
+
+        // Read from the database
+       // myRef.addValueEventListener(new ValueEventListener() {
+       //     @Override
+        //    public void onDataChange(DataSnapshot dataSnapshot) {
+                // This method is called once with the initial value and again
+                // whenever data at this location is updated.
+        //        String value = dataSnapshot.getValue(String.class);
+        //        test.setText(value);
+        //    }
+
+         //   @Override
+         //   public void onCancelled(DatabaseError error) {
+                // Failed to read value
+        ///        Log.w(TAG, "Failed to read value.", error.toException());
+        //    }
+       // });
+
+
+
+
+
+
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             // i est la postion ou on clique
@@ -148,17 +183,30 @@ public class ajout_entrainement extends AppCompatActivity {
                 blockr.setValue(block);
 
 
-
-
-
-
-
-
-
             }
         });
 
     }
+
+
+    private TextView retrieveTV;
+
+    private void getData(){
+        databaseReference.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                String value=snapshot.getValue(String.class);
+                retrieveTV.setText(value);
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+                Toast.makeText(ajout_entrainement.this, "Fail to get data.", Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
+
 
 
     public void rafraichissementListe(){
@@ -169,7 +217,7 @@ public class ajout_entrainement extends AppCompatActivity {
         // Write a message to the database
     }
     public void AjoutActivite(View view){
-        activite un = new activite("recup","?","temps",15);
+        detaille_entrainement un = new detaille_entrainement("recup","?","temps",15);
         block.add(un);
         rafraichissementListe();
     }
@@ -241,14 +289,15 @@ public class ajout_entrainement extends AppCompatActivity {
     }
 
     public void valider(View view){
-        Toast.makeText(ajout_entrainement.this,"valider",Toast.LENGTH_LONG).show();
         FirebaseDatabase database = FirebaseDatabase.getInstance();
-
         DatabaseReference typeSport = database.getReference("Activite/typeDeSport");
         typeSport.setValue(spinner.getSelectedItem().toString());
-
         DatabaseReference date = database.getReference("Activite/date");
         date.setValue(dateButton.getText());
+        finish();
     }
+
+
+
 
 }
