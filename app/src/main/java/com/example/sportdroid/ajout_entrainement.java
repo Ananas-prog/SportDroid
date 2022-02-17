@@ -1,13 +1,11 @@
 package com.example.sportdroid;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.AlertDialog;
 import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -22,27 +20,23 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
-import com.google.firebase.ktx.Firebase;
 
 import java.io.Serializable;
-import java.net.HttpCookie;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
-import java.util.Map;
 
 
 class detaille_entrainement implements Serializable{
     private String typeDetape;
     private String notes;
     private String typeDeDuree;
-    private int duree;
+    private String duree;
 
 
 
-    public detaille_entrainement(String typeDetape, String notes, String typeDeDuree, int duree){
+    public detaille_entrainement(String typeDetape, String notes, String typeDeDuree, String duree){
         this.typeDetape=typeDetape;
         this.notes=notes;
         this.typeDeDuree=typeDeDuree;
@@ -67,10 +61,10 @@ class detaille_entrainement implements Serializable{
     public String gettypeDeDuree() {
         return typeDeDuree;
     }
-    public void setduree(int duree) {
+    public void setduree(String duree) {
         this.duree = duree;
     }
-    public int getduree() {
+    public String getduree() {
         return duree;
     }
     public String toString(){
@@ -84,13 +78,16 @@ public class ajout_entrainement extends AppCompatActivity {
     public Button dateButton;
     Spinner spinner;
     //ListView listView;
-    public ArrayList<detaille_entrainement> block=new ArrayList<>();
+    public ArrayList<detaille_entrainement> block=new ArrayList<detaille_entrainement>();
     public DatabaseReference databaseReference;
     public String str = "";
 
 
 
 private TextView test;
+
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -139,31 +136,45 @@ private TextView test;
 
 
 
+        test=(TextView)findViewById(R.id.textView3);
 
 
-       // test=(TextView)findViewById(R.id.textView2);
+        FirebaseDatabase database = FirebaseDatabase.getInstance();
+        DatabaseReference myRef1 = database.getReference("activite/"+str+"block");
 
-       // FirebaseDatabase database = FirebaseDatabase.getInstance();
-       // DatabaseReference myRef = database.getReference("Activite/block/0/duree");
+        //myRef.setValue("Hello, World!");
 
-       // myRef.setValue("30");
-
-        // Read from the database
-       // myRef.addValueEventListener(new ValueEventListener() {
-       //     @Override
-        //    public void onDataChange(DataSnapshot dataSnapshot) {
+        myRef1.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
                 // This method is called once with the initial value and again
                 // whenever data at this location is updated.
-        //        String value = dataSnapshot.getValue(String.class);
-        //        test.setText(value);
-        //    }
+                block.clear();
+                for(DataSnapshot ds : dataSnapshot.getChildren()) {
+                    // String value = ds.getValue(String.class);
+                    String duree = String.valueOf(ds.child("/duree").getValue());
+                    String notes = String.valueOf(ds.child("/notes").getValue());
+                    String typeDeDuree = String.valueOf(ds.child("/typeDeDuree").getValue());
+                    String typeDetape = String.valueOf(ds.child("/typeDetape").getValue());
+                    test.setText(duree);
+                    detaille_entrainement element = new detaille_entrainement(typeDetape,notes,typeDeDuree,duree);
+                    block.add(element);
+                    block.clear();
 
-         //   @Override
-         //   public void onCancelled(DatabaseError error) {
+                    //listeEntrainement.add(sport);
+                    // test.setText(value);
+                    //String sport = String.valueOf(dataSnapshot.child("/typeDeSport").getValue());
+                    //String date = String.valueOf(dataSnapshot.child("/date").getValue());
+                    //tabActivite.clear();
+                    //tabActivite.add(new activite(sport, date));
+                    rafraichissementListe();
+                }
+            }
+            @Override
+            public void onCancelled(DatabaseError error) {
                 // Failed to read value
-        ///        Log.w(TAG, "Failed to read value.", error.toException());
-        //    }
-       // });
+            }
+        });
 
 
 
@@ -192,68 +203,7 @@ private TextView test;
 
             }
         });
-
-
-
-
-        FirebaseDatabase database = FirebaseDatabase.getInstance();
-        DatabaseReference myRef = database.getReference("activite/1/block/0");
-        //myRef.setValue("Hello, World!");
-
-        myRef.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                // This method is called once with the initial value and again
-                // whenever data at this location is updated.
-                block.clear();
-                for(DataSnapshot ds : dataSnapshot.getChildren()) {
-                    String typeDetape = String.valueOf(dataSnapshot.child("/typeDetape").getValue());
-                    String notes = String.valueOf(dataSnapshot.child("/notes").getValue());
-                    String typeDeDuree = String.valueOf(dataSnapshot.child("/typeDeDuree").getValue());
-                    String duree = String.valueOf(dataSnapshot.child("/duree").getValue());
-
-                    block.add(new detaille_entrainement(typeDetape, notes,typeDeDuree,Integer.getInteger(duree)));
-                    rafraichissementListe();
-                }
-            }
-
-            @Override
-            public void onCancelled(DatabaseError error) {
-                // Failed to read value
-            }
-        });
-
-
-
     }
-
-
-
-
-
-
-
-
-
-
-    private TextView retrieveTV;
-
-    private void getData(){
-        databaseReference.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                String value=snapshot.getValue(String.class);
-                retrieveTV.setText(value);
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-                Toast.makeText(ajout_entrainement.this, "Fail to get data.", Toast.LENGTH_SHORT).show();
-            }
-        });
-    }
-
-
 
 
     public void rafraichissementListe(){
@@ -264,7 +214,7 @@ private TextView test;
         // Write a message to the database
     }
     public void AjoutActivite(View view){
-        detaille_entrainement un = new detaille_entrainement("recup","?","temps",15);
+        detaille_entrainement un = new detaille_entrainement("recup","?","temps","15");
         block.add(un);
         rafraichissementListe();
     }

@@ -11,6 +11,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.firebase.database.DataSnapshot;
@@ -57,7 +58,7 @@ public class MainActivity extends AppCompatActivity {
     private Button ButtonEntrainement;
     private Button Buttonhome;
     private Button ButtonAjouterEntrainement;
-    public ArrayList<Object> listeEntrainement=new ArrayList<>();
+    public ArrayList<String> listeEntrainement=new ArrayList<>();
     public ArrayList<activite> tabActivite= new ArrayList<>();
 
 
@@ -110,11 +111,11 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-
+        TextView test = (TextView) findViewById(R.id.textView2);
 
 
         FirebaseDatabase database = FirebaseDatabase.getInstance();
-        DatabaseReference myRef = database.getReference("activite/0");
+        DatabaseReference myRef = database.getReference("activite");
 
         //myRef.setValue("Hello, World!");
 
@@ -123,11 +124,20 @@ public class MainActivity extends AppCompatActivity {
             public void onDataChange(DataSnapshot dataSnapshot) {
                 // This method is called once with the initial value and again
                 // whenever data at this location is updated.
+                tabActivite.clear();
                     for(DataSnapshot ds : dataSnapshot.getChildren()) {
-                        String sport = String.valueOf(dataSnapshot.child("/typeDeSport").getValue());
-                        String date = String.valueOf(dataSnapshot.child("/date").getValue());
-                        tabActivite.clear();
-                        tabActivite.add(new activite(sport, date));
+                       // String value = ds.getValue(String.class);
+                        String sport = String.valueOf(ds.child("/typeDeSport").getValue());
+                        String date = String.valueOf(ds.child("/date").getValue());
+                        activite element = new activite(sport, date);
+                        tabActivite.add(element);
+
+                        //listeEntrainement.add(sport);
+                       // test.setText(value);
+                        //String sport = String.valueOf(dataSnapshot.child("/typeDeSport").getValue());
+                        //String date = String.valueOf(dataSnapshot.child("/date").getValue());
+                        //tabActivite.clear();
+                        //tabActivite.add(new activite(sport, date));
                         rafraichissementListe();
                 }
             }
