@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "67407007137",
+    "firebase_url": "https://sportdroid-default-rtdb.europe-west1.firebasedatabase.app",
+    "project_id": "sportdroid",
+    "storage_bucket": "sportdroid.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:67407007137:android:242774e80833a435728fe0",
+        "android_client_info": {
+          "package_name": "com.example.sportdroid"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "67407007137-s6b4vmvujhc7fn0oc10mqlq33bkoblgr.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDTtmyUJ6p8ADn5SL7sCwL05OXYJgB9vRc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "67407007137-s6b4vmvujhc7fn0oc10mqlq33bkoblgr.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

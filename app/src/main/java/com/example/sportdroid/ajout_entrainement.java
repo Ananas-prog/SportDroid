@@ -139,42 +139,7 @@ private TextView test;
         test=(TextView)findViewById(R.id.textView3);
 
 
-        FirebaseDatabase database = FirebaseDatabase.getInstance();
-        DatabaseReference myRef1 = database.getReference("activite/"+str+"block");
 
-        //myRef.setValue("Hello, World!");
-
-        myRef1.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                // This method is called once with the initial value and again
-                // whenever data at this location is updated.
-                block.clear();
-                for(DataSnapshot ds : dataSnapshot.getChildren()) {
-                    // String value = ds.getValue(String.class);
-                    String duree = String.valueOf(ds.child("/duree").getValue());
-                    String notes = String.valueOf(ds.child("/notes").getValue());
-                    String typeDeDuree = String.valueOf(ds.child("/typeDeDuree").getValue());
-                    String typeDetape = String.valueOf(ds.child("/typeDetape").getValue());
-                    test.setText(duree);
-                    detaille_entrainement element = new detaille_entrainement(typeDetape,notes,typeDeDuree,duree);
-                    block.add(element);
-                    block.clear();
-
-                    //listeEntrainement.add(sport);
-                    // test.setText(value);
-                    //String sport = String.valueOf(dataSnapshot.child("/typeDeSport").getValue());
-                    //String date = String.valueOf(dataSnapshot.child("/date").getValue());
-                    //tabActivite.clear();
-                    //tabActivite.add(new activite(sport, date));
-                    rafraichissementListe();
-                }
-            }
-            @Override
-            public void onCancelled(DatabaseError error) {
-                // Failed to read value
-            }
-        });
 
 
 
@@ -203,6 +168,37 @@ private TextView test;
 
             }
         });
+
+
+        FirebaseDatabase database = FirebaseDatabase.getInstance();
+        DatabaseReference myRef1 = database.getReference("activite/"+str+"/block");
+        myRef1.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                // This method is called once with the initial value and again
+                // whenever data at this location is updated.
+                block.clear();
+                for(DataSnapshot ds : dataSnapshot.getChildren()) {
+                    // String value = ds.getValue(String.class);
+
+                    String duree = String.valueOf(ds.child("/duree").getValue());
+                    String notes = String.valueOf(ds.child("/notes").getValue());
+                    String typeDeDuree = String.valueOf(ds.child("/typeDeDuree").getValue());
+                    String typeDetape = String.valueOf(ds.child("/typeDetape").getValue());
+                    detaille_entrainement element = new detaille_entrainement(typeDetape,notes,typeDeDuree,duree);
+                    test.setText(duree);
+                    block.add(element);
+                    rafraichissementListe();
+                }
+            }
+            @Override
+            public void onCancelled(DatabaseError error) {
+                // Failed to read value
+            }
+        });
+
+
+
     }
 
 
