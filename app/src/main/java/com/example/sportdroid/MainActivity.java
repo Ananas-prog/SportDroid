@@ -133,13 +133,6 @@ public class MainActivity extends AppCompatActivity {
                         String date = String.valueOf(ds.child("/date").getValue());
                         activite element = new activite(sport, date);
                         tabActivite.add(element);
-
-                        //listeEntrainement.add(sport);
-                       // test.setText(value);
-                        //String sport = String.valueOf(dataSnapshot.child("/typeDeSport").getValue());
-                        //String date = String.valueOf(dataSnapshot.child("/date").getValue());
-                        //tabActivite.clear();
-                        //tabActivite.add(new activite(sport, date));
                         rafraichissementListe();
                 }
             }
@@ -158,11 +151,9 @@ public class MainActivity extends AppCompatActivity {
 
     }
     public void rafraichissementListe(){
-
         ListView listView=(ListView) findViewById(R.id.listViewPrincipal);
         ArrayAdapter blockAdapter=new ArrayAdapter(this, android.R.layout.simple_list_item_1,tabActivite);
         listView.setAdapter(blockAdapter);
-        // Write a message to the database
     }
     public void ajouterEntrainement(){
         //activiter par default

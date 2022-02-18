@@ -186,7 +186,7 @@ private TextView test;
                     String typeDeDuree = String.valueOf(ds.child("/typeDeDuree").getValue());
                     String typeDetape = String.valueOf(ds.child("/typeDetape").getValue());
                     detaille_entrainement element = new detaille_entrainement(typeDetape,notes,typeDeDuree,duree);
-                    test.setText(duree);
+                    //test.setText(duree);
                     block.add(element);
                     rafraichissementListe();
                 }
