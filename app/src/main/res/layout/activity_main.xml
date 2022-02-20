@@ -10,11 +10,12 @@
         android:id="@+id/linearLayout"
         android:layout_width="409dp"
         android:layout_height="88dp"
-        android:layout_marginStart="1dp"
-        android:layout_marginEnd="1dp"
-        android:layout_marginBottom="1dp"
+        android:layout_marginStart="0dp"
+        android:layout_marginEnd="0dp"
+        android:layout_marginBottom="0dp"
         android:orientation="horizontal"
         android:weightSum="1"
+        android:background="@color/bleu"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent">
@@ -28,6 +29,7 @@
             <Button
                 android:id="@+id/ButtonCalendrier"
                 android:layout_width="match_parent"
+                android:backgroundTint="@color/bleu"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:text="@string/ButtonCalendrier" />
@@ -40,6 +42,7 @@
             android:orientation="vertical">
 
             <Button
+                android:backgroundTint="@color/bleu"
                 android:id="@+id/ButtonHome"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
@@ -56,13 +59,15 @@
                 android:id="@+id/ButtonEntrainement"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:backgroundTint="@color/bleu"
                 android:text="@string/ButtonEntrainement" />
         </LinearLayout>
     </LinearLayout>
 
     <LinearLayout
-        android:layout_width="384dp"
-        android:layout_height="54dp"
+        android:id="@+id/linearLayout11"
+        android:layout_width="257dp"
+        android:layout_height="48dp"
         android:layout_marginStart="13dp"
         android:layout_marginEnd="14dp"
         android:layout_marginBottom="37dp"
@@ -72,10 +77,19 @@
         app:layout_constraintStart_toStartOf="parent">
 
         <Button
+            style="@style/Widget.AppCompat.Button.Borderless"
+            android:textColor="@color/bleu"
+            android:textSize="15sp"
+            app:cornerRadius="8dp"
+            app:rippleColor="#33AAAAAA"
+            app:strokeColor="@color/bleu"
+            app:strokeWidth="2dp"
+
             android:id="@+id/ButtonAjouterEntrainement"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            app:backgroundTint="@android:color/transparent"
             android:text="@string/ButtonAjoutEntrainement" />
     </LinearLayout>
 
@@ -83,9 +97,10 @@
         android:id="@+id/linearLayout8"
         android:layout_width="0dp"
         android:layout_height="78dp"
-        android:layout_marginStart="1dp"
-        android:layout_marginTop="1dp"
+        android:layout_marginStart="0dp"
+        android:layout_marginTop="0dp"
         android:layout_weight="1"
+        android:background="@color/orange"
         android:orientation="horizontal"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -112,6 +127,9 @@
 
             <TextView
                 android:id="@+id/textView"
+                android:gravity="center"
+                android:layout_marginTop="15dp"
+                android:textSize="20dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/presentation" />
@@ -124,6 +142,7 @@
             android:orientation="vertical">
 
             <ImageView
+                android:layout_marginTop="15dp"
                 android:id="@+id/imageView2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -132,6 +151,7 @@
     </LinearLayout>
 
     <LinearLayout
+        android:id="@+id/linearLayout12"
         android:layout_width="412dp"
         android:layout_height="235dp"
         android:layout_marginTop="27dp"
