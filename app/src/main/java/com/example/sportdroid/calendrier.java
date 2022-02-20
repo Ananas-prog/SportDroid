@@ -21,6 +21,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 
 public class calendrier extends AppCompatActivity {
     private Button ButtonCalendrier;
@@ -40,11 +41,14 @@ public class calendrier extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_calendar);
 
-
-
+        Calendar cal= Calendar.getInstance();
+        int year =cal.get(Calendar.YEAR);
+        int month =cal.get(Calendar.MONTH);
+        int day =cal.get(Calendar.DAY_OF_MONTH);
 
         calendar=(CalendarView)findViewById(R.id.calendarView);
         date =(TextView) findViewById(R.id.textDate);
+        date.setText(getMonthFormar(month+1)+" "+day+" "+year);
 
 
 
@@ -66,30 +70,22 @@ public class calendrier extends AppCompatActivity {
                     tabActiviteJourne.clear();
                     rafraichissementListe();
                 }
-
-
             }
-
         });
-
 
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         DatabaseReference myRef = database.getReference("activite");
+
         myRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                // This method is called once with the initial value and again
-                // whenever data at this location is updated.
                 tabActivite.clear();
                 for(DataSnapshot ds : dataSnapshot.getChildren()) {
-                    // String value = ds.getValue(String.class);
                     String date = String.valueOf(ds.child("/date").getValue());
                     String sport = String.valueOf(ds.child("/typeDeSport").getValue());
-                    //String date = String.valueOf(ds.child("/date").getValue());
                     activite element = new activite(sport, date);
                     tabActivite.add(element);
                     rafraichissementListe();
-
                 }
             }
             @Override
@@ -152,7 +148,12 @@ public class calendrier extends AppCompatActivity {
             }
         });
 
+
+
+
+
     }
+
 
 
     public void rafraichissementListe(){
@@ -160,7 +161,6 @@ public class calendrier extends AppCompatActivity {
         ListView listView=(ListView) findViewById(R.id.listeViewCalendrier);
         ArrayAdapter blockAdapter=new ArrayAdapter(this, android.R.layout.simple_list_item_1,tabActiviteJourne);
         listView.setAdapter(blockAdapter);
-        // Write a message to the database
     }
 
     public void home(){
@@ -168,8 +168,8 @@ public class calendrier extends AppCompatActivity {
         startActivity(intent);
     }
     public void calender(){
-        Intent intent = new Intent(this, calendrier.class);
-        startActivity(intent);
+      //  Intent intent = new Intent(this, calendrier.class);
+       // startActivity(intent);
     }
     public void entrainement(){
         Intent intent = new Intent(this, entrainement.class);
@@ -203,7 +203,6 @@ public class calendrier extends AppCompatActivity {
             return "DEC";
         // default
         return "JAN";
-
     }
 
 

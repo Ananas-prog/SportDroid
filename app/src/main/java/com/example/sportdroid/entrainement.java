@@ -50,8 +50,8 @@ public class entrainement extends AppCompatActivity {
         startActivity(intent);
     }
     public void entrainement(){
-        Intent intent = new Intent(this, entrainement.class);
-        startActivity(intent);
+       // Intent intent = new Intent(this, entrainement.class);
+        //startActivity(intent);
     }
     }
 

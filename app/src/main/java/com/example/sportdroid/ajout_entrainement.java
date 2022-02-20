@@ -84,7 +84,7 @@ public class ajout_entrainement extends AppCompatActivity {
 
 
 
-private TextView test;
+    private TextView test;
 
 
 
@@ -95,7 +95,7 @@ private TextView test;
         
         TextView t1 = (TextView) findViewById(R.id.textView);
         ListView listView=(ListView) findViewById(R.id.listView);
-
+        Button supprimerActiviter=(Button)findViewById(R.id.buttonSupprimer);
         Intent intent = getIntent();
         if (intent.hasExtra("nEntrainement")){ // vérifie qu'une valeur est associée à la clé “edittext”
             str = intent.getStringExtra("nEntrainement"); // on récupère la valeur associée à la clé
@@ -139,13 +139,6 @@ private TextView test;
         test=(TextView)findViewById(R.id.textView3);
 
 
-
-
-
-
-
-
-
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             // i est la postion ou on clique
@@ -186,7 +179,6 @@ private TextView test;
                     String typeDeDuree = String.valueOf(ds.child("/typeDeDuree").getValue());
                     String typeDetape = String.valueOf(ds.child("/typeDetape").getValue());
                     detaille_entrainement element = new detaille_entrainement(typeDetape,notes,typeDeDuree,duree);
-                    //test.setText(duree);
                     block.add(element);
                     rafraichissementListe();
                 }
@@ -199,8 +191,16 @@ private TextView test;
 
 
 
+
+
     }
 
+    public void supprimerActivite(){
+        FirebaseDatabase database = FirebaseDatabase.getInstance();
+        DatabaseReference myRef1 = database.getReference("activite/1");
+        myRef1.child("/date").removeValue();
+
+    }
 
     public void rafraichissementListe(){
 

@@ -22,6 +22,7 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 
 
@@ -58,7 +59,7 @@ public class MainActivity extends AppCompatActivity {
     private Button ButtonEntrainement;
     private Button Buttonhome;
     private Button ButtonAjouterEntrainement;
-    public ArrayList<String> listeEntrainement=new ArrayList<>();
+    public ArrayList<activite> listeEntrainementActuelle=new ArrayList<>();
     public ArrayList<activite> tabActivite= new ArrayList<>();
 
 
@@ -120,6 +121,11 @@ public class MainActivity extends AppCompatActivity {
         DatabaseReference myRef = database.getReference("activite");
 
         //myRef.setValue("Hello, World!");
+        Calendar cal= Calendar.getInstance();
+        int year =cal.get(Calendar.YEAR);
+        int month =cal.get(Calendar.MONTH);
+        int day =cal.get(Calendar.DAY_OF_MONTH);
+        String dateActuelle = (getMonthFormar(month + 1) + " " + day + " " + year);
 
         myRef.addValueEventListener(new ValueEventListener() {
             @Override
@@ -133,6 +139,19 @@ public class MainActivity extends AppCompatActivity {
                         String date = String.valueOf(ds.child("/date").getValue());
                         activite element = new activite(sport, date);
                         tabActivite.add(element);
+                       // String split[]=date.split(" ",0);
+
+                        //test.setText(split[1]);
+                        //split[0].equals(getMonthFormar(month))
+                       // if(split[0].equals(String.valueOf(month))) {
+                      //      tabActivite.add(element);
+                       // }
+
+
+
+
+
+
                         rafraichissementListe();
                 }
             }
@@ -150,6 +169,37 @@ public class MainActivity extends AppCompatActivity {
 
 
     }
+
+    private String getMonthFormar(int month) {
+
+        if(month==1)
+            return "JAN";
+        if(month==2)
+            return "FEV";
+        if(month==3)
+            return "MAR";
+        if(month==4)
+            return "AVR";
+        if(month==5)
+            return "MAI";
+        if(month==6)
+            return "JUN";
+        if(month==7)
+            return "JUL";
+        if(month==8)
+            return "AUG";
+        if(month==9)
+            return "SEP";
+        if(month==10)
+            return "OCT";
+        if(month==11)
+            return "NOV";
+        if(month==12)
+            return "DEC";
+        // default
+        return "JAN";
+    }
+
     public void rafraichissementListe(){
         ListView listView=(ListView) findViewById(R.id.listViewPrincipal);
         ArrayAdapter blockAdapter=new ArrayAdapter(this, android.R.layout.simple_list_item_1,tabActivite);
@@ -173,8 +223,8 @@ public class MainActivity extends AppCompatActivity {
 
     }
     public void home(){
-        Intent intent = new Intent(this, MainActivity.class);
-        startActivity(intent);
+       // Intent intent = new Intent(this, MainActivity.class);
+        //startActivity(intent);
     }
     public void calender(){
         Intent intent = new Intent(this, calendrier.class);
