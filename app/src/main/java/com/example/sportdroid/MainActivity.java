@@ -29,12 +29,29 @@ import java.util.List;
 class activite implements Serializable {
     private String typeDeSport;
     private String date;
+    private String note;
+    private String heure;
     //private ArrayList<detaille_entrainement> block=new ArrayList<>();
 
-    public activite(String typeDeSport,String date) {
+    public activite(String typeDeSport,String date, String note,String heure) {
         this.typeDeSport=typeDeSport;
         this.date=date;
+        this.note=note;
+        this.heure=heure;
         // block= new ArrayList<detaille_entrainement>("Echauffement","aucune","Temps",30);
+    }
+
+    public String getHeure() {
+        return heure;
+    }
+    public void setNote(String note) {
+        this.note = note;
+    }
+    public String getNote() {
+        return note;
+    }
+    public void setHeure(String heure) {
+        this.heure = heure;
     }
     public String getDate() {
         return date;
@@ -49,7 +66,7 @@ class activite implements Serializable {
         this.typeDeSport = typeDeSport;
     }
     public String toString(){
-        return  this.typeDeSport+"  "+ this.date;
+        return  this.typeDeSport+"  "+ this.date+ " "+ this.note+" "+this.heure;
     }
 
 }
@@ -141,7 +158,10 @@ public class MainActivity extends AppCompatActivity {
                        // String value = ds.getValue(String.class);
                         String sport = String.valueOf(ds.child("/typeDeSport").getValue());
                         String date = String.valueOf(ds.child("/date").getValue());
-                        activite element = new activite(sport, date);
+                        String note = String.valueOf(ds.child("/note").getValue());
+                        String heure = String.valueOf(ds.child("/heure").getValue());
+
+                        activite element = new activite(sport, date,note,heure);
                         tabActivite.add(element);
                        // String split[]=date.split(" ",0);
 
@@ -207,7 +227,7 @@ public class MainActivity extends AppCompatActivity {
     }
     public void ajouterEntrainement(){
         //activiter par default
-        activite un = new activite("running","16/03/2020");
+        activite un = new activite("running","16/03/2020","null","15h30");
         tabActivite.add(un);
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         DatabaseReference myRef = database.getReference("activite/"+tabActivite.size());

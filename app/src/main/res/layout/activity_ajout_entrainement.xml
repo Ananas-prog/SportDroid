@@ -113,10 +113,10 @@
 
     <ListView
         android:id="@+id/listView"
-        android:layout_width="409dp"
-        android:layout_height="429dp"
+        android:layout_width="408dp"
+        android:layout_height="339dp"
         android:layout_marginStart="2dp"
-        android:layout_marginBottom="7dp"
+        android:layout_marginBottom="97dp"
         app:layout_constraintBottom_toTopOf="@+id/linearLayout2"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
@@ -167,7 +167,25 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="@string/supprimer"
-            android:onClick="supprimerActivite"/>
+            android:onClick="supprimerActivitee"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="334dp"
+        android:layout_height="79dp"
+        android:layout_marginStart="1dp"
+        android:layout_marginEnd="1dp"
+        android:layout_marginBottom="1dp"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toTopOf="@+id/linearLayout2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/texteNoteEntrainement"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/note" />
     </LinearLayout>
 
 

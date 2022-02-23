@@ -11,6 +11,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.DatePicker;
+import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -81,7 +82,7 @@ public class ajout_entrainement extends AppCompatActivity {
     public ArrayList<detaille_entrainement> block=new ArrayList<detaille_entrainement>();
     public DatabaseReference databaseReference;
     public String str = "";
-
+    private EditText note;
 
 
     private TextView test;
@@ -92,7 +93,7 @@ public class ajout_entrainement extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_ajout_entrainement);
-        
+        note=(EditText)findViewById(R.id.texteNoteEntrainement);
         TextView t1 = (TextView) findViewById(R.id.textView);
         ListView listView=(ListView) findViewById(R.id.listView);
         Button supprimerActiviter=(Button)findViewById(R.id.buttonSupprimer);
@@ -165,6 +166,9 @@ public class ajout_entrainement extends AppCompatActivity {
 
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         DatabaseReference myRef1 = database.getReference("activite/"+str+"/block");
+
+
+
         myRef1.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
@@ -195,7 +199,7 @@ public class ajout_entrainement extends AppCompatActivity {
 
     }
 
-    public void supprimerActivite(){
+    public void supprimerActivitee(){
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         DatabaseReference myRef1 = database.getReference("activite/1");
         myRef1.child("/date").removeValue();
@@ -287,6 +291,9 @@ public class ajout_entrainement extends AppCompatActivity {
         typeSport.setValue(spinner.getSelectedItem().toString());
         DatabaseReference date = database.getReference("activite/"+str+"/date");
         date.setValue(dateButton.getText());
+        DatabaseReference note = database.getReference("activite/"+str+"/note");
+        note.setValue(this.note.getText().toString());
+
         finish();
     }
 
