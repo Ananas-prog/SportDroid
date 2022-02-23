@@ -180,7 +180,6 @@ public class ajout_entrainement extends AppCompatActivity {
 
 
 
-        test=(TextView)findViewById(R.id.textView3);
 
 
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
