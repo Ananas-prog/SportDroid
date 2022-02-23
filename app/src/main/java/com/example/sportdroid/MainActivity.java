@@ -99,6 +99,10 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+
+
+
+
         ListView listView=(ListView) findViewById(R.id.listViewPrincipal);
 
 
@@ -147,11 +151,7 @@ public class MainActivity extends AppCompatActivity {
                       //      tabActivite.add(element);
                        // }
 
-
-
-
-
-
+                        // RECUPERER LE CODE DANS CALENDRIER
                         rafraichissementListe();
                 }
             }
@@ -217,9 +217,6 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = new Intent(this, ajout_entrainement.class);
         intent.putExtra("nEntrainement", String.valueOf(tabActivite.size()));
         startActivity(intent);
-
-
-
 
     }
     public void home(){
