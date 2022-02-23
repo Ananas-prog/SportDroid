@@ -5,8 +5,8 @@
     <string name="ButtonEntrainement">Entrainement</string>
     <string name="ButtonAjoutEntrainement">Ajouter entrainement</string>
     <string name="presentation">Bienvenue sur SportDroid</string>
-    <string name="typeDeSport">Type de sport </string>
-    <string name="date">date</string>
+    <string name="typeDeSport">Type de sport : </string>
+    <string name="date">date :</string>
     <string name="etape">Ajouter étape</string>
     <string name="repetition">Ajouter répétition</string>
     <string name="valider">valider</string>

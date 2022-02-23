@@ -76,7 +76,7 @@ public class MainActivity extends AppCompatActivity {
     private Button ButtonEntrainement;
     private Button Buttonhome;
     private Button ButtonAjouterEntrainement;
-    public ArrayList<activite> listeEntrainementActuelle=new ArrayList<>();
+    public ArrayList<activite> listeEntrainementJournee=new ArrayList<>();
     public ArrayList<activite> tabActivite= new ArrayList<>();
 
 
@@ -163,13 +163,16 @@ public class MainActivity extends AppCompatActivity {
 
                         activite element = new activite(sport, date,note,heure);
                         tabActivite.add(element);
-                       // String split[]=date.split(" ",0);
-
-                        //test.setText(split[1]);
-                        //split[0].equals(getMonthFormar(month))
-                       // if(split[0].equals(String.valueOf(month))) {
-                      //      tabActivite.add(element);
-                       // }
+                        for (int j = 0; j < tabActivite.size(); j++) {
+                            if(tabActivite.get(j).getDate().equals(dateActuelle)){
+                                listeEntrainementJournee.add(tabActivite.get(j));
+                                rafraichissementListe();
+                            }
+                        }
+                        if(listeEntrainementJournee.size()==0){
+                            listeEntrainementJournee.clear();
+                            rafraichissementListe();
+                        }
 
                         // RECUPERER LE CODE DANS CALENDRIER
                         rafraichissementListe();
@@ -222,12 +225,12 @@ public class MainActivity extends AppCompatActivity {
 
     public void rafraichissementListe(){
         ListView listView=(ListView) findViewById(R.id.listViewPrincipal);
-        ArrayAdapter blockAdapter=new ArrayAdapter(this, android.R.layout.simple_list_item_1,tabActivite);
+        ArrayAdapter blockAdapter=new ArrayAdapter(this, android.R.layout.simple_list_item_1,listeEntrainementJournee);
         listView.setAdapter(blockAdapter);
     }
     public void ajouterEntrainement(){
         //activiter par default
-        activite un = new activite("running","16/03/2020","null","15h30");
+        activite un = new activite("","","","");
         tabActivite.add(un);
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         DatabaseReference myRef = database.getReference("activite/"+tabActivite.size());

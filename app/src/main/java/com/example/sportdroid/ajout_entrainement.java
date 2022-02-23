@@ -4,8 +4,10 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.AlertDialog;
 import android.app.DatePickerDialog;
+import android.app.TimePickerDialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.format.DateFormat;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -15,6 +17,7 @@ import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.TimePicker;
 import android.widget.Toast;
 
 import com.google.firebase.database.DataSnapshot;
@@ -24,9 +27,12 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.io.Serializable;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 
 
 class detaille_entrainement implements Serializable{
@@ -83,7 +89,8 @@ public class ajout_entrainement extends AppCompatActivity {
     public DatabaseReference databaseReference;
     public String str = "";
     private EditText note;
-
+    private TextView time;
+    private int heure,minute;
 
     private TextView test;
 
@@ -94,9 +101,45 @@ public class ajout_entrainement extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_ajout_entrainement);
         note=(EditText)findViewById(R.id.texteNoteEntrainement);
+        time= (TextView) findViewById(R.id.textViewTime);
+        Date date = new Date();
+        SimpleDateFormat df = new SimpleDateFormat("HH:mm", Locale.UK);
+        String localizedDate = df.format(date);
+        time.setText(localizedDate);
         TextView t1 = (TextView) findViewById(R.id.textView);
         ListView listView=(ListView) findViewById(R.id.listView);
         Button supprimerActiviter=(Button)findViewById(R.id.buttonSupprimer);
+
+        // Gestion heure
+
+
+        time.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                //initalisation
+                TimePickerDialog timePickerDialog= new TimePickerDialog(ajout_entrainement.this, new TimePickerDialog.OnTimeSetListener() {
+                    @Override
+                    public void onTimeSet(TimePicker timePicker, int heureDay, int minuteDay) {
+                        // initialise heure et minute
+                        heure=heureDay;
+                        minute=minuteDay;
+                        // iniatilse
+                        Calendar calendar=Calendar.getInstance();
+                        calendar.set(0,0,0,heure,minute);
+                        time.setText(DateFormat.format("HH:mm",calendar));
+                    }
+                },24,0,true
+                );
+                timePickerDialog.updateTime(heure,minute);
+                timePickerDialog.show();
+            }
+        });
+
+
+
+
+
+
         Intent intent = getIntent();
         if (intent.hasExtra("nEntrainement")){ // vérifie qu'une valeur est associée à la clé “edittext”
             str = intent.getStringExtra("nEntrainement"); // on récupère la valeur associée à la clé
@@ -293,6 +336,8 @@ public class ajout_entrainement extends AppCompatActivity {
         date.setValue(dateButton.getText());
         DatabaseReference note = database.getReference("activite/"+str+"/note");
         note.setValue(this.note.getText().toString());
+        DatabaseReference time = database.getReference("activite/"+str+"/heure");
+        time.setValue(this.time.getText().toString());
 
         finish();
     }
