@@ -106,7 +106,7 @@ public class ajout_entrainement extends AppCompatActivity {
         SimpleDateFormat df = new SimpleDateFormat("HH:mm", Locale.UK);
         String localizedDate = df.format(date);
         time.setText(localizedDate);
-        TextView t1 = (TextView) findViewById(R.id.textView);
+        TextView t1 = (TextView) findViewById(R.id.titreHome);
         ListView listView=(ListView) findViewById(R.id.listView);
         Button supprimerActiviter=(Button)findViewById(R.id.buttonSupprimer);
 

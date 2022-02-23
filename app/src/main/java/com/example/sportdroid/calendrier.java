@@ -48,7 +48,7 @@ public class calendrier extends AppCompatActivity {
 
         calendar=(CalendarView)findViewById(R.id.calendarView);
         date =(TextView) findViewById(R.id.textDate);
-        date.setText(getMonthFormar(month+1)+" "+day+" "+year);
+        date.setText(day+" "+getMonthFormar(month+1)+" "+year);
 
 
 
@@ -111,20 +111,6 @@ public class calendrier extends AppCompatActivity {
                 Toast.makeText(calendrier.this,"clique sur l 'item "+ i+ "",Toast.LENGTH_LONG).show();
             }
         });
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
         // BOUTTON DE CHANGEMENT D ACTIVITE

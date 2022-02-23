@@ -25,6 +25,16 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 
+import android.content.Context;
+import android.util.Log;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.BaseAdapter;
+import android.widget.ImageView;
+import android.widget.TextView;
+import java.util.List;
+
 
 class activite implements Serializable {
     private String typeDeSport;
@@ -44,32 +54,37 @@ class activite implements Serializable {
     public String getHeure() {
         return heure;
     }
-    public void setNote(String note) {
-        this.note = note;
-    }
-    public String getNote() {
-        return note;
-    }
     public void setHeure(String heure) {
         this.heure = heure;
     }
+
+    public String getNote() {
+        return note;
+    }
+    public void setNote(String note) {
+        this.note = note;
+    }
+
     public String getDate() {
         return date;
-    }
-    public String getTypeDeSport() {
-        return typeDeSport;
     }
     public void setDate(String date) {
         this.date = date;
     }
+
+    public String getTypeDeSport() {
+        return typeDeSport;
+    }
     public void setTypeDeSport(String typeDeSport) {
         this.typeDeSport = typeDeSport;
     }
+
     public String toString(){
         return  this.typeDeSport+"  "+ this.date+ " "+ this.note+" "+this.heure;
     }
 
 }
+
 public class MainActivity extends AppCompatActivity {
 
     private Button ButtonCalendrier;
@@ -116,35 +131,16 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-
-
-
-
-        ListView listView=(ListView) findViewById(R.id.listViewPrincipal);
-
-
-        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            // i est la postion ou on clique
-            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                //Toast.makeText(MainActivity.this,"clique sur l 'item "+ i+ ""+tabActivite.get(i).toString(),Toast.LENGTH_LONG).show();
-                Intent intent = new Intent(MainActivity.this, ajout_entrainement.class);
-                intent.putExtra("nEntrainement", String.valueOf(i+1));
-                startActivity(intent);
-
-            }
-        });
-
-
+        //TextView test = (TextView) findViewById(R.id.textView2);
 
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         DatabaseReference myRef = database.getReference("activite");
 
         //myRef.setValue("Hello, World!");
-        Calendar cal= Calendar.getInstance();
-        int year =cal.get(Calendar.YEAR);
-        int month =cal.get(Calendar.MONTH);
-        int day =cal.get(Calendar.DAY_OF_MONTH);
+        Calendar cal = Calendar.getInstance();
+        int year = cal.get(Calendar.YEAR);
+        int month = cal.get(Calendar.MONTH);
+        int day = cal.get(Calendar.DAY_OF_MONTH);
         String dateActuelle = (getMonthFormar(month + 1) + " " + day + " " + year);
 
         myRef.addValueEventListener(new ValueEventListener() {
@@ -183,12 +179,19 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        ListView listView_EntrainementToday=(ListView) findViewById(R.id.listViewPrincipal);
+        listView_EntrainementToday.setAdapter(new listViewAdapter(this, listeEntrainementJournee));
+        listView_EntrainementToday.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            // i est la postion ou on clique
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                //Toast.makeText(MainActivity.this,"clique sur l 'item "+ i+ ""+tabActivite.get(i).toString(),Toast.LENGTH_LONG).show();
+                Intent intent = new Intent(MainActivity.this, ajout_entrainement.class);
+                intent.putExtra("nEntrainement", String.valueOf(i+1));
+                startActivity(intent);
 
-
-
-
-
-
+            }
+        });
 
     }
 
@@ -224,8 +227,9 @@ public class MainActivity extends AppCompatActivity {
 
     public void rafraichissementListe(){
         ListView listView=(ListView) findViewById(R.id.listViewPrincipal);
-        ArrayAdapter blockAdapter=new ArrayAdapter(this, android.R.layout.simple_list_item_1,listeEntrainementJournee);
-        listView.setAdapter(blockAdapter);
+        listView.setAdapter(new listViewAdapter(this, listeEntrainementJournee));
+       // ArrayAdapter blockAdapter=new ArrayAdapter(this, android.R.layout.simple_list_item_1,listeEntrainementJournee);
+        //listView.setAdapter(blockAdapter);
     }
     public void ajouterEntrainement(){
         //activiter par default

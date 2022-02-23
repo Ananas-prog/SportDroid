@@ -1,22 +1,24 @@
 <resources>
-    <string name="app_name">SportDroid</string>
+    <string name="app_name">Bienvenue</string>
     <string name="ButtonCalendrier">Calendrier</string>
     <string name="ButtonHome">Home</string>
     <string name="ButtonEntrainement">Entrainement</string>
     <string name="ButtonAjoutEntrainement">Ajouter entrainement</string>
-    <string name="presentation">Bienvenue sur SportDroid</string>
+    <string name="presentation">Accueil</string>
     <string name="typeDeSport">Type de sport : </string>
     <string name="date">date :</string>
     <string name="etape">Ajouter étape</string>
     <string name="repetition">Ajouter répétition</string>
-    <string name="valider">valider</string>
-    <string name="etapetitre">etape</string>
-    <string name="duree">duree</string>
+    <string name="valider">Valider</string>
+    <string name="etapetitre">étape</string>
+    <string name="duree">durée</string>
     <string name="note">Description/infos séance :</string>
-    <string name="supprimer">Supprimer Activité</string>
-    <string name="mesEntrainementAjourdhui">Mes Entrainement Aujourd hui</string>
+    <string name="supprimer">Supprimer activité</string>
+    <string name="mesEntrainementAjourdhui">Mes entraînements du jour</string>
+    <string name="calendrier">Calendrier</string>
+    <string name="entrainement">Entraînements</string>
 
-    <string name="credit">Application créé avec Anaïs MOTTIER et Simon PLANCHENAULT</string>
+    <string name="credit">Application créée par Anaïs MOTTIER et Simon PLANCHENAULT \n Mise à jour 2022</string>
     <string name="Athlete">ATHLETE</string>
     <string name="coach">COACH</string>
 
