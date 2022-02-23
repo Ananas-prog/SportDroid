@@ -179,8 +179,7 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:onClick="supprimerActivitee"
-            android:text="@string/supprimer"
-            app:icon="@drawable/ic_launcher_foreground" />
+            />
     </LinearLayout>
 
     <LinearLayout

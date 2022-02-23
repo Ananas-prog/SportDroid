@@ -135,7 +135,6 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        TextView test = (TextView) findViewById(R.id.textView2);
 
 
         FirebaseDatabase database = FirebaseDatabase.getInstance();
