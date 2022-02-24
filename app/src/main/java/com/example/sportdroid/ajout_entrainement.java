@@ -305,7 +305,7 @@ public class ajout_entrainement extends AppCompatActivity {
     }
 
     private String makeDateString(int day, int month, int year) {
-        return getMonthFormar(month)+" "+day+" "+year;
+        return day+" "+getMonthFormar(month)+" "+year;
     }
 
     private String getMonthFormar(int month) {

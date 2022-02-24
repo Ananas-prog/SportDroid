@@ -55,7 +55,7 @@ public class calendrier extends AppCompatActivity {
         calendar.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
             @Override
             public void onSelectedDayChange(@NonNull CalendarView calendarView, int i, int i1, int i2) {
-                String dateSelectioner=getMonthFormar(i1+1)+" "+i2+" "+i;
+                String dateSelectioner=i2+" "+getMonthFormar(i1+1)+" "+i;
                 DateSelectionner=dateSelectioner;
                 date.setText(dateSelectioner);
                 //tabActiviteJourne.add(tabActivite.get(1));

@@ -141,7 +141,7 @@ public class MainActivity extends AppCompatActivity {
         int year = cal.get(Calendar.YEAR);
         int month = cal.get(Calendar.MONTH);
         int day = cal.get(Calendar.DAY_OF_MONTH);
-        String dateActuelle = (getMonthFormar(month + 1) + " " + day + " " + year);
+        String dateActuelle = (day + " " + getMonthFormar(month + 1) + " " + year);
 
         myRef.addValueEventListener(new ValueEventListener() {
             @Override
