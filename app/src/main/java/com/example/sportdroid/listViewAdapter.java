@@ -8,6 +8,7 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import java.text.Normalizer;
 import java.util.List;
 import java.util.Locale;
 
@@ -60,7 +61,7 @@ public class listViewAdapter extends BaseAdapter {
 
         //Affichage de l'image correspondante
         ImageView itemImageView = view.findViewById(R.id.imgSport_listItem);
-        String ressourceImg = (activityName.toLowerCase()).replaceAll("\\p{M}", "");
+        String ressourceImg = Normalizer.normalize(activityName, Normalizer.Form.NFD).replaceAll("[\u0300-\u036F]", "").toLowerCase();
         int imgId = context.getResources().getIdentifier(ressourceImg, "mipmap", context.getPackageName());
         itemImageView.setImageResource(imgId);
         return view;

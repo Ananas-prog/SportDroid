@@ -158,15 +158,16 @@ public class MainActivity extends AppCompatActivity {
 
                         activite element = new activite(sport, date,note,heure);
                         tabActivite.add(element);
+                        listeEntrainementJournee.clear();
                         for (int j = 0; j < tabActivite.size(); j++) {
                             if(tabActivite.get(j).getDate().equals(dateActuelle)){
                                 listeEntrainementJournee.add(tabActivite.get(j));
-                                rafraichissementListe();
+                                //rafraichissementListe();
                             }
                         }
                         if(listeEntrainementJournee.size()==0){
                             listeEntrainementJournee.clear();
-                            rafraichissementListe();
+                            //rafraichissementListe();
                         }
 
                         // RECUPERER LE CODE DANS CALENDRIER
@@ -180,7 +181,7 @@ public class MainActivity extends AppCompatActivity {
         });
 
         ListView listView_EntrainementToday=(ListView) findViewById(R.id.listViewPrincipal);
-        listView_EntrainementToday.setAdapter(new listViewAdapter(this, listeEntrainementJournee));
+        //listView_EntrainementToday.setAdapter(new listViewAdapter(this, listeEntrainementJournee));
         listView_EntrainementToday.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             // i est la postion ou on clique
@@ -227,6 +228,7 @@ public class MainActivity extends AppCompatActivity {
 
     public void rafraichissementListe(){
         ListView listView=(ListView) findViewById(R.id.listViewPrincipal);
+        listView.setAdapter(null);
             listView.setAdapter(new listViewAdapter(this, listeEntrainementJournee));
        // ArrayAdapter blockAdapter=new ArrayAdapter(this, android.R.layout.simple_list_item_1,listeEntrainementJournee);
         //listView.setAdapter(blockAdapter);
