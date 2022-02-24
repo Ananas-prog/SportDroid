@@ -227,7 +227,7 @@ public class MainActivity extends AppCompatActivity {
 
     public void rafraichissementListe(){
         ListView listView=(ListView) findViewById(R.id.listViewPrincipal);
-        listView.setAdapter(new listViewAdapter(this, listeEntrainementJournee));
+            listView.setAdapter(new listViewAdapter(this, listeEntrainementJournee));
        // ArrayAdapter blockAdapter=new ArrayAdapter(this, android.R.layout.simple_list_item_1,listeEntrainementJournee);
         //listView.setAdapter(blockAdapter);
     }
