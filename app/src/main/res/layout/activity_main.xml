@@ -53,11 +53,11 @@
             android:orientation="vertical">
 
             <Button
-                android:id="@+id/ButtonEntrainement"
+                android:id="@+id/ButtonInfos"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:backgroundTint="#00004A"
-                android:text="@string/ButtonEntrainement" />
+                android:text="@string/ButtonInfos" />
         </LinearLayout>
     </LinearLayout>
 

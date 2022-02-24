@@ -22,7 +22,7 @@
             android:name=".detail_block"
             android:exported="false" />
         <activity
-            android:name=".entrainement"
+            android:name=".infos"
             android:exported="false" />
         <activity
             android:name=".ajout_entrainement"

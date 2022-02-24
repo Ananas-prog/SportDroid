@@ -7,15 +7,15 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
-public class entrainement extends AppCompatActivity {
+public class infos extends AppCompatActivity {
 
     private Button ButtonCalendrier;
-    private Button ButtonEntrainement;
+    private Button ButtonInfos;
     private Button Buttonhome;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_entrainement);
+        setContentView(R.layout.activity_infos);
         Buttonhome =(Button) findViewById(R.id.ButtonHome);
         Buttonhome.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -31,11 +31,11 @@ public class entrainement extends AppCompatActivity {
             }
         });
 
-        ButtonEntrainement= (Button) findViewById(R.id.ButtonEntrainement);
-        ButtonEntrainement.setOnClickListener(new View.OnClickListener() {
+        ButtonInfos= (Button) findViewById(R.id.ButtonInfos);
+        ButtonInfos.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                entrainement();
+                informations();
             }
         });
 
@@ -49,7 +49,7 @@ public class entrainement extends AppCompatActivity {
         Intent intent = new Intent(this, calendrier.class);
         startActivity(intent);
     }
-    public void entrainement(){
+    public void informations(){
        // Intent intent = new Intent(this, entrainement.class);
         //startActivity(intent);
     }

@@ -88,7 +88,7 @@ class activite implements Serializable {
 public class MainActivity extends AppCompatActivity {
 
     private Button ButtonCalendrier;
-    private Button ButtonEntrainement;
+    private Button ButtonInfos;
     private Button Buttonhome;
     private Button ButtonAjouterEntrainement;
     public ArrayList<activite> listeEntrainementJournee=new ArrayList<>();
@@ -123,11 +123,11 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        ButtonEntrainement= (Button) findViewById(R.id.ButtonEntrainement);
-        ButtonEntrainement.setOnClickListener(new View.OnClickListener() {
+        ButtonInfos= (Button) findViewById(R.id.ButtonInfos);
+        ButtonInfos.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                entrainement();
+                informations();
             }
         });
 
@@ -254,8 +254,8 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = new Intent(this, calendrier.class);
         startActivity(intent);
     }
-    public void entrainement(){
-        Intent intent = new Intent(this, entrainement.class);
+    public void informations(){
+        Intent intent = new Intent(this, infos.class);
         startActivity(intent);
     }
 }

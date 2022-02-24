@@ -7,7 +7,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CalendarView;
 import android.widget.ListView;
@@ -25,7 +24,7 @@ import java.util.Calendar;
 
 public class calendrier extends AppCompatActivity {
     private Button ButtonCalendrier;
-    private Button ButtonEntrainement;
+    private Button ButtonInfos;
     private Button Buttonhome;
 
     CalendarView calendar;
@@ -124,11 +123,11 @@ public class calendrier extends AppCompatActivity {
             }
         });
 
-        ButtonEntrainement= (Button) findViewById(R.id.ButtonEntrainement);
-        ButtonEntrainement.setOnClickListener(new View.OnClickListener() {
+        ButtonInfos= (Button) findViewById(R.id.ButtonInfos);
+        ButtonInfos.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                entrainement();
+                informations();
             }
         });
 
@@ -150,8 +149,8 @@ public class calendrier extends AppCompatActivity {
       //  Intent intent = new Intent(this, calendrier.class);
        // startActivity(intent);
     }
-    public void entrainement(){
-        Intent intent = new Intent(this, entrainement.class);
+    public void informations(){
+        Intent intent = new Intent(this, infos.class);
         startActivity(intent);
     }
 
@@ -183,8 +182,6 @@ public class calendrier extends AppCompatActivity {
         // default
         return "JAN";
     }
-
-
 
 
     }

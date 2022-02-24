@@ -2,7 +2,7 @@
     <string name="app_name">SportDroid</string>
     <string name="ButtonCalendrier">Calendrier</string>
     <string name="ButtonHome">Home</string>
-    <string name="ButtonEntrainement">Entrainement</string>
+    <string name="ButtonInfos">Infos</string>
     <string name="ButtonAjoutEntrainement">Ajouter entrainement</string>
     <string name="presentation">Accueil</string>
     <string name="typeDeSport">Type de sport : </string>
@@ -16,7 +16,7 @@
     <string name="supprimer">Supprimer activité</string>
     <string name="mesEntrainementAjourdhui">Mes entraînements du jour</string>
     <string name="calendrier">Calendrier</string>
-    <string name="entrainement">Entraînements</string>
+    <string name="infos">Informations</string>
     <string name="mdp">Entrer le mot de passe</string>
     <string name="supprimerBlock">Supprimer</string>
 
