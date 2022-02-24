@@ -1,5 +1,6 @@
 package com.example.sportdroid;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.AlertDialog;
@@ -220,10 +221,32 @@ public class ajout_entrainement extends AppCompatActivity {
         });
 
 
+
+
+
+
+
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         DatabaseReference myRef1 = database.getReference("activite/"+str+"/block");
 
 
+        DatabaseReference get = database.getReference("activite/"+str);
+        get.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                String heure = (String) snapshot.child("/heure").getValue();
+                time.setText(heure);
+                //String date = (String) snapshot.child("/date").getValue();
+                //dateButton.setText(date);
+                String typeDeSport = (String) snapshot.child("/typeDeSport").getValue();
+                time.setText(heure);
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
 
         myRef1.addValueEventListener(new ValueEventListener() {
             @Override
