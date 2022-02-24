@@ -181,7 +181,6 @@ public class MainActivity extends AppCompatActivity {
         });
 
         ListView listView_EntrainementToday=(ListView) findViewById(R.id.listViewPrincipal);
-        //listView_EntrainementToday.setAdapter(new listViewAdapter(this, listeEntrainementJournee));
         listView_EntrainementToday.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             // i est la postion ou on clique
@@ -229,7 +228,7 @@ public class MainActivity extends AppCompatActivity {
     public void rafraichissementListe(){
         ListView listView=(ListView) findViewById(R.id.listViewPrincipal);
         listView.setAdapter(null);
-            listView.setAdapter(new listViewAdapter(this, listeEntrainementJournee));
+        listView.setAdapter(new listViewAdapterHome(this, listeEntrainementJournee));
        // ArrayAdapter blockAdapter=new ArrayAdapter(this, android.R.layout.simple_list_item_1,listeEntrainementJournee);
         //listView.setAdapter(blockAdapter);
     }

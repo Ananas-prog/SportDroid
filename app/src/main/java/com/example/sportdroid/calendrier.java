@@ -32,7 +32,7 @@ public class calendrier extends AppCompatActivity {
     TextView date;
     ListView listView;
     public ArrayList<activite> tabActivite= new ArrayList<>();
-    public ArrayList<activite> tabActiviteJourne= new ArrayList<>();
+    public ArrayList<activite> tabActiviteJournee= new ArrayList<>();
 
     public String DateSelectionner;
 
@@ -59,15 +59,15 @@ public class calendrier extends AppCompatActivity {
                 DateSelectionner=dateSelectioner;
                 date.setText(dateSelectioner);
                 //tabActiviteJourne.add(tabActivite.get(1));
-                tabActiviteJourne.clear();
+                tabActiviteJournee.clear();
                 for (int j = 0; j < tabActivite.size(); j++) {
                     if(tabActivite.get(j).getDate().equals(DateSelectionner)){
-                        tabActiviteJourne.add(tabActivite.get(j));
+                        tabActiviteJournee.add(tabActivite.get(j));
                         rafraichissementListe();
                     }
                 }
-                if(tabActiviteJourne.size()==0){
-                    tabActiviteJourne.clear();
+                if(tabActiviteJournee.size()==0){
+                    tabActiviteJournee.clear();
                     rafraichissementListe();
                 }
             }
@@ -98,12 +98,7 @@ public class calendrier extends AppCompatActivity {
         });
 
 
-
-
-
         listView=(ListView)findViewById(R.id.listeViewCalendrier);
-
-
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             // i est la postion ou on clique
@@ -137,19 +132,14 @@ public class calendrier extends AppCompatActivity {
             }
         });
 
-
-
-
-
     }
 
 
 
     public void rafraichissementListe(){
-
         ListView listView=(ListView) findViewById(R.id.listeViewCalendrier);
-        ArrayAdapter blockAdapter=new ArrayAdapter(this, android.R.layout.simple_list_item_1,tabActiviteJourne);
-        listView.setAdapter(blockAdapter);
+        listView.setAdapter(null);
+        listView.setAdapter(new listViewAdapterCalendar(this, tabActiviteJournee));
     }
 
     public void home(){

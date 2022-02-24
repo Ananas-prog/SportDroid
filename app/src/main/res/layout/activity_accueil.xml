@@ -126,6 +126,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:ems="10"
+                android:hint="@string/mdp"
                 android:inputType="textPassword" />
 
         </LinearLayout>
@@ -140,6 +141,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:backgroundTint="#00004A"
                 android:text="@string/valider" />
         </LinearLayout>
 

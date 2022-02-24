@@ -10,14 +10,13 @@ import android.widget.TextView;
 
 import java.text.Normalizer;
 import java.util.List;
-import java.util.Locale;
 
-public class listViewAdapter extends BaseAdapter {
+public class listViewAdapterHome extends BaseAdapter {
     private Context context;
     private List<activite> listActivity;
     private LayoutInflater inflater;
 
-    public listViewAdapter(Context context, List<activite> list){
+    public listViewAdapterHome(Context context, List<activite> list){
         this.context = context;
         this.listActivity = list;
         this.inflater = LayoutInflater.from(context);
@@ -40,7 +39,7 @@ public class listViewAdapter extends BaseAdapter {
 
     @Override
     public View getView(int i, View view, ViewGroup viewGroup) {
-        view = inflater.inflate(R.layout.list_item_layout, null);
+        view = inflater.inflate(R.layout.list_item_home_layout, null);
         //Informations à propos de l'item
         activite currentActivity = getItem(i);
         String activityName = currentActivity.getTypeDeSport();
