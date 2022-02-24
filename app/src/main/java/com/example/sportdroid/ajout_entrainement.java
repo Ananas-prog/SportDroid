@@ -238,8 +238,13 @@ public class ajout_entrainement extends AppCompatActivity {
                     String notes = String.valueOf(ds.child("/notes").getValue());
                     String typeDeDuree = String.valueOf(ds.child("/typeDeDuree").getValue());
                     String typeDetape = String.valueOf(ds.child("/typeDetape").getValue());
-                    detaille_entrainement element = new detaille_entrainement(typeDetape,notes,typeDeDuree,duree);
-                    block.add(element);
+                    if(duree.equals("null")&&notes.equals("null")&&typeDeDuree.equals("null")&&typeDetape.equals("null")){
+
+                    }else{
+                        detaille_entrainement element = new detaille_entrainement(typeDetape,notes,typeDeDuree,duree);
+                        block.add(element);
+                    }
+
                     rafraichissementListe();
                 }
             }

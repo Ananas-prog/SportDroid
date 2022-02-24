@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -31,6 +32,7 @@ public class detail_block extends AppCompatActivity {
     public String nActivite;
     public String nBlock;
     TextView test;
+    public Button annuler;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,6 +45,19 @@ public class detail_block extends AppCompatActivity {
             nBlock = intent.getStringExtra("nBlock"); // on récupère la valeur associée à la clé
         }
 
+        annuler=(Button)findViewById(R.id.buttonannulerBlock);
+        annuler.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                FirebaseDatabase database = FirebaseDatabase.getInstance();
+                DatabaseReference test = database.getReference("activite/"+nActivite+"/block/"+nBlock);
+                test.child("/duree").setValue("null");
+                test.child("/notes").setValue("null");
+                test.child("/typeDeDuree").setValue("null");
+                test.child("/typeDetape").setValue("null");
+                finish();
+            }
+        });
 
 // SPINNER Etape
         spinnerEtape = (Spinner) findViewById(R.id.typeEtape);
