@@ -10,6 +10,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.SportDroid">
         <activity
+            android:name=".ajout_infos"
+            android:exported="false" />
+        <activity
             android:name=".Accueil"
             android:exported="true">
             <intent-filter>
@@ -32,9 +35,7 @@
             android:exported="false" />
         <activity
             android:name=".MainActivity"
-            android:exported="false">
-
-        </activity>
+            android:exported="false"></activity>
     </application>
 
 </manifest>

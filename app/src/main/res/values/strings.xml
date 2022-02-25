@@ -19,13 +19,12 @@
     <string name="infos">Informations</string>
     <string name="mdp">Entrer le mot de passe</string>
     <string name="supprimerBlock">Supprimer</string>
+    <string name="plus">+</string>
 
 
     <string name="credit">Application créée par Anaïs MOTTIER et Simon PLANCHENAULT \n Mise à jour 2022</string>
     <string name="Athlete">ATHLETE</string>
     <string name="coach">COACH</string>
-
-
 
 
 </resources>
