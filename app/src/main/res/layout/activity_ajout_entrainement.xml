@@ -114,6 +114,7 @@
                 android:onClick="AjoutActivite"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:background="@drawable/arrondir"
                 android:text="@string/etape" />
         </LinearLayout>
 
@@ -127,6 +128,8 @@
                 android:id="@+id/button2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:background="@drawable/arrondir"
+
                 android:text="@string/repetition" />
         </LinearLayout>
     </LinearLayout>
@@ -159,6 +162,8 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="@string/valider"
+            android:background="@drawable/arrondir"
+
             android:onClick="valider"/>
     </LinearLayout>
 
