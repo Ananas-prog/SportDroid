@@ -113,7 +113,9 @@
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="6dp"
                     android:layout_marginBottom="3dp"
-                    android:text="@string/plus"
+                    style="@style/Widget.AppCompat.Button.Borderless"
+
+                    app:icon="@drawable/plus"
                     app:layout_constraintBottom_toTopOf="@+id/menuBas"
                     app:layout_constraintEnd_toEndOf="parent" />
             </LinearLayout>

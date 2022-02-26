@@ -5,6 +5,8 @@
       <map>
         <entry key="..\:/SportDroid/app/src/main/res/drawable/arrondir.xml" value="0.3465" />
         <entry key="..\:/SportDroid/app/src/main/res/drawable/arrondirfond.xml" value="0.3525" />
+        <entry key="..\:/SportDroid/app/src/main/res/drawable/calendrierblanc.xml" value="0.2595" />
+        <entry key="..\:/SportDroid/app/src/main/res/drawable/ic_launcher_background.xml" value="0.2595" />
         <entry key="..\:/SportDroid/app/src/main/res/layout/activity_accueil.xml" value="0.34479166666666666" />
         <entry key="..\:/SportDroid/app/src/main/res/layout/activity_ajout_entrainement.xml" value="0.25" />
         <entry key="..\:/SportDroid/app/src/main/res/layout/activity_ajout_infos.xml" value="0.36666666666666664" />
@@ -12,7 +14,7 @@
         <entry key="..\:/SportDroid/app/src/main/res/layout/activity_detail_block.xml" value="0.35104166666666664" />
         <entry key="..\:/SportDroid/app/src/main/res/layout/activity_entrainement.xml" value="0.34010416666666665" />
         <entry key="..\:/SportDroid/app/src/main/res/layout/activity_infos.xml" value="0.33645833333333336" />
-        <entry key="..\:/SportDroid/app/src/main/res/layout/activity_main.xml" value="0.33" />
+        <entry key="..\:/SportDroid/app/src/main/res/layout/activity_main.xml" value="0.1" />
         <entry key="..\:/SportDroid/app/src/main/res/layout/list_item_calendar_layout.xml" value="0.34479166666666666" />
         <entry key="..\:/SportDroid/app/src/main/res/layout/list_item_home_layout.xml" value="0.33645833333333336" />
         <entry key="..\:/SportDroid/app/src/main/res/layout/popentrainement.xml" value="0.36666666666666664" />

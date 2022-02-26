@@ -4,9 +4,9 @@
 
     <application
         android:allowBackup="true"
-        android:icon="@mipmap/sportdroidbis"
+        android:icon="@mipmap/img"
         android:label="@string/app_name"
-        android:roundIcon="@mipmap/sportdroidbis"
+        android:roundIcon="@mipmap/img"
         android:supportsRtl="true"
 
         android:theme="@style/Theme.SportDroid">
