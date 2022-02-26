@@ -29,8 +29,11 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:textColor="@color/white"
-                android:text="@string/ButtonCalendrier" />
+                android:drawableTop="@drawable/calendriernoir"
+                android:text="@string/ButtonCalendrier"
+                android:backgroundTint="@color/yellow"
+
+                android:textColor="@color/black" />
         </LinearLayout>
 
         <LinearLayout
@@ -43,10 +46,11 @@
                 android:id="@+id/ButtonHome"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:backgroundTint="@color/yellow"
-                android:textColor="@color/black"
+                android:backgroundTint="@color/black"
+                android:drawableTop="@drawable/homeblanc"
 
-                android:text="@string/ButtonHome" />
+                android:text="@string/ButtonHome"
+                android:textColor="@color/white" />
         </LinearLayout>
 
         <LinearLayout
@@ -60,9 +64,10 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:backgroundTint="@color/black"
-                android:textColor="@color/white"
+                android:drawableTop="@drawable/infoblanc"
 
-                android:text="@string/ButtonInfos" />
+                android:text="@string/ButtonInfos"
+                android:textColor="@color/white" />
         </LinearLayout>
 
     </LinearLayout>
@@ -163,7 +168,7 @@
             <TextView
                 android:id="@+id/titreHome"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="41dp"
                 android:layout_marginTop="15dp"
                 android:gravity="center"
                 android:text="@string/calendrier"
@@ -181,9 +186,10 @@
                 android:id="@+id/imgInfo"
                 android:layout_width="113dp"
                 android:layout_height="46dp"
+
                 android:layout_gravity="center"
                 android:layout_marginTop="15dp"
-                app:srcCompat="@android:drawable/ic_menu_info_details" />
+                app:srcCompat="@drawable/profilbleu" />
         </LinearLayout>
     </LinearLayout>
 
