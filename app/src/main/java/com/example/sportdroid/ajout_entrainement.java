@@ -85,6 +85,8 @@ public class ajout_entrainement extends AppCompatActivity {
     public DatePickerDialog datePickerDialog;
     public Button dateButton;
     Spinner spinner;
+    Spinner spinnerDate;
+
     //ListView listView;
     public ArrayList<detaille_entrainement> block=new ArrayList<detaille_entrainement>();
     public DatabaseReference databaseReference;
@@ -159,6 +161,8 @@ public class ajout_entrainement extends AppCompatActivity {
         if (intent.hasExtra("nEntrainement")){ // vérifie qu'une valeur est associée à la clé “edittext”
             str = intent.getStringExtra("nEntrainement"); // on récupère la valeur associée à la clé
         }
+
+
 
 
         //Récupération du Spinner déclaré dans le fichier main.xml de res/layout
