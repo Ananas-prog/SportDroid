@@ -2,9 +2,9 @@
     <!-- Base application theme. -->
     <style name="Theme.SportDroid" parent="Theme.MaterialComponents.DayNight.NoActionBar">
         <!-- Primary brand color. -->
-        <item name="colorPrimary">@color/black</item>
-        <item name="colorPrimaryVariant">@color/black</item>
-        <item name="colorOnPrimary">@color/black</item>
+        <item name="colorPrimary">@color/black</item> <!-- Couleur de base -->
+        <item name="colorPrimaryVariant">@color/black</item> <!-- Couleur bandeau haut -->
+        <item name="colorOnPrimary">@color/white</item> <!-- Couleur police par default -->
         <!-- Secondary brand color. -->
         <item name="colorSecondary">@color/yellow</item>
         <item name="colorSecondaryVariant">@color/yellow</item>
@@ -12,5 +12,7 @@
         <!-- Status bar color. -->
         <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
         <!-- Customize your theme here. -->
+        <item name="android:fontFamily">@font/yanonekaregular</item>
+        <item name="fontFamily">@font/yanonekaregular</item>
     </style>
 </resources>

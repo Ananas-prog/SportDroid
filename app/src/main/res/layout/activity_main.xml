@@ -91,12 +91,14 @@
 
             <TextView
                 android:id="@+id/textEntrainement"
-                android:layout_width="wrap_content"
+                android:layout_width="373dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:gravity="left"
                 android:text="@string/mesEntrainementAjourdhui"
-                android:textSize="16sp"
+                android:textAlignment="center"
+                android:textColor="@color/black"
+                android:textSize="20sp"
                 android:textStyle="bold"
                 tools:ignore="TouchTargetSizeCheck" />
         </LinearLayout>
