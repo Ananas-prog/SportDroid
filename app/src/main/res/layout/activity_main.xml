@@ -75,11 +75,11 @@
 
         <Button
             style="@style/Widget.AppCompat.Button.Borderless"
-            android:textColor="@color/bleu"
+            android:textColor="@color/blue"
             android:textSize="15sp"
             app:cornerRadius="8dp"
             app:rippleColor="#33AAAAAA"
-            app:strokeColor="@color/bleu"
+            app:strokeColor="@color/blue"
             app:strokeWidth="2dp"
 
             android:id="@+id/ButtonAjouterEntrainement"
@@ -111,7 +111,7 @@
                 android:id="@+id/logoAppli"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                app:srcCompat="@mipmap/le_mans_triathlon" />
+                app:srcCompat="@mipmap/sportdroidlogo" />
         </LinearLayout>
 
         <LinearLayout
