@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -76,12 +77,12 @@ public class infos extends AppCompatActivity {
     private Button ButtonInfos;
     private Button Buttonhome;
     public ArrayList<info> listeInfo=new ArrayList<>();
-    private  Button Bajouter;
+    private ImageButton Bajouter;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_infos);
-        Bajouter=(Button)findViewById(R.id.buttonajoutInfo);
+        Bajouter = (ImageButton) findViewById(R.id.imageButton) ;
         Bajouter.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
