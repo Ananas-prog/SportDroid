@@ -24,11 +24,12 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="84dp"
+        android:layout_marginBottom="65dp"
         android:ems="10"
         android:inputType="textPersonName"
         android:text="Name"
-        app:layout_constraintStart_toStartOf="parent"
-        tools:layout_editor_absoluteY="135dp" />
+        app:layout_constraintBottom_toTopOf="@+id/buttondateinfo"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <EditText
         android:id="@+id/editTextTextLien"

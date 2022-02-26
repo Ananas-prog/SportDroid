@@ -239,11 +239,11 @@ public class ajout_entrainement extends AppCompatActivity {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 String heure = (String) snapshot.child("/heure").getValue();
-                time.setText(heure);
+               // time.setText(heure);
                 //String date = (String) snapshot.child("/date").getValue();
                 //dateButton.setText(date);
                 String typeDeSport = (String) snapshot.child("/typeDeSport").getValue();
-                time.setText(heure);
+               // time.setText(heure);
             }
 
             @Override
