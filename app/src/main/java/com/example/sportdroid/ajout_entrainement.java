@@ -111,21 +111,19 @@ public class ajout_entrainement extends AppCompatActivity {
         time.setText(localizedDate);
         TextView t1 = (TextView) findViewById(R.id.titreHome);
         ListView listView=(ListView) findViewById(R.id.listView);
-        Button supprimerActiviter=(Button)findViewById(R.id.buttonSupprimerActivite);
-        supprimerActiviter.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                FirebaseDatabase database = FirebaseDatabase.getInstance();
-                DatabaseReference activite = database.getReference("activite/");
-                activite.child(str+"/note").setValue("annulé");
-                 rafraichissementListe();
+      //  Button supprimerActiviter=(Button)findViewById(R.id.buttonSupprimerActivite);
+       // supprimerActiviter.setOnClickListener(new View.OnClickListener() {
+       //     @Override
+         ///   public void onClick(View view) {
+            //    FirebaseDatabase database = FirebaseDatabase.getInstance();
+              //  DatabaseReference activite = database.getReference("activite/");
+             //   activite.child(str+"/note").setValue("annulé");
+              //   rafraichissementListe();
                // int num = Integer.getInteger(str);
-                finish();
+               // finish();
 
-
-
-            }
-        });
+          //  }
+        //});
 
         // Gestion heure
 

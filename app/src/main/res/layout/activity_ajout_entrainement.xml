@@ -4,218 +4,306 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ajout_entrainement">
-
+    android:background="@color/black">
 
     <LinearLayout
-        android:id="@+id/linearLayout12"
-        android:layout_width="410dp"
-        android:layout_height="138dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="1dp"
-        android:layout_marginEnd="8dp"
-        android:layout_weight="1"
+        android:id="@+id/linearLayout15"
+        android:layout_width="0dp"
+        android:layout_height="82dp"
+        android:layout_marginBottom="1dp"
+        android:background="@color/black"
         android:orientation="horizontal"
+        android:weightSum="1"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout18">
+        app:layout_constraintStart_toStartOf="parent">
 
         <LinearLayout
-            android:layout_width="323dp"
+            android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_weight="0.5"
-            android:orientation="vertical"
-            tools:layout_editor_absoluteX="87dp"
-            tools:layout_editor_absoluteY="1dp">
-
-            <TextView
-                android:id="@+id/titreHome"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="0"
-                android:text="@string/typeDeSport" />
-
-            <Spinner
-
-                android:id="@+id/typeDeSport"
-                android:layout_width="match_parent"
-                android:layout_height="35dp"
-                android:layout_weight="1" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="323dp"
-            android:layout_height="match_parent"
-            android:layout_weight="0.5"
-            android:orientation="vertical"
-            tools:layout_editor_absoluteX="87dp"
-            tools:layout_editor_absoluteY="1dp">
-
-            <TextView
-                android:id="@+id/textViews"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="0"
-                android:text="@string/date" />
+            android:layout_weight="0.33"
+            android:orientation="vertical">
 
             <Button
-                android:id="@+id/date_picker_Button"
-                style="?android:spinnerStyle"
-                android:layout_width="192dp"
-                android:layout_height="wrap_content"
-                android:onClick="openDatePicker"
-                android:text="JAN 01 2020"
+                android:id="@+id/validerEntrainement"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:backgroundTint="@color/yellow"
                 android:textColor="@color/black"
-                android:textSize="14sp" />
+
+                android:text="@string/valider"/>
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/linearLayout19"
+        android:layout_width="402dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="1dp"
+        android:layout_marginEnd="1dp"
+        android:layout_marginBottom="1dp"
+        android:background="@drawable/arrondirfond"
+
+        android:orientation="vertical"
+        app:layout_constraintBottom_toTopOf="@+id/linearLayout15"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout11">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="55dp"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:layout_width="199dp"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/textView9"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginTop="5dp"
+                    android:textSize="20dp"
+                    android:textColor="@color/black"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/typeDeSport" />
+            </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_weight="0"
-                android:orientation="horizontal">
+                android:orientation="vertical">
 
+                <TextView
+                    android:id="@+id/textView10"
+                    android:layout_marginTop="5dp"
+                    android:textSize="20dp"
+                    android:textColor="@color/black"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/date" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="57dp"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:layout_width="199dp"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <Spinner
+                    android:layout_marginLeft="15dp"
+                    android:id="@+id/typeDeSport"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <Button
+                    android:id="@+id/date_picker_Button"
+                    style="?android:spinnerStyle"                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:onClick="openDatePicker"
+                    android:text="JAN 01 2020"
+                    android:textColor="@color/black"
+                    />
+            </LinearLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="57dp"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:layout_width="199dp"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/textView11"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginTop="5dp"
+                    android:textSize="20dp"
+                    android:textColor="@color/black"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="TextView" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/textView12"
+                    android:layout_marginTop="5dp"
+                    android:textSize="20dp"
+                    android:textColor="@color/black"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/heure" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="63dp"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:layout_width="197dp"
+                android:layout_height="match_parent"
+                android:orientation="vertical"></LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
 
                 <TextView
                     android:id="@+id/textViewTime"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:gravity="center"
                     android:hint="select Time"
-                    android:text="TextView"
-                    android:textSize="32sp" />
+                    android:text="TextView" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="232dp"
+            android:orientation="horizontal">
+
+            <ListView
+                android:id="@+id/listView"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="75dp"
+            android:orientation="horizontal">
+
+            <EditText
+                android:id="@+id/texteNoteEntrainement"
+                android:layout_width="wrap_content"
+                android:layout_height="55dp"
+                android:layout_weight="1"
+                android:layout_marginLeft="15dp"
+                android:ems="10"
+                android:hint="@string/note"
+                android:inputType="textPersonName" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:layout_width="205dp"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <Button
+                    android:id="@+id/button"
+                    android:onClick="AjoutActivite"
+                    android:layout_marginLeft="15dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/etape"/>
             </LinearLayout>
 
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
 
+                <Button
+                    android:id="@+id/button2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/repetition" />
+            </LinearLayout>
         </LinearLayout>
-
-
     </LinearLayout>
 
     <LinearLayout
-        android:id="@+id/linearLayout2"
-        android:layout_width="407dp"
-        android:layout_height="44dp"
-        android:layout_marginStart="1dp"
-        android:layout_marginBottom="51dp"
+        android:id="@+id/linearLayout11"
+        android:layout_width="411dp"
+        android:layout_height="80dp"
+        android:layout_marginTop="2dp"
         android:layout_weight="1"
-        android:orientation="horizontal"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent">
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="0.5"
-            android:orientation="vertical">
-
-
-            <Button
-                android:id="@+id/button"
-                android:onClick="AjoutActivite"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@drawable/arrondir"
-                android:text="@string/etape" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="0.5"
-            android:orientation="vertical">
-
-            <Button
-                android:id="@+id/button2"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@drawable/arrondir"
-
-                android:text="@string/repetition" />
-        </LinearLayout>
-    </LinearLayout>
-
-    <ListView
-        android:id="@+id/listView"
-        android:layout_width="408dp"
-        android:layout_height="339dp"
-        android:layout_marginStart="2dp"
-        android:layout_marginBottom="80dp"
-        app:layout_constraintBottom_toTopOf="@+id/linearLayout2"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <LinearLayout
-        android:layout_width="196dp"
-        android:layout_height="45dp"
-        android:layout_marginStart="107dp"
-        android:layout_marginEnd="108dp"
-        android:layout_marginBottom="6dp"
-        android:orientation="horizontal"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent">
-
-        <Button
-            android:id="@+id/validerEntrainement"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="@string/valider"
-            android:background="@drawable/arrondir"
-
-            android:onClick="valider"/>
-    </LinearLayout>
-
-
-    <LinearLayout
-        android:id="@+id/linearLayout18"
-        android:layout_width="51dp"
-        android:layout_height="31dp"
-        android:layout_marginTop="1dp"
-        android:layout_marginEnd="1dp"
+        android:background="@color/black"
         android:orientation="horizontal"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.44"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-        <Button
-            android:id="@+id/buttonSupprimerActivite"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            />
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="334dp"
-        android:layout_height="79dp"
-        android:layout_marginStart="1dp"
-        android:layout_marginEnd="1dp"
-        android:layout_marginBottom="1dp"
-        android:orientation="horizontal"
-        app:layout_constraintBottom_toTopOf="@+id/linearLayout2"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent">
-
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/texteNoteEntrainement"
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="@string/note" />
-    </LinearLayout>
+            android:layout_height="match_parent"
+            android:layout_weight="0.33"
+            android:orientation="vertical">
 
-    <Spinner
-        android:id="@+id/spinnerLieux"
-        android:layout_width="409dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="1dp"
-        android:layout_marginTop="14dp"
-        android:layout_marginEnd="1dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout12" />
+            <ImageView
+                android:id="@+id/logoAppli"
+                android:layout_width="111dp"
+                android:layout_height="64dp"
+                android:layout_gravity="center"
+
+                android:layout_marginTop="5dp"
+                app:srcCompat="@mipmap/sportdroidbis" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="0.33"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/titreHome"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:gravity="center"
+                android:text="@string/entrainement"
+                android:textColor="#FFFFFF"
+                android:textSize="20dp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="0.33"
+            android:orientation="vertical">
+
+            <ImageView
+                android:id="@+id/imgInfo"
+                android:layout_width="113dp"
+                android:layout_height="46dp"
+
+                android:layout_gravity="center"
+                android:layout_marginTop="15dp"
+                app:srcCompat="@drawable/profilbleu" />
+        </LinearLayout>
+    </LinearLayout>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

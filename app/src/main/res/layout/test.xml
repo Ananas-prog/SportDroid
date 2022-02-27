@@ -25,7 +25,7 @@
             android:orientation="vertical">
 
             <Button
-                android:id="@+id/buttonvaliderinfo"
+                android:id="@+id/validerEntrainement"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:backgroundTint="@color/yellow"
@@ -53,69 +53,19 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="46dp"
+            android:layout_height="55dp"
             android:orientation="horizontal">
 
             <LinearLayout
-                android:layout_width="241dp"
+                android:layout_width="199dp"
                 android:layout_height="match_parent"
                 android:orientation="vertical">
 
                 <TextView
-                    android:id="@+id/textView"
-                    android:layout_marginLeft="15dp"
-                    android:layout_marginTop="5dp"
-                    android:textSize="20dp"
-                    android:textStyle="bold"
+                    android:id="@+id/textView9"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="@string/titre" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="vertical"></LinearLayout>
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="36dp"
-            android:orientation="horizontal">
-
-            <EditText
-                android:id="@+id/editTextTextTitre"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:layout_marginLeft="15dp"
-
-                android:ems="10"
-                android:inputType="textPersonName"
-                android:text="Name" />
-
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="40dp"
-            android:orientation="horizontal">
-
-            <LinearLayout
-                android:layout_width="193dp"
-                android:layout_height="match_parent"
-                android:orientation="vertical">
-
-                <TextView
-                    android:id="@+id/textView4"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:textSize="20dp"
-                    android:textStyle="bold"
-                    android:layout_marginLeft="15dp"
-
-                    android:text="@string/lieu" />
+                    android:text="@string/typeDeSport" />
             </LinearLayout>
 
             <LinearLayout
@@ -124,33 +74,27 @@
                 android:orientation="vertical">
 
                 <TextView
-                    android:id="@+id/textView5"
+                    android:id="@+id/textView10"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:textSize="20dp"
-                    android:textStyle="bold"
                     android:text="@string/date" />
             </LinearLayout>
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="49dp"
+            android:layout_height="57dp"
             android:orientation="horizontal">
 
             <LinearLayout
-                android:layout_width="189dp"
+                android:layout_width="199dp"
                 android:layout_height="match_parent"
                 android:orientation="vertical">
 
-                <EditText
-                    android:id="@+id/editTextLieux"
+                <Spinner
+                    android:id="@+id/typeDeSport"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:ems="10"
-                    android:layout_marginLeft="15dp"
-                    android:inputType="textPersonName"
-                    android:text="Name" />
+                    android:layout_height="wrap_content" />
             </LinearLayout>
 
             <LinearLayout
@@ -159,96 +103,124 @@
                 android:orientation="vertical">
 
                 <Button
-                    android:id="@+id/buttondateinfo"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-
+                    android:id="@+id/date_picker_Button"
+                    style="?android:spinnerStyle"                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
                     android:onClick="openDatePicker"
-                    android:text="Button" />
+                    android:text="JAN 01 2020"
+                    android:textColor="@color/black"
+                     />
             </LinearLayout>
         </LinearLayout>
 
-        <View
-            android:id="@+id/divider"
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:background="?android:attr/listDivider" />
-
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="194dp"
+            android:layout_height="57dp"
             android:orientation="horizontal">
 
-            <EditText
-                android:id="@+id/editTextTextParagraphe"
-                android:layout_width="wrap_content"
+            <LinearLayout
+                android:layout_width="199dp"
                 android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:ems="10"
-                android:inputType="textPersonName"
-                android:text="Name" />
-        </LinearLayout>
+                android:orientation="vertical">
 
-        <View
-            android:id="@+id/divider2"
-            android:layout_width="match_parent"
-            android:layout_height="2dp"
-            android:background="?android:attr/listDivider" />
+                <TextView
+                    android:id="@+id/textView11"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="TextView" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/textView12"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/heure" />
+            </LinearLayout>
+        </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="40dp"
+            android:layout_height="63dp"
             android:orientation="horizontal">
 
-            <TextView
-                android:id="@+id/textView7"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="TextView" />
+            <LinearLayout
+                android:layout_width="197dp"
+                android:layout_height="match_parent"
+                android:orientation="vertical"></LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/textViewTime"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:hint="select Time"
+                    android:text="TextView" />
+            </LinearLayout>
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="41dp"
+            android:layout_height="219dp"
+            android:orientation="horizontal">
+
+            <ListView
+                android:id="@+id/listView"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="54dp"
             android:orientation="horizontal">
 
             <EditText
-                android:id="@+id/editTextImage"
+                android:id="@+id/texteNoteEntrainement"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:ems="10"
-                android:inputType="textPersonName"
-                android:text="Name" />
+                android:hint="@string/note"
+                android:inputType="textPersonName" />
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="31dp"
+            android:layout_height="match_parent"
             android:orientation="horizontal">
 
-            <TextView
-                android:id="@+id/textView8"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="TextView" />
-        </LinearLayout>
+            <LinearLayout
+                android:layout_width="205dp"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="38dp"
-            android:orientation="horizontal">
+                <Button
+                    android:id="@+id/button"
+                    android:onClick="AjoutActivite"                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/etape"/>
+            </LinearLayout>
 
-            <EditText
-                android:id="@+id/editTextTextLien"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:ems="10"
-                android:inputType="textPersonName"
-                android:text="Name" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <Button
+                    android:id="@+id/button2"
+                    android:text="@string/repetition"                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                   />
+            </LinearLayout>
         </LinearLayout>
     </LinearLayout>
 
@@ -293,7 +265,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="15dp"
                 android:gravity="center"
-                android:text="@string/nouvelleInformation"
+                android:text="@string/entrainement"
                 android:textColor="#FFFFFF"
                 android:textSize="20dp" />
         </LinearLayout>
