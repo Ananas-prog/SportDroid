@@ -146,7 +146,6 @@ public class infos extends AppCompatActivity {
 
 
 
-
         Buttonhome =(Button) findViewById(R.id.ButtonHome);
         Buttonhome.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -176,8 +175,9 @@ public class infos extends AppCompatActivity {
     public void rafraichissementListe(){
 
         ListView listView=(ListView) findViewById(R.id.listViewInfos);
-        ArrayAdapter blockAdapter=new ArrayAdapter(this, android.R.layout.simple_list_item_1,listeInfo);
-        listView.setAdapter(blockAdapter);
+        listView.setAdapter(null);
+        listView.setAdapter(new listViewAdapterInfo(this, listeInfo));
+
         // Write a message to the database
     }
     public void home(){
