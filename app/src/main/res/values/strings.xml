@@ -7,7 +7,7 @@
     <string name="ButtonAjoutEntrainement">Ajouter entrainement</string>
     <string name="presentation">Accueil</string>
     <string name="typeDeSport">Type de sport : </string>
-    <string name="date">date :</string>
+    <string name="date">Date :</string>
     <string name="etape">Ajouter étape</string>
     <string name="repetition">Ajouter répétition</string>
     <string name="valider">Valider</string>
@@ -22,6 +22,12 @@
     <string name="supprimerBlock">Supprimer</string>
     <string name="plus">+</string>
     <string name="lactualite">Les actualités</string>
+    <string name="nouvelleInformation">Nouvelle information</string>
+    <string name="titre">Titre :</string>
+    <string name="lieu">Lieu :</string>
+    <string name="lienphoto">Lien de la photo :</string>
+    <string name="lieninfo">Lien pour plus d information :</string>
+
 
 
     <string name="credit">Application créée par Anaïs MOTTIER et Simon PLANCHENAULT \n Mise à jour 2022</string>

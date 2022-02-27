@@ -26,6 +26,8 @@ public class ajout_infos extends AppCompatActivity {
     private EditText titre;
     private EditText lien;
     private EditText paragraphe;
+    private EditText lieu;
+
     private Button valider;
     public String nInfos;
     public Button dateButton;
@@ -43,6 +45,8 @@ public class ajout_infos extends AppCompatActivity {
         dateButton=(Button) findViewById(R.id.buttondateinfo);
         lien=(EditText) findViewById(R.id.editTextTextLien);
         paragraphe=(EditText) findViewById(R.id.editTextTextParagraphe);
+        lieu=(EditText) findViewById(R.id.editTextLieux);
+
         valider=(Button) findViewById(R.id.buttonvaliderinfo);
 
         valider.setOnClickListener(new View.OnClickListener() {
@@ -59,6 +63,8 @@ public class ajout_infos extends AppCompatActivity {
                 test3.setValue(lien.getText().toString());
                 DatabaseReference test4 = database.getReference("infos/"+nInfos+"/paragraphe");
                 test4.setValue(paragraphe.getText().toString());
+                DatabaseReference test5 = database.getReference("infos/"+nInfos+"/lieu");
+                test5.setValue(lieu.getText().toString());
                 finish();
             }
         });

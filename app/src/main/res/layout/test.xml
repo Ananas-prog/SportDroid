@@ -25,44 +25,13 @@
             android:orientation="vertical">
 
             <Button
-                android:id="@+id/ButtonCalendrier"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:textColor="@color/white"
-                android:text="@string/ButtonCalendrier" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="0.33"
-            android:orientation="vertical">
-
-            <Button
-                android:id="@+id/ButtonHome"
+                android:id="@+id/buttonvaliderinfo"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:backgroundTint="@color/yellow"
                 android:textColor="@color/black"
 
-                android:text="@string/ButtonHome" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="0.33"
-            android:orientation="vertical">
-
-            <Button
-                android:id="@+id/ButtonInfos"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:backgroundTint="@color/black"
-                android:textColor="@color/white"
-
-                android:text="@string/ButtonInfos" />
+                android:text="@string/valider"/>
         </LinearLayout>
 
     </LinearLayout>
@@ -82,24 +51,106 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/linearLayout11">
 
-
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="51dp"
-            android:layout_marginTop="20dp"
+            android:layout_height="46dp"
             android:orientation="horizontal">
 
-
             <LinearLayout
-                android:layout_width="255dp"
+                android:layout_width="241dp"
                 android:layout_height="match_parent"
                 android:orientation="vertical">
 
                 <TextView
-                    android:id="@+id/textView2"
+                    android:id="@+id/textView"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginTop="5dp"
+                    android:textSize="20dp"
+                    android:textStyle="bold"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="@string/lactualite" />
+                    android:text="@string/titre" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"></LinearLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="36dp"
+            android:orientation="horizontal">
+
+            <EditText
+                android:id="@+id/editTextTextTitre"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_marginLeft="15dp"
+
+                android:ems="10"
+                android:inputType="textPersonName"
+                android:text="Name" />
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:layout_width="193dp"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/textView4"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textSize="20dp"
+                    android:textStyle="bold"
+                    android:layout_marginLeft="15dp"
+
+                    android:text="@string/lieu" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/textView5"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textSize="20dp"
+                    android:textStyle="bold"
+                    android:text="@string/date" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="49dp"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:layout_width="189dp"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <EditText
+                    android:id="@+id/editTextLieux"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:ems="10"
+                    android:layout_marginLeft="15dp"
+                    android:inputType="textPersonName"
+                    android:text="Name" />
             </LinearLayout>
 
             <LinearLayout
@@ -108,28 +159,97 @@
                 android:orientation="vertical">
 
                 <Button
-                    android:id="@+id/buttonajoutInfo"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginEnd="6dp"
-                    android:layout_marginBottom="3dp"
-                    android:text="@string/plus"
-                    app:layout_constraintBottom_toTopOf="@+id/menuBas"
-                    app:layout_constraintEnd_toEndOf="parent" />
+                    android:id="@+id/buttondateinfo"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+
+                    android:onClick="openDatePicker"
+                    android:text="Button" />
             </LinearLayout>
+        </LinearLayout>
+
+        <View
+            android:id="@+id/divider"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="?android:attr/listDivider" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="194dp"
+            android:orientation="horizontal">
+
+            <EditText
+                android:id="@+id/editTextTextParagraphe"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:ems="10"
+                android:inputType="textPersonName"
+                android:text="Name" />
+        </LinearLayout>
+
+        <View
+            android:id="@+id/divider2"
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:background="?android:attr/listDivider" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/textView7"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="TextView" />
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="41dp"
             android:orientation="horizontal">
 
-            <ListView
-                android:id="@+id/listViewInfos"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent" />
+            <EditText
+                android:id="@+id/editTextImage"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:ems="10"
+                android:inputType="textPersonName"
+                android:text="Name" />
         </LinearLayout>
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="31dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/textView8"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="TextView" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="38dp"
+            android:orientation="horizontal">
+
+            <EditText
+                android:id="@+id/editTextTextLien"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:ems="10"
+                android:inputType="textPersonName"
+                android:text="Name" />
+        </LinearLayout>
     </LinearLayout>
 
     <LinearLayout
@@ -173,7 +293,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="15dp"
                 android:gravity="center"
-                android:text="@string/infos"
+                android:text="@string/nouvelleInformation"
                 android:textColor="#FFFFFF"
                 android:textSize="20dp" />
         </LinearLayout>
@@ -188,9 +308,10 @@
                 android:id="@+id/imgInfo"
                 android:layout_width="113dp"
                 android:layout_height="46dp"
+
                 android:layout_gravity="center"
                 android:layout_marginTop="15dp"
-                app:srcCompat="@android:drawable/ic_menu_info_details" />
+                app:srcCompat="@drawable/profilbleu" />
         </LinearLayout>
     </LinearLayout>
 

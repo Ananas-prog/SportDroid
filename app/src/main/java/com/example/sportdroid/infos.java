@@ -27,13 +27,15 @@ class info extends AppCompatActivity{
     private String date;
     private String lien;
     private String paragraphe;
+    private String lieu;
 
-    public info(String image, String titre, String date, String lien, String paragraphe){
+    public info(String image, String titre, String date, String lien, String paragraphe, String lieu){
         this.image=image;
         this.titre=titre;
         this.date=date;
         this.lien=lien;
         this.paragraphe=paragraphe;
+        this.lieu=lieu;
     }
     public void setDate(String date) {
         this.date = date;
@@ -65,8 +67,14 @@ class info extends AppCompatActivity{
     public void setTitre(String titre) {
         this.titre = titre;
     }
+    public String getLieu() {
+        return lieu;
+    }
+    public void setLieu(String lieu) {
+        this.lieu = lieu;
+    }
     public String toString(){
-        return  this.image+"  "+ this.titre+"  "+ this.date+"  "+ this.lien+"  "+ this.paragraphe;
+        return  this.image+"  "+ this.titre+"  "+ this.date+"  "+ this.lien+"  "+ this.paragraphe + " "+this.lieu;
     }
 }
 
@@ -117,8 +125,10 @@ public class infos extends AppCompatActivity {
                     String date = String.valueOf(ds.child("/date").getValue());
                     String lien = String.valueOf(ds.child("/lien").getValue());
                     String paragraphe = String.valueOf(ds.child("/paragraphe").getValue());
+                    String lieu = String.valueOf(ds.child("/lieu").getValue());
 
-                    info element = new info(image, titre,date,lien,paragraphe);
+
+                    info element = new info(image, titre,date,lien,paragraphe,lieu);
                     listeInfo.add(element);
                     // RECUPERER LE CODE DANS CALENDRIER
                     rafraichissementListe();
@@ -184,7 +194,7 @@ public class infos extends AppCompatActivity {
     }
 
     public void ajouterInfo(){
-        info un = new info("","","","","");
+        info un = new info("","","","","","");
         listeInfo.add(un);
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         DatabaseReference ajout = database.getReference("infos/"+listeInfo.size());
