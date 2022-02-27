@@ -41,13 +41,16 @@ class activite implements Serializable {
     private String date;
     private String note;
     private String heure;
+    private String lieu;
+
     //private ArrayList<detaille_entrainement> block=new ArrayList<>();
 
-    public activite(String typeDeSport,String date, String note,String heure) {
+    public activite(String typeDeSport,String date, String note,String heure,String lieu) {
         this.typeDeSport=typeDeSport;
         this.date=date;
         this.note=note;
         this.heure=heure;
+        this.lieu=lieu;
         // block= new ArrayList<detaille_entrainement>("Echauffement","aucune","Temps",30);
     }
 
@@ -71,16 +74,18 @@ class activite implements Serializable {
     public void setDate(String date) {
         this.date = date;
     }
-
     public String getTypeDeSport() {
         return typeDeSport;
     }
     public void setTypeDeSport(String typeDeSport) {
         this.typeDeSport = typeDeSport;
     }
+    public String getLieu() {
+        return lieu;
+    }
 
     public String toString(){
-        return  this.typeDeSport+"  "+ this.date+ " "+ this.note+" "+this.heure;
+        return  this.typeDeSport+"  "+ this.date+ " "+ this.note+" "+this.heure+" "+this.lieu;
     }
 
 }
@@ -155,8 +160,9 @@ public class MainActivity extends AppCompatActivity {
                         String date = String.valueOf(ds.child("/date").getValue());
                         String note = String.valueOf(ds.child("/note").getValue());
                         String heure = String.valueOf(ds.child("/heure").getValue());
+                        String lieu = String.valueOf(ds.child("/lieu").getValue());
 
-                        activite element = new activite(sport, date,note,heure);
+                        activite element = new activite(sport, date,note,heure,lieu);
                         tabActivite.add(element);
                         listeEntrainementJournee.clear();
                         for (int j = 0; j < tabActivite.size(); j++) {
@@ -234,7 +240,7 @@ public class MainActivity extends AppCompatActivity {
     }
     public void ajouterEntrainement(){
         //activiter par default
-        activite un = new activite("","","","");
+        activite un = new activite("","","","","");
         tabActivite.add(un);
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         DatabaseReference myRef = database.getReference("activite/"+tabActivite.size());

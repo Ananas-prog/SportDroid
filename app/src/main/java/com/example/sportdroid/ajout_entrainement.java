@@ -86,7 +86,7 @@ public class ajout_entrainement extends AppCompatActivity {
     public Button dateButton;
     Spinner spinner;
     Spinner spinnerDate;
-
+    Spinner spinnerLieu;
     //ListView listView;
     public ArrayList<detaille_entrainement> block=new ArrayList<detaille_entrainement>();
     public DatabaseReference databaseReference;
@@ -161,6 +161,24 @@ public class ajout_entrainement extends AppCompatActivity {
         }
 
 
+
+        spinnerLieu=(Spinner)findViewById(R.id.spinnerLieu);
+        List exempleLieu=new ArrayList();
+        exempleLieu.add("Les Atlantides");
+        exempleLieu.add("Coubertin");
+        exempleLieu.add("Ardriers");
+        exempleLieu.add("Ile aux sport");
+
+        ArrayAdapter adapterlieu = new ArrayAdapter(
+                this,
+                android.R.layout.simple_spinner_item,
+                exempleLieu
+        );
+
+        /* On definit une présentation du spinner quand il est déroulé         (android.R.layout.simple_spinner_dropdown_item) */
+        adapterlieu.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        //Enfin on passe l'adapter au Spinner et c'est tout
+        spinnerLieu.setAdapter(adapterlieu);
 
 
         //Récupération du Spinner déclaré dans le fichier main.xml de res/layout
@@ -263,6 +281,7 @@ public class ajout_entrainement extends AppCompatActivity {
                     String notes = String.valueOf(ds.child("/notes").getValue());
                     String typeDeDuree = String.valueOf(ds.child("/typeDeDuree").getValue());
                     String typeDetape = String.valueOf(ds.child("/typeDetape").getValue());
+
                     if(duree.equals("null")&&notes.equals("null")&&typeDeDuree.equals("null")&&typeDetape.equals("null")){
 
                     }else{
@@ -376,6 +395,8 @@ public class ajout_entrainement extends AppCompatActivity {
         note.setValue(this.note.getText().toString());
         DatabaseReference time = database.getReference("activite/"+str+"/heure");
         time.setValue(this.time.getText().toString());
+        DatabaseReference lieu = database.getReference("activite/"+str+"/lieu");
+        lieu.setValue(spinnerLieu.getSelectedItem().toString());
 
         finish();
     }

@@ -84,8 +84,9 @@ public class calendrier extends AppCompatActivity {
                     String sport = String.valueOf(ds.child("/typeDeSport").getValue());
                     String note = String.valueOf(ds.child("/note").getValue());
                     String heure = String.valueOf(ds.child("/heure").getValue());
+                    String lieu = String.valueOf(ds.child("/lieu").getValue());
 
-                    activite element = new activite(sport, date,note,heure);
+                    activite element = new activite(sport, date,note,heure,lieu);
                     tabActivite.add(element);
                     rafraichissementListe();
                 }
