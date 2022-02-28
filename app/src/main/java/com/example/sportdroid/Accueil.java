@@ -18,7 +18,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 public class Accueil extends AppCompatActivity {
-
+    private String role;
     private Button athlete;
     private Button coach;
     private TextView mdp;
@@ -39,7 +39,10 @@ public class Accueil extends AppCompatActivity {
         athlete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                role="athlete";
+
                 Intent intent = new Intent(Accueil.this, MainActivity.class);
+                intent.putExtra("role", role);
                 startActivity(intent);
             }
         });
@@ -64,7 +67,10 @@ public class Accueil extends AppCompatActivity {
                         // whenever data at this location is updated.
                         MDPDataBase = dataSnapshot.getValue(String.class);
                         if(mdp.getText().toString().equals(MDPDataBase)){
+                            role="coach";
+
                             Intent intent = new Intent(Accueil.this, MainActivity.class);
+                            intent.putExtra("role", role);
                             startActivity(intent);
                         }else{
                             Toast.makeText(Accueil.this,"mdp érroné ",Toast.LENGTH_LONG).show();

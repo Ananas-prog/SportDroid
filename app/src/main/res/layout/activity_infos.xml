@@ -109,6 +109,7 @@
                 android:layout_height="27dp"
                 android:background="#02FFFFFF"
                 android:backgroundTint="#00FFFFFF"
+                android:visibility="invisible"
                 android:contentDescription="@string/plus"
                 app:srcCompat="@drawable/plus" />
 

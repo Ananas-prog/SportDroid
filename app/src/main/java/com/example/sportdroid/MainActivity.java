@@ -4,11 +4,13 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.Layout;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -98,12 +100,22 @@ public class MainActivity extends AppCompatActivity {
     private Button ButtonAjouterEntrainement;
     public ArrayList<activite> listeEntrainementJournee=new ArrayList<>();
     public ArrayList<activite> tabActivite= new ArrayList<>();
-
+    private LinearLayout ajoutEntrainement;
+    private String role;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        ajoutEntrainement= (LinearLayout) findViewById(R.id.layoutAjoutEntrainement);
+        Intent intent = getIntent();
+
+        if (intent.hasExtra("role")){ // vérifie qu'une valeur est associée à la clé “edittext”
+            role = intent.getStringExtra("role"); // on récupère la valeur associée à la clé
+        }
+        if(role.equals("athlete")){
+            ajoutEntrainement.setVisibility(View.INVISIBLE);
+        }
 
         ButtonAjouterEntrainement =(Button) findViewById(R.id.ButtonAjouterEntrainement);
         ButtonAjouterEntrainement.setOnClickListener(new View.OnClickListener() {
@@ -258,10 +270,12 @@ public class MainActivity extends AppCompatActivity {
     }
     public void calender(){
         Intent intent = new Intent(this, calendrier.class);
+        intent.putExtra("role", role);
         startActivity(intent);
     }
     public void informations(){
         Intent intent = new Intent(this, infos.class);
+        intent.putExtra("role", role);
         startActivity(intent);
     }
 }

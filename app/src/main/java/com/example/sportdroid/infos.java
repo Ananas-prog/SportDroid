@@ -86,6 +86,7 @@ public class infos extends AppCompatActivity {
     private Button Buttonhome;
     public ArrayList<info> listeInfo=new ArrayList<>();
     private ImageButton Bajouter;
+    private  String role;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -97,7 +98,15 @@ public class infos extends AppCompatActivity {
                 ajouterInfo();
             }
         });
+        Intent intent = getIntent();
 
+        if (intent.hasExtra("role")){ // vérifie qu'une valeur est associée à la clé “edittext”
+            role = intent.getStringExtra("role"); // on récupère la valeur associée à la clé
+        }
+
+        if(role.equals("coach")){
+            Bajouter.setVisibility(View.VISIBLE);
+        }
         ListView listView=(ListView) findViewById(R.id.listViewInfos);
         //listeInfo.add(new info("nj","nj","nkj","ni","nj"));
         //rafraichissementListe();
@@ -182,10 +191,14 @@ public class infos extends AppCompatActivity {
     }
     public void home(){
         Intent intent = new Intent(this, MainActivity.class);
+        intent.putExtra("role", role);
+
         startActivity(intent);
     }
     public void calender(){
         Intent intent = new Intent(this, calendrier.class);
+        intent.putExtra("role", role);
+
         startActivity(intent);
     }
     public void informations(){

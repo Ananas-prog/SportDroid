@@ -26,7 +26,7 @@ public class calendrier extends AppCompatActivity {
     private Button ButtonCalendrier;
     private Button ButtonInfos;
     private Button Buttonhome;
-
+    private String role;
     CalendarView calendar;
     TextView date;
     ListView listView;
@@ -49,7 +49,11 @@ public class calendrier extends AppCompatActivity {
         date =(TextView) findViewById(R.id.textDate);
         date.setText(day+" "+getMonthFormar(month+1)+" "+year);
 
+        Intent intent = getIntent();
 
+        if (intent.hasExtra("role")){ // vérifie qu'une valeur est associée à la clé “edittext”
+            role = intent.getStringExtra("role"); // on récupère la valeur associée à la clé
+        }
 
         calendar.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
             @Override
@@ -144,6 +148,8 @@ public class calendrier extends AppCompatActivity {
 
     public void home(){
         Intent intent = new Intent(this, MainActivity.class);
+        intent.putExtra("role", role);
+
         startActivity(intent);
     }
     public void calender(){
@@ -152,6 +158,8 @@ public class calendrier extends AppCompatActivity {
     }
     public void informations(){
         Intent intent = new Intent(this, infos.class);
+        intent.putExtra("role", role);
+
         startActivity(intent);
     }
 
