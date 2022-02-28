@@ -205,9 +205,14 @@ public class MainActivity extends AppCompatActivity {
             // i est la postion ou on clique
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 //Toast.makeText(MainActivity.this,"clique sur l 'item "+ i+ ""+tabActivite.get(i).toString(),Toast.LENGTH_LONG).show();
-                Intent intent = new Intent(MainActivity.this, ajout_entrainement.class);
-                intent.putExtra("nEntrainement", String.valueOf(i+1));
-                startActivity(intent);
+                if(role.equals("coach")){
+                    Intent intent = new Intent(MainActivity.this, ajout_entrainement.class);
+                    intent.putExtra("nEntrainement", String.valueOf(i+1));
+                    startActivity(intent);
+                }else{
+                    // pour les attltes
+                }
+
 
             }
         });
