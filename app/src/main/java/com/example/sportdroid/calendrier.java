@@ -88,7 +88,7 @@ public class calendrier extends AppCompatActivity {
                     String note = String.valueOf(ds.child("/note").getValue());
                     String heure = String.valueOf(ds.child("/heure").getValue());
                     String lieu = String.valueOf(ds.child("/lieu").getValue());
-
+                    tabActivite.add(new activite(sport,dateR,note,heure,lieu));
                     if(dateR.equals(date.getText())){
                         activite element = new activite(sport, dateR,note,heure,lieu);
                         tabActiviteJournee.add(element);
