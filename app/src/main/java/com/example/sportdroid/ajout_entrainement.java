@@ -167,7 +167,8 @@ public class ajout_entrainement extends AppCompatActivity {
         exempleLieu.add("Les Atlantides");
         exempleLieu.add("Coubertin");
         exempleLieu.add("Ardriers");
-        exempleLieu.add("Ile aux sport");
+        exempleLieu.add("Ile aux sports");
+        exempleLieu.add("Bois de l'Epau (parking du verger)");
 
         ArrayAdapter adapterlieu = new ArrayAdapter(
                 this,

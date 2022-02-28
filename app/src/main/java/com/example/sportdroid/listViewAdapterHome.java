@@ -44,6 +44,7 @@ public class listViewAdapterHome extends BaseAdapter {
         activite currentActivity = getItem(i);
         String activityName = currentActivity.getTypeDeSport();
         String activityHeure = currentActivity.getHeure();
+        String activityLieu = currentActivity.getLieu();
         String activityDescription = currentActivity.getNote();
 
         //Affichage du nom du sport
@@ -53,6 +54,10 @@ public class listViewAdapterHome extends BaseAdapter {
         //Affichage de l'heure de la séance
         TextView itemHeureView = view.findViewById(R.id.HeureSport_listItem);
         itemHeureView.setText(activityHeure);
+
+        //Affichage du lieu de la séance
+        TextView itemLieuView = view.findViewById(R.id.LieuSport_listItem);
+        itemLieuView.setText(activityLieu);
 
         //Affichage de la description de la séance
         TextView itemDescriptionView = view.findViewById(R.id.DescriptSport_listItem);

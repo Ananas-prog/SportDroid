@@ -43,12 +43,17 @@ public class listViewAdapterCalendar extends BaseAdapter {
         //Informations à propos de l'item
         activite currentActivity = getItem(i);
         String activityName = currentActivity.getTypeDeSport();
+        String activityLieu = currentActivity.getLieu();
         String activityHeure = currentActivity.getHeure();
         String activityDescription = currentActivity.getNote();
 
         //Affichage du nom du sport
         TextView itemNameView = view.findViewById(R.id.NomSport_listItem);
         itemNameView.setText(activityName);
+
+        //Affichage du lieu du sport
+        TextView itemLieuView = view.findViewById(R.id.LieuSport);
+        itemLieuView.setText(activityLieu);
 
         //Affichage de l'heure de la séance
         TextView itemHeureView = view.findViewById(R.id.HeureSport_listItem);
