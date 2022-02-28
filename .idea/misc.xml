@@ -23,18 +23,20 @@
         <entry key="..\:/Users/chipi/Documents/SportDroid/app/src/main/res/drawable/arrondir.xml" value="0.1465" />
         <entry key="..\:/Users/chipi/Documents/SportDroid/app/src/main/res/drawable/arrondirfond.xml" value="0.1465" />
         <entry key="..\:/Users/chipi/Documents/SportDroid/app/src/main/res/layout/activity_accueil.xml" value="0.16666666666666666" />
-        <entry key="..\:/Users/chipi/Documents/SportDroid/app/src/main/res/layout/activity_ajout_entrainement.xml" value="0.184375" />
+        <entry key="..\:/Users/chipi/Documents/SportDroid/app/src/main/res/layout/activity_ajout_entrainement.xml" value="0.477088948787062" />
         <entry key="..\:/Users/chipi/Documents/SportDroid/app/src/main/res/layout/activity_ajout_infos.xml" value="0.184375" />
         <entry key="..\:/Users/chipi/Documents/SportDroid/app/src/main/res/layout/activity_calendar.xml" value="0.4466666666666667" />
         <entry key="..\:/Users/chipi/Documents/SportDroid/app/src/main/res/layout/activity_detail_block.xml" value="0.184375" />
         <entry key="..\:/Users/chipi/Documents/SportDroid/app/src/main/res/layout/activity_entrainement.xml" value="0.22" />
         <entry key="..\:/Users/chipi/Documents/SportDroid/app/src/main/res/layout/activity_infos.xml" value="0.184375" />
         <entry key="..\:/Users/chipi/Documents/SportDroid/app/src/main/res/layout/activity_main.xml" value="0.16666666666666666" />
+        <entry key="..\:/Users/chipi/Documents/SportDroid/app/src/main/res/layout/list_item_ajout_entrainement_layout.xml" value="0.4466666666666667" />
         <entry key="..\:/Users/chipi/Documents/SportDroid/app/src/main/res/layout/list_item_calendar_layout.xml" value="0.16666666666666666" />
         <entry key="..\:/Users/chipi/Documents/SportDroid/app/src/main/res/layout/list_item_home_layout.xml" value="0.4466666666666667" />
         <entry key="..\:/Users/chipi/Documents/SportDroid/app/src/main/res/layout/list_item_info_layout.xml" value="0.4466666666666667" />
         <entry key="..\:/Users/chipi/Documents/SportDroid/app/src/main/res/layout/list_item_layout.xml" value="0.22" />
-        <entry key="..\:/Users/chipi/Documents/SportDroid/app/src/main/res/layout/test.xml" value="0.184375" />
+        <entry key="..\:/Users/chipi/Documents/SportDroid/app/src/main/res/layout/pop_up_affichage_entrainement.xml" value="0.3333333333333333" />
+        <entry key="..\:/Users/chipi/Documents/SportDroid/app/src/main/res/layout/test.xml" value="0.3333333333333333" />
       </map>
     </option>
   </component>

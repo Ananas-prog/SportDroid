@@ -3,8 +3,10 @@ package com.example.sportdroid;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.DatePickerDialog;
+import android.app.Dialog;
 import android.app.TimePickerDialog;
 import android.content.Intent;
 import android.os.Bundle;
@@ -36,49 +38,58 @@ import java.util.List;
 import java.util.Locale;
 
 
-class detaille_entrainement implements Serializable{
-    private String typeDetape;
-    private String notes;
-    private String typeDeDuree;
-    private String duree;
+class detaille_entrainement extends Dialog implements Serializable{
+    private EditText commentaire;
+    private EditText valParam;
+    private Button retour;
+    private Button valider;
+
+    Spinner typeDetape;
+    Spinner typeDeParam;
 
 
+    public detaille_entrainement(Activity activity){
+        super(activity, androidx.appcompat.R.style.Theme_AppCompat_Dialog);
 
-    public detaille_entrainement(String typeDetape, String notes, String typeDeDuree, String duree){
-        this.typeDetape=typeDetape;
-        this.notes=notes;
-        this.typeDeDuree=typeDeDuree;
-        this.duree=duree;
+        setContentView(R.layout.pop_up_etape_entrainement);
+        this.retour = (Button) findViewById(R.id.btnRetour);
+        this.valider = (Button) findViewById(R.id.btnValider);
+        this.commentaire = (EditText) findViewById(R.id.commEtape);
+        this.valParam = (EditText) findViewById(R.id.valParam);
+
+        typeDetape =(Spinner)findViewById(R.id.spinnerEtape);
+        List exempleEtape =new ArrayList();
+        exempleEtape.add("Course");
+        exempleEtape.add("Récupération");
+        exempleEtape.add("Echauffement");
+        ArrayAdapter adapterEtape = new ArrayAdapter(activity, android.R.layout.simple_spinner_item, exempleEtape);
+        adapterEtape.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        typeDetape.setAdapter(adapterEtape);
+
+        typeDeParam =(Spinner)findViewById(R.id.spinnerParam);
+        List exempleParam =new ArrayList();
+        exempleParam.add("Kilomètres");
+        exempleParam.add("Mètres");
+        exempleParam.add("Minutes");
+        exempleParam.add("Secondes");
+        ArrayAdapter adapterParam = new ArrayAdapter(activity, android.R.layout.simple_spinner_item, exempleParam);
+        adapterParam.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        typeDeParam.setAdapter(adapterParam);
     }
 
-    public void settypeDetape(String typeDetape) {
-        this.typeDetape = typeDetape;
-    }
-    public String gettypeDetape() {
-        return typeDetape;
-    }
-    public void setnotes(String notes) {
-        this.notes = notes;
-    }
-    public String getnotes() {
-        return notes;
-    }
-    public void settypeDeDuree(String typeDeDuree) {
-        this.typeDeDuree = typeDeDuree;
-    }
-    public String gettypeDeDuree() {
-        return typeDeDuree;
-    }
-    public void setduree(String duree) {
-        this.duree = duree;
-    }
-    public String getduree() {
-        return duree;
-    }
+    public Button getRetour() { return retour; }
+    public Button getValider() { return valider; }
+
     public String toString(){
-        return  this.typeDetape+"  "+ this.notes+"  "+ this.typeDeDuree+"  "+ this.duree;
+        return  this.typeDetape+"  "+ this.commentaire+"  "+ this.typeDeParam+"  "+ this.valParam;
     }
+
+    public void LancerAjoutEtape(){
+        show();
+    }
+
 }
+
 public class ajout_entrainement extends AppCompatActivity {
 
     private static final String TAG = "";
@@ -93,6 +104,7 @@ public class ajout_entrainement extends AppCompatActivity {
     public String str = "";
     private EditText note;
     private TextView time;
+    private Button newEtape;
     private int heure,minute;
 
     private TextView test;
@@ -111,6 +123,27 @@ public class ajout_entrainement extends AppCompatActivity {
         time.setText(localizedDate);
         TextView t1 = (TextView) findViewById(R.id.titreHome);
         ListView listView=(ListView) findViewById(R.id.listView);
+        newEtape = (Button) findViewById(R.id.buttonAjoutEtape);
+        newEtape.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                detaille_entrainement newEtape = new detaille_entrainement(ajout_entrainement.this);
+                newEtape.LancerAjoutEtape();
+                newEtape.getRetour().setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        newEtape.dismiss();
+                    }
+                });
+                newEtape.getValider().setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        Toast.makeText(getApplicationContext(),"OK",Toast.LENGTH_LONG).show();
+                        newEtape.dismiss();
+                    }
+                });
+            }
+        });
       //  Button supprimerActiviter=(Button)findViewById(R.id.buttonSupprimerActivite);
        // supprimerActiviter.setOnClickListener(new View.OnClickListener() {
        //     @Override
@@ -286,7 +319,7 @@ public class ajout_entrainement extends AppCompatActivity {
                     if(duree.equals("null")&&notes.equals("null")&&typeDeDuree.equals("null")&&typeDetape.equals("null")){
 
                     }else{
-                        detaille_entrainement element = new detaille_entrainement(typeDetape,notes,typeDeDuree,duree);
+                        detaille_entrainement element = new detaille_entrainement(ajout_entrainement.this);
                         block.add(element);
                     }
 

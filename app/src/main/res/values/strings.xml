@@ -4,9 +4,8 @@
     <string name="ButtonCalendrier">Calendrier</string>
     <string name="ButtonHome">Home</string>
     <string name="ButtonInfos">Infos</string>
-    <string name="ButtonAjoutEntrainement">Ajouter entrainement</string>
+    <string name="ButtonAjoutEntrainement">Ajouter entraînement</string>
     <string name="presentation">Accueil</string>
-    <string name="typeDeSport">Type de sport : </string>
     <string name="date">Date :</string>
     <string name="etape">Ajouter étape</string>
     <string name="repetition">Ajouter répétition</string>
@@ -29,8 +28,13 @@
     <string name="lieninfo">Lien pour plus d information :</string>
     <string name="entrainement">Entrainement</string>
     <string name="heure">Heure :</string>
-    <string name="pop_up">Ajout d\'une étape</string>
-
+    <string name="popUp_etape">Ajout d\'une étape</string>
+    <string name="typEtape">Type d\'étape :</string>
+    <string name="commentaire"> Entrer un commentaire (facultatif)</string>
+    <string name="typeParamEtape">Type de paramètre :</string>
+    <string name="valParam">Entrer la valeur du paramètre</string>
+    <string name="typeSport">Type de sport :</string>
+    <string name="retour">Retour</string>
 
 
     <string name="credit">Application créée par Anaïs MOTTIER et Simon PLANCHENAULT \n Mise à jour 2022</string>

@@ -65,7 +65,7 @@
                     android:id="@+id/textView9"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="@string/typeDeSport" />
+                    android:text="@string/typeSport" />
             </LinearLayout>
 
             <LinearLayout
@@ -204,7 +204,7 @@
                 android:orientation="vertical">
 
                 <Button
-                    android:id="@+id/button"
+                    android:id="@+id/buttonAjoutEtape"
                     android:onClick="AjoutActivite"                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="@string/etape"/>
