@@ -150,8 +150,7 @@ public class MainActivity extends AppCompatActivity {
 
         //TextView test = (TextView) findViewById(R.id.textView2);
 
-        FirebaseDatabase database = FirebaseDatabase.getInstance();
-        DatabaseReference myRef = database.getReference("activite");
+
 
         //myRef.setValue("Hello, World!");
         Calendar cal = Calendar.getInstance();
@@ -160,6 +159,8 @@ public class MainActivity extends AppCompatActivity {
         int day = cal.get(Calendar.DAY_OF_MONTH);
         String dateActuelle = (day + " " + getMonthFormar(month + 1) + " " + year);
 
+        FirebaseDatabase database = FirebaseDatabase.getInstance();
+        DatabaseReference myRef = database.getReference("activite");
         myRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {

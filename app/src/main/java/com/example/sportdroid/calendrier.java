@@ -78,20 +78,21 @@ public class calendrier extends AppCompatActivity {
 
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         DatabaseReference myRef = database.getReference("activite");
-
         myRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 tabActivite.clear();
                 for(DataSnapshot ds : dataSnapshot.getChildren()) {
-                    String date = String.valueOf(ds.child("/date").getValue());
+                    String dateR = String.valueOf(ds.child("/date").getValue());
                     String sport = String.valueOf(ds.child("/typeDeSport").getValue());
                     String note = String.valueOf(ds.child("/note").getValue());
                     String heure = String.valueOf(ds.child("/heure").getValue());
                     String lieu = String.valueOf(ds.child("/lieu").getValue());
 
-                    activite element = new activite(sport, date,note,heure,lieu);
-                    tabActivite.add(element);
+
+                        activite element = new activite(sport, dateR,note,heure,lieu);
+                        tabActiviteJournee.add(element);
+
                     rafraichissementListe();
                 }
             }
