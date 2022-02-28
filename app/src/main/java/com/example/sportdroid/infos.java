@@ -108,8 +108,6 @@ public class infos extends AppCompatActivity {
             Bajouter.setVisibility(View.VISIBLE);
         }
         ListView listView=(ListView) findViewById(R.id.listViewInfos);
-        //listeInfo.add(new info("nj","nj","nkj","ni","nj"));
-        //rafraichissementListe();
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             // i est la postion ou on clique
@@ -148,11 +146,6 @@ public class infos extends AppCompatActivity {
                 // Failed to read value
             }
         });
-
-
-
-
-
 
 
         Buttonhome =(Button) findViewById(R.id.ButtonHome);
@@ -207,10 +200,8 @@ public class infos extends AppCompatActivity {
     }
 
     public void ajouterInfo(){
-        info un = new info("","","","","","");
-        listeInfo.add(un);
         FirebaseDatabase database = FirebaseDatabase.getInstance();
-        DatabaseReference ajout = database.getReference("infos/"+listeInfo.size());
+        DatabaseReference ajout = database.getReference("infos/"+listeInfo.size()+1);
         //ajout.setValue(un);
         rafraichissementListe();
 
@@ -218,5 +209,5 @@ public class infos extends AppCompatActivity {
         intent.putExtra("nInfos", String.valueOf(listeInfo.size()));
         startActivity(intent);
     }
-    }
+}
 

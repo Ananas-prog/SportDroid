@@ -314,8 +314,6 @@ public class ajout_entrainement extends AppCompatActivity {
         // Write a message to the database
     }
     public void AjoutActivite(View view){
-        detaille_entrainement un = new detaille_entrainement("recup","?","temps","15");
-        block.add(un);
         rafraichissementListe();
     }
 
