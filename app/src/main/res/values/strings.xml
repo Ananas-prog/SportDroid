@@ -35,7 +35,8 @@
     <string name="valParam">Entrer la valeur du paramètre</string>
     <string name="typeSport">Type de sport :</string>
     <string name="retour">Retour</string>
-
+    <string name="ok">Ok</string>
+    <string name="com">Commentaire :</string>
 
     <string name="credit">Application créée par Anaïs MOTTIER et Simon PLANCHENAULT \n Mise à jour 2022</string>
     <string name="Athlete">ATHLETE</string>

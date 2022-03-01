@@ -110,7 +110,25 @@ public class calendrier extends AppCompatActivity {
             @Override
             // i est la postion ou on clique
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                Toast.makeText(calendrier.this,"clique sur l 'item "+ i+ "",Toast.LENGTH_LONG).show();
+                if (role.equals("coach")) {
+                    Intent intent = new Intent(calendrier.this, ajout_entrainement.class);
+                    intent.putExtra("nEntrainement", String.valueOf(i + 1));
+                    startActivity(intent);
+                } else {
+                    activite currentActivity = tabActiviteJournee.get(i);
+                    String activityName = currentActivity.getTypeDeSport();
+                    String activityHeure = currentActivity.getHeure();
+                    String activityLieu = currentActivity.getLieu();
+                    String activityDescription = currentActivity.getNote();
+                    afficheActivity showActivity = new afficheActivity(calendrier.this);
+                    showActivity.LancerAffichageActivity(activityName, activityHeure, activityLieu, activityDescription, (String)date.getText());
+                    showActivity.getOk().setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            showActivity.dismiss();
+                        }
+                    });
+                }
             }
         });
 

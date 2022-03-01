@@ -2,6 +2,8 @@ package com.example.sportdroid;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.Activity;
+import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.Layout;
@@ -10,6 +12,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.Spinner;
@@ -92,6 +95,48 @@ class activite implements Serializable {
 
 }
 
+class afficheActivity extends Dialog implements Serializable {
+
+    private Button btnOk;
+    private TextView heureEnt;
+    private TextView dateEnt;
+    private TextView typeEnt;
+    private TextView comEnt;
+    private TextView lieuEnt;
+    ListView listView;
+
+    public afficheActivity(Activity activity){
+        super(activity, androidx.appcompat.R.style.Theme_AppCompat_Dialog);
+        setContentView(R.layout.pop_up_affiche_entrainement);
+        this.btnOk = (Button) findViewById(R.id.ok);
+        this.dateEnt = (TextView) findViewById(R.id.valDate);
+        this.heureEnt = (TextView) findViewById(R.id.valHeure);
+        this.typeEnt = (TextView) findViewById(R.id.valEntrainement);
+        this.comEnt = (TextView) findViewById(R.id.valCom);
+        this.lieuEnt = (TextView) findViewById(R.id.valLieu);
+        listView=(ListView)findViewById(R.id.listViewBlock);
+        /*listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                Toast.makeText(activity,"ok",Toast.LENGTH_LONG).show();
+            }
+        });*/
+    }
+
+    public Button getOk() { return btnOk; }
+
+    public void LancerAffichageActivity(String titre, String heure, String lieu, String commentaire, String date){
+        dateEnt.setText(date);
+        heureEnt.setText(heure);
+        lieuEnt.setText(lieu);
+        typeEnt.setText(titre);
+        if(commentaire.equals(""))
+            comEnt.setText("Aucun commentaire");
+        else comEnt.setText(commentaire);
+        show();
+    }
+}
+
 public class MainActivity extends AppCompatActivity {
 
     private Button ButtonCalendrier;
@@ -107,7 +152,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        ajoutEntrainement= (LinearLayout) findViewById(R.id.layoutAjoutEntrainement);
+        ajoutEntrainement = (LinearLayout) findViewById(R.id.layoutAjoutEntrainement);
         Intent intent = getIntent();
 
         if (intent.hasExtra("role")){ // vérifie qu'une valeur est associée à la clé “edittext”
@@ -210,7 +255,19 @@ public class MainActivity extends AppCompatActivity {
                     intent.putExtra("nEntrainement", String.valueOf(i+1));
                     startActivity(intent);
                 }else{
-                    // pour les attltes
+                    activite currentActivity = listeEntrainementJournee.get(i);
+                    String activityName = currentActivity.getTypeDeSport();
+                    String activityHeure = currentActivity.getHeure();
+                    String activityLieu = currentActivity.getLieu();
+                    String activityDescription = currentActivity.getNote();
+                    afficheActivity showActivity = new afficheActivity(MainActivity.this);
+                    showActivity.LancerAffichageActivity(activityName, activityHeure, activityLieu, activityDescription, dateActuelle);
+                    showActivity.getOk().setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            showActivity.dismiss();
+                        }
+                    });
                 }
 
 

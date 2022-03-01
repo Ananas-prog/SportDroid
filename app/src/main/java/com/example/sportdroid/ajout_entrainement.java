@@ -37,8 +37,50 @@ import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 
+class block_entrainement implements Serializable{
+    private String typeBlock;
+    private String comBlock;
+    private String typeParam;
+    private String valParam;
 
-class detaille_entrainement extends Dialog implements Serializable{
+    public block_entrainement(String typeBlock,String comBlock, String typeParam, String valParam) {
+        this.typeBlock=typeBlock;
+        this.comBlock=comBlock;
+        this.typeParam=typeParam;
+        this.valParam=valParam;
+    }
+
+    public String getTypeBlock() {
+        return typeBlock;
+    }
+    public void setTypeBlock(String name) {
+        this.typeBlock = name;
+    }
+
+    public String getComBlock() {
+        return comBlock;
+    }
+    public void setComBlock(String note) {
+        this.comBlock = note;
+    }
+
+    public String getTypeParam() {
+        return typeParam;
+    }
+    public void setTypeParam(String param) {
+        this.typeParam = param;
+    }
+
+    public String getValParam() {
+        return valParam;
+    }
+    public void setValParam(String val) {
+        this.valParam = val;
+    }
+
+}
+
+class ajout_detail_entrainement extends Dialog implements Serializable{
     private EditText commentaire;
     private EditText valParam;
     private Button retour;
@@ -48,7 +90,7 @@ class detaille_entrainement extends Dialog implements Serializable{
     Spinner typeDeParam;
 
 
-    public detaille_entrainement(Activity activity){
+    public ajout_detail_entrainement(Activity activity){
         super(activity, androidx.appcompat.R.style.Theme_AppCompat_Dialog);
 
         setContentView(R.layout.pop_up_etape_entrainement);
@@ -85,6 +127,7 @@ class detaille_entrainement extends Dialog implements Serializable{
     }
 
     public void LancerAjoutEtape(){
+
         show();
     }
 
@@ -98,15 +141,15 @@ public class ajout_entrainement extends AppCompatActivity {
     Spinner spinner;
     Spinner spinnerDate;
     Spinner spinnerLieu;
-    //ListView listView;
-    public ArrayList<detaille_entrainement> block=new ArrayList<detaille_entrainement>();
+    ListView listView;
+    public ArrayList<block_entrainement> block=new ArrayList<block_entrainement>();
     public DatabaseReference databaseReference;
     public String str = "";
     private EditText note;
     private TextView time;
     private Button newEtape;
     private int heure,minute;
-
+    private String role;
     private TextView test;
 
 
@@ -122,12 +165,12 @@ public class ajout_entrainement extends AppCompatActivity {
         String localizedDate = df.format(date);
         time.setText(localizedDate);
         TextView t1 = (TextView) findViewById(R.id.titreHome);
-        ListView listView=(ListView) findViewById(R.id.listView);
+        listView=(ListView) findViewById(R.id.listView);
         newEtape = (Button) findViewById(R.id.buttonAjoutEtape);
         newEtape.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                detaille_entrainement newEtape = new detaille_entrainement(ajout_entrainement.this);
+                ajout_detail_entrainement newEtape = new ajout_detail_entrainement(ajout_entrainement.this);
                 newEtape.LancerAjoutEtape();
                 newEtape.getRetour().setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -185,14 +228,10 @@ public class ajout_entrainement extends AppCompatActivity {
 
 
 
-
-
-
         Intent intent = getIntent();
         if (intent.hasExtra("nEntrainement")){ // vérifie qu'une valeur est associée à la clé “edittext”
             str = intent.getStringExtra("nEntrainement"); // on récupère la valeur associée à la clé
         }
-
 
 
         spinnerLieu=(Spinner)findViewById(R.id.spinnerLieu);
@@ -249,19 +288,18 @@ public class ajout_entrainement extends AppCompatActivity {
 
 
 
-
-
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             // i est la postion ou on clique
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 Toast.makeText(ajout_entrainement.this,"clique sur l 'item "+ i+ ""+block.get(i).toString(),Toast.LENGTH_LONG).show();
-
+                ajout_detail_entrainement newEtape = new ajout_detail_entrainement(ajout_entrainement.this);
+                newEtape.LancerAjoutEtape();
                 // pour modifier le block
                 Intent intent = new Intent(ajout_entrainement.this, detail_block.class);
                 intent.putExtra("nActivite",str);
                 intent.putExtra("nBlock",String.valueOf(i));
-                startActivity(intent);
+               startActivity(intent);
 
 
 
@@ -319,7 +357,7 @@ public class ajout_entrainement extends AppCompatActivity {
                     if(duree.equals("null")&&notes.equals("null")&&typeDeDuree.equals("null")&&typeDetape.equals("null")){
 
                     }else{
-                        detaille_entrainement element = new detaille_entrainement(ajout_entrainement.this);
+                        block_entrainement element = new block_entrainement(typeDetape,notes,typeDeDuree,duree);
                         block.add(element);
                     }
 
@@ -343,8 +381,8 @@ public class ajout_entrainement extends AppCompatActivity {
     public void rafraichissementListe(){
 
         ListView listView=(ListView) findViewById(R.id.listView);
-        ArrayAdapter blockAdapter=new ArrayAdapter(this, android.R.layout.simple_list_item_1,block);
-        listView.setAdapter(blockAdapter);
+        listView.setAdapter(null);
+        listView.setAdapter(new listViewAdapterDetailsBlock(this, block));
         // Write a message to the database
     }
     public void AjoutActivite(View view){
