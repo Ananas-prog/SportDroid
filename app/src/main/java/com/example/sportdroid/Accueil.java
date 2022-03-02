@@ -41,6 +41,7 @@ public class Accueil extends AppCompatActivity {
             public void onClick(View view) {
                 role="athlete";
 
+
                 Intent intent = new Intent(Accueil.this, MainActivity.class);
                 intent.putExtra("role", role);
                 startActivity(intent);

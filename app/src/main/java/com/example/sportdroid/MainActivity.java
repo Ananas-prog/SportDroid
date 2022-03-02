@@ -158,6 +158,7 @@ public class MainActivity extends AppCompatActivity {
     private Button ButtonInfos;
     private Button Buttonhome;
     private Button ButtonAjouterEntrainement;
+    private TextView Temp,Resenti,vent;
     public ArrayList<activite> listeEntrainementJournee=new ArrayList<>();
     public ArrayList<activite> tabActivite= new ArrayList<>();
     private LinearLayout ajoutEntrainement;
@@ -172,7 +173,10 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        rMeteo=(TextView)findViewById(R.id.textViewMeteo);
+       // rMeteo=(TextView)findViewById(R.id.textViewMeteo);
+        Temp=(TextView)findViewById(R.id.textViewTemp);
+        Resenti=(TextView)findViewById(R.id.textViewRessentie);
+        vent=(TextView)findViewById(R.id.textViewVent);
 
 
         ajoutEntrainement = (LinearLayout) findViewById(R.id.layoutAjoutEntrainement);
@@ -338,10 +342,13 @@ public class MainActivity extends AppCompatActivity {
                             + "\n Cloudiness: " + clouds + "%"
                             + "\n Pressure: " + pressure + " hPa"
                             + "\n icon: " + icon;
-                    rMeteo.setText(output);
+                  //  rMeteo.setText(output);
+                    Temp.setText(" Temp: " + df.format(temp) + " °C");
+                    vent.setText(" Vent: " + wind + "m/s ");
+                    Resenti.setText(" Ressentie: " + df.format(feelsLike) + " °C");
                     //Affichage de l'image correspondante
-                  //  ImageView iconMeteo = view.findViewById(R.id.imageViewMeteo);
-                    //Glide.with(context).load(Uri.parse(getImage(icon))).into(iconMeteo);
+                    ImageView iconMeteo = (ImageView) findViewById(R.id.imageViewMeteo);
+                    Glide.with(context).load(Uri.parse(getImage(icon))).into(iconMeteo);
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
