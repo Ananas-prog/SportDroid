@@ -1,10 +1,12 @@
 package com.example.sportdroid;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.Activity;
 import android.app.Dialog;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.text.Layout;
 import android.util.Log;
@@ -19,6 +21,13 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
+import com.bumptech.glide.Glide;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -26,6 +35,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.io.Serializable;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
@@ -38,6 +48,11 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.util.List;
 
 
@@ -147,11 +162,19 @@ public class MainActivity extends AppCompatActivity {
     public ArrayList<activite> tabActivite= new ArrayList<>();
     private LinearLayout ajoutEntrainement;
     private String role;
+    private  TextView rMeteo;
+    private final String url="http://api.openweathermap.org/data/2.5/weather";
+    private final String appid="73f07a7eda6bf4d485c06b24ac0d17d3";
+    DecimalFormat df=new DecimalFormat("#.##");
+    private Context context=MainActivity.this;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        rMeteo=(TextView)findViewById(R.id.textViewMeteo);
+
+
         ajoutEntrainement = (LinearLayout) findViewById(R.id.layoutAjoutEntrainement);
         Intent intent = getIntent();
 
@@ -236,6 +259,7 @@ public class MainActivity extends AppCompatActivity {
 
                         // RECUPERER LE CODE DANS CALENDRIER
                         rafraichissementListe();
+
                 }
             }
             @Override
@@ -274,6 +298,66 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+    }
+
+    public void getWeatherDetails(View view){
+        String tempUrl="";
+        String city="Le Mans";
+        String country="France";
+        tempUrl=url+"?q="+city+","+country+"&appid="+appid+"&units=metric";
+        StringRequest stringRequest=new StringRequest(Request.Method.POST, tempUrl, new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+                Log.d("response",response);
+                String output="";
+                try {
+                    JSONObject jsonResponse = new JSONObject(response);
+                    JSONArray jsonArray = jsonResponse.getJSONArray("weather");
+                    JSONObject jsonObjectWeather = jsonArray.getJSONObject(0);
+                    String description = jsonObjectWeather.getString("description");
+                    String icon = jsonObjectWeather.getString("icon");
+
+                    JSONObject jsonObjectMain = jsonResponse.getJSONObject("main");
+                    double temp = jsonObjectMain.getDouble("temp") ;
+                    double feelsLike = jsonObjectMain.getDouble("feels_like") ;
+                    float pressure = jsonObjectMain.getInt("pressure");
+                    int humidity = jsonObjectMain.getInt("humidity");
+                    JSONObject jsonObjectWind = jsonResponse.getJSONObject("wind");
+                    String wind = jsonObjectWind.getString("speed");
+                    JSONObject jsonObjectClouds = jsonResponse.getJSONObject("clouds");
+                    String clouds = jsonObjectClouds.getString("all");
+                    JSONObject jsonObjectSys = jsonResponse.getJSONObject("sys");
+                    String countryName = jsonObjectSys.getString("country");
+                    String cityName = jsonResponse.getString("name");
+                    output += "Current weather of " + cityName + " (" + countryName + ")"
+                            + "\n Temp: " + df.format(temp) + " °C"
+                            + "\n Feels Like: " + df.format(feelsLike) + " °C"
+                            + "\n Humidity: " + humidity + "%"
+                            + "\n Description: " + description
+                            + "\n Wind Speed: " + wind + "m/s (meters per second)"
+                            + "\n Cloudiness: " + clouds + "%"
+                            + "\n Pressure: " + pressure + " hPa"
+                            + "\n icon: " + icon;
+                    rMeteo.setText(output);
+                    //Affichage de l'image correspondante
+                   // ImageView iconMeteo = view.findViewById(R.id.imageViewMeteo);
+                    //Glide.with(context).load(Uri.parse(getImage(icon))).into(iconMeteo);
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Toast.makeText(getApplicationContext(),error.toString().trim(),Toast.LENGTH_SHORT).show();
+            }
+        });
+        RequestQueue requestQueue=Volley.newRequestQueue(getApplicationContext());
+        requestQueue.add(stringRequest);
+    }
+    @NonNull
+    public static String getImage(String icon){
+        return String.format("http://openweathermap.org/img/w/%s.png",icon);
     }
 
     private String getMonthFormar(int month) {

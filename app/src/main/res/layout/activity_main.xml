@@ -135,6 +135,28 @@
             android:layout_marginTop="25dp"
             android:orientation="horizontal">
 
+            <TextView
+                android:id="@+id/textViewMeteo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="TextView" />
+
+            <ImageView
+                android:id="@+id/imageViewMeteo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                tools:srcCompat="@tools:sample/avatars" />
+
+            <Button
+                android:id="@+id/button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:onClick="getWeatherDetails"
+
+                android:layout_weight="1"
+                android:text="Button" />
         </LinearLayout>
 
         <LinearLayout
@@ -153,7 +175,6 @@
                 android:layout_weight="1"
                 android:text="@string/ButtonAjoutEntrainement"
                 android:textColor="@color/black"
-
                 android:textSize="15sp"
                 app:backgroundTint="@android:color/transparent"
                 app:cornerRadius="8dp"
