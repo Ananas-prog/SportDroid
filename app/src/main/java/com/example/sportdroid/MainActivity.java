@@ -166,7 +166,7 @@ public class MainActivity extends AppCompatActivity {
     private final String url="http://api.openweathermap.org/data/2.5/weather";
     private final String appid="73f07a7eda6bf4d485c06b24ac0d17d3";
     DecimalFormat df=new DecimalFormat("#.##");
-    private Context context=MainActivity.this;
+    private Context context=this;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -259,7 +259,7 @@ public class MainActivity extends AppCompatActivity {
 
                         // RECUPERER LE CODE DANS CALENDRIER
                         rafraichissementListe();
-
+                        getWeatherDetails();
                 }
             }
             @Override
@@ -300,7 +300,7 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    public void getWeatherDetails(View view){
+    public void getWeatherDetails(){
         String tempUrl="";
         String city="Le Mans";
         String country="France";
@@ -340,7 +340,7 @@ public class MainActivity extends AppCompatActivity {
                             + "\n icon: " + icon;
                     rMeteo.setText(output);
                     //Affichage de l'image correspondante
-                   // ImageView iconMeteo = view.findViewById(R.id.imageViewMeteo);
+                  //  ImageView iconMeteo = view.findViewById(R.id.imageViewMeteo);
                     //Glide.with(context).load(Uri.parse(getImage(icon))).into(iconMeteo);
                 } catch (JSONException e) {
                     e.printStackTrace();
