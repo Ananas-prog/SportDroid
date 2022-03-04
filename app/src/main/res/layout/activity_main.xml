@@ -152,18 +152,17 @@
               >
 
                 <LinearLayout
-                    android:layout_width="132dp"
+                    android:layout_width="50dp"
                     android:layout_height="match_parent"
-                    android:orientation="vertical"
                     android:layout_weight="1"
-                    >
+                    android:orientation="vertical">
 
                     <TextView
                         android:id="@+id/textViewVent"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:gravity="center"
-                        android:text="TextView" />
+                        android:text="" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -176,7 +175,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:gravity="center"
-                        android:text="TextView" />
+                        android:text="" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -189,7 +188,7 @@
                         android:layout_width="149dp"
                         android:layout_height="match_parent"
                         android:gravity="center"
-                        android:text="TextView" />
+                        android:text="" />
                 </LinearLayout>
             </LinearLayout>
         </LinearLayout>
