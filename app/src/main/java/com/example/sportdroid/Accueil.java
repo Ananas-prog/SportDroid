@@ -45,7 +45,7 @@ public class Accueil extends AppCompatActivity {
                 Intent intent = new Intent(Accueil.this, MainActivity.class);
                 intent.putExtra("role", role);
                 startActivity(intent);
-                overridePendingTransition(R.anim.slide_top,R.anim.slide_out_bottom);
+                overridePendingTransition(R.anim.slide_top,R.anim.slide_out_top);
 
             }
         });
@@ -75,7 +75,7 @@ public class Accueil extends AppCompatActivity {
                             Intent intent = new Intent(Accueil.this, MainActivity.class);
                             intent.putExtra("role", role);
                             startActivity(intent);
-                            overridePendingTransition(R.anim.slide_top,R.anim.slide_out_bottom);
+                            overridePendingTransition(R.anim.slide_top,R.anim.slide_out_top);
 
                         }else{
                             Toast.makeText(Accueil.this,"mdp érroné ",Toast.LENGTH_LONG).show();
