@@ -80,7 +80,7 @@ class block_entrainement implements Serializable{
 
 }
 
-class ajout_detail_entrainement extends Dialog implements Serializable{
+class popUp_detail_entrainement extends Dialog implements Serializable{
     private EditText commentaire;
     private EditText valParam;
     private Button retour;
@@ -90,7 +90,7 @@ class ajout_detail_entrainement extends Dialog implements Serializable{
     Spinner typeDeParam;
 
 
-    public ajout_detail_entrainement(Activity activity){
+    public popUp_detail_entrainement(Activity activity){
         super(activity, androidx.appcompat.R.style.Theme_AppCompat_Dialog);
 
         setContentView(R.layout.pop_up_etape_entrainement);
@@ -170,19 +170,19 @@ public class ajout_entrainement extends AppCompatActivity {
         newEtape.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                ajout_detail_entrainement newEtape = new ajout_detail_entrainement(ajout_entrainement.this);
-                newEtape.LancerAjoutEtape();
-                newEtape.getRetour().setOnClickListener(new View.OnClickListener() {
+                popUp_detail_entrainement ajoutEtape = new popUp_detail_entrainement(ajout_entrainement.this);
+                ajoutEtape.LancerAjoutEtape();
+                ajoutEtape.getRetour().setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        newEtape.dismiss();
+                        ajoutEtape.dismiss();
                     }
                 });
-                newEtape.getValider().setOnClickListener(new View.OnClickListener() {
+               ajoutEtape.getValider().setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
                         Toast.makeText(getApplicationContext(),"OK",Toast.LENGTH_LONG).show();
-                        newEtape.dismiss();
+                        ajoutEtape.dismiss();
                     }
                 });
             }
@@ -293,20 +293,20 @@ public class ajout_entrainement extends AppCompatActivity {
             // i est la postion ou on clique
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 Toast.makeText(ajout_entrainement.this,"clique sur l 'item "+ i+ ""+block.get(i).toString(),Toast.LENGTH_LONG).show();
-                ajout_detail_entrainement newEtape = new ajout_detail_entrainement(ajout_entrainement.this);
-                newEtape.LancerAjoutEtape();
+               // popUp_detail_entrainement newEtape = new popUp_detail_entrainement(ajout_entrainement.this);
+               // newEtape.LancerAjoutEtape();
                 // pour modifier le block
-                Intent intent = new Intent(ajout_entrainement.this, detail_block.class);
-                intent.putExtra("nActivite",str);
-                intent.putExtra("nBlock",String.valueOf(i));
-               startActivity(intent);
+               // Intent intent = new Intent(ajout_entrainement.this, detail_block.class);
+               // intent.putExtra("nActivite",str);
+               // intent.putExtra("nBlock",String.valueOf(i));
+               // startActivity(intent);
 
 
 
                // startActivity(new Intent(ajout_entrainement.this,pop.class));
-                FirebaseDatabase database = FirebaseDatabase.getInstance();
-                DatabaseReference blockr = database.getReference("activite/"+str+"/block");
-                blockr.setValue(block);
+               // FirebaseDatabase database = FirebaseDatabase.getInstance();
+               // DatabaseReference blockr = database.getReference("activite/"+str+"/block");
+               // blockr.setValue(block);
 
 
             }

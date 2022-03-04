@@ -60,15 +60,15 @@ public class listViewAdapterDetailsBlock extends BaseAdapter {
         String param = currentBlock.getValParam()+unite;
 
         //Affichage du nom du block
-        TextView itemTitreView = view.findViewById(R.id.titreInfo);
+        TextView itemTitreView = view.findViewById(R.id.NomSport_listItem);
         itemTitreView.setText(name);
 
         //Affichage du commentaire du block
-        TextView itemComView = view.findViewById(R.id.dateLieuInfo);
+        TextView itemComView = view.findViewById(R.id.textView6);
         itemComView.setText(com);
 
         //Affichage du paramètre du block
-        TextView itemParamView = view.findViewById(R.id.desciptionInfo);
+        TextView itemParamView = view.findViewById(R.id.HeureSport_listItem);
         itemParamView.setText(param);
 
         return view;
