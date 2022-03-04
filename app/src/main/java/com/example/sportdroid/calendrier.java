@@ -172,6 +172,9 @@ public class calendrier extends AppCompatActivity {
         intent.putExtra("role", role);
 
         startActivity(intent);
+        overridePendingTransition(R.anim.slide_right,R.anim.slide_out_left);
+        finish();
+
     }
     public void calender(){
       //  Intent intent = new Intent(this, calendrier.class);
@@ -182,6 +185,8 @@ public class calendrier extends AppCompatActivity {
         intent.putExtra("role", role);
 
         startActivity(intent);
+        overridePendingTransition(R.anim.slide_left,R.anim.slide_out_right);
+        finish();
     }
 
     private String getMonthFormar(int month) {

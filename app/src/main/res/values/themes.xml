@@ -15,4 +15,6 @@
         <item name="android:fontFamily">@font/yanonekaregular</item>
         <item name="fontFamily">@font/yanonekaregular</item>
     </style>
+
+
 </resources>

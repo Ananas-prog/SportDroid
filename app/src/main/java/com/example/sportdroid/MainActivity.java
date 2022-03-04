@@ -426,10 +426,17 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = new Intent(this, calendrier.class);
         intent.putExtra("role", role);
         startActivity(intent);
+        overridePendingTransition(R.anim.slide_left,R.anim.slide_out_right);
+        finish();
+
     }
     public void informations(){
         Intent intent = new Intent(this, infos.class);
         intent.putExtra("role", role);
         startActivity(intent);
+        overridePendingTransition(R.anim.slide_right,R.anim.slide_out_left);
+        finish();
+
+
     }
 }

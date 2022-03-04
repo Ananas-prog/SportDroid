@@ -187,12 +187,18 @@ public class infos extends AppCompatActivity {
         intent.putExtra("role", role);
 
         startActivity(intent);
+        overridePendingTransition(R.anim.slide_left,R.anim.slide_out_right);
+        finish();
+
     }
     public void calender(){
         Intent intent = new Intent(this, calendrier.class);
         intent.putExtra("role", role);
 
         startActivity(intent);
+        overridePendingTransition(R.anim.slide_right,R.anim.slide_out_left);
+        finish();
+
     }
     public void informations(){
        // Intent intent = new Intent(this, entrainement.class);
@@ -208,6 +214,7 @@ public class infos extends AppCompatActivity {
         Intent intent = new Intent(infos.this, ajout_infos.class);
         intent.putExtra("nInfos", String.valueOf(listeInfo.size()));
         startActivity(intent);
+
     }
 }
 
