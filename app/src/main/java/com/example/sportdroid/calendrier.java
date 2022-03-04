@@ -185,7 +185,7 @@ public class calendrier extends AppCompatActivity {
         intent.putExtra("role", role);
 
         startActivity(intent);
-        overridePendingTransition(R.anim.slide_left,R.anim.slide_out_right);
+        overridePendingTransition(R.anim.slide_right,R.anim.slide_out_left);
         finish();
     }
 

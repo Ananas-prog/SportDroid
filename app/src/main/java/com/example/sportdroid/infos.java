@@ -196,7 +196,7 @@ public class infos extends AppCompatActivity {
         intent.putExtra("role", role);
 
         startActivity(intent);
-        overridePendingTransition(R.anim.slide_right,R.anim.slide_out_left);
+        overridePendingTransition(R.anim.slide_left,R.anim.slide_out_right);
         finish();
 
     }
