@@ -141,7 +141,9 @@ public class calendrier extends AppCompatActivity {
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 if (role.equals("coach")) {
                     Intent intent = new Intent(calendrier.this, ajout_entrainement.class);
-                    intent.putExtra("nEntrainement", String.valueOf(i + 1));
+                    intent.putExtra("date", tabActiviteJournee.get(i).getDate());
+                    intent.putExtra("heure", tabActiviteJournee.get(i).getHeure());
+                    intent.putExtra("lieu", tabActiviteJournee.get(i).getLieu());
                     startActivity(intent);
                 } else {
                     activite currentActivity = tabActiviteJournee.get(i);

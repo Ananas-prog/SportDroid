@@ -304,7 +304,11 @@ public class MainActivity extends AppCompatActivity {
                 Toast.makeText(MainActivity.this,"clique sur l 'item "+ i+ ""+listeEntrainementJournee.get(i).toString(),Toast.LENGTH_LONG).show();
                 if(role.equals("coach")){
                     Intent intent = new Intent(MainActivity.this, ajout_entrainement.class);
-                    intent.putExtra("nEntrainement", String.valueOf(i+1));
+                    intent.putExtra("date", listeEntrainementJournee.get(i).getDate());
+                    intent.putExtra("heure", listeEntrainementJournee.get(i).getHeure());
+                    intent.putExtra("lieu", listeEntrainementJournee.get(i).getLieu());
+
+                    // ici ne pas injecter le numero mais la date/ heure / lieux
                     startActivity(intent);
                 }else{
                     activite currentActivity = listeEntrainementJournee.get(i);

@@ -79,16 +79,22 @@ class block_entrainement implements Serializable{
         this.valParam = val;
     }
 
+    public String toString(){
+        return  this.typeBlock+"  "+ this.comBlock+"  "+ this.typeParam+"  "+ this.valParam+"  ";
+    }
+
 }
 
 class popUp_detail_entrainement extends Dialog implements Serializable{
-    private EditText commentaire;
-    private EditText valParam;
     private Button retour;
     private Button valider;
 
     Spinner typeDetape;
+    EditText commentaire;
     Spinner typeDeParam;
+    EditText valParam;
+    ArrayAdapter adapterEtape;
+    ArrayAdapter adapterParam;
 
 
     public popUp_detail_entrainement(Activity activity){
@@ -105,7 +111,7 @@ class popUp_detail_entrainement extends Dialog implements Serializable{
         exempleEtape.add("Course");
         exempleEtape.add("Récupération");
         exempleEtape.add("Echauffement");
-        ArrayAdapter adapterEtape = new ArrayAdapter(activity, android.R.layout.simple_spinner_item, exempleEtape);
+        adapterEtape = new ArrayAdapter(activity, android.R.layout.simple_spinner_item, exempleEtape);
         adapterEtape.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         typeDetape.setAdapter(adapterEtape);
 
@@ -115,7 +121,7 @@ class popUp_detail_entrainement extends Dialog implements Serializable{
         exempleParam.add("Mètres");
         exempleParam.add("Minutes");
         exempleParam.add("Secondes");
-        ArrayAdapter adapterParam = new ArrayAdapter(activity, android.R.layout.simple_spinner_item, exempleParam);
+        adapterParam = new ArrayAdapter(activity, android.R.layout.simple_spinner_item, exempleParam);
         adapterParam.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         typeDeParam.setAdapter(adapterParam);
     }
@@ -127,8 +133,17 @@ class popUp_detail_entrainement extends Dialog implements Serializable{
         return  this.typeDetape+"  "+ this.commentaire+"  "+ this.typeDeParam+"  "+ this.valParam;
     }
 
-    public void LancerAjoutEtape(){
+    public void lancerAjoutEtape(){
+        show();
+    }
 
+    public void AfficherModifBlock(String typeE, String comEtape, String typeP, String valP){
+        this.commentaire.setText(comEtape);
+        this.valParam.setText(valP);
+        int spinnerTypeEtape = adapterEtape.getPosition(typeP);
+        typeDetape.setSelection(spinnerTypeEtape);
+        int spinnerValParam = adapterParam.getPosition(typeP);
+        typeDeParam.setSelection(spinnerValParam);
         show();
     }
 
@@ -145,7 +160,8 @@ public class ajout_entrainement extends AppCompatActivity {
     ListView listView;
     public ArrayList<block_entrainement> block=new ArrayList<block_entrainement>();
     public DatabaseReference databaseReference;
-    public String str = "";
+    public String str = "1";
+    public int nbBlock=0;
     private EditText note;
     private TextView time;
     private ImageView imgInfo;
@@ -153,8 +169,9 @@ public class ajout_entrainement extends AppCompatActivity {
     private Button newEtape;
     private int heure,minute;
     private String role;
+    private String dateSaisie,lieuSaisie,heureSaisie;
     private TextView test;
-
+    private int i=0;
 
 
     @Override
@@ -176,7 +193,7 @@ public class ajout_entrainement extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 popUp_detail_entrainement ajoutEtape = new popUp_detail_entrainement(ajout_entrainement.this);
-                ajoutEtape.LancerAjoutEtape();
+                ajoutEtape.lancerAjoutEtape();
                 ajoutEtape.getRetour().setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
@@ -186,7 +203,8 @@ public class ajout_entrainement extends AppCompatActivity {
                ajoutEtape.getValider().setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        Toast.makeText(getApplicationContext(),"OK",Toast.LENGTH_LONG).show();
+                        nbBlock=block.size();
+                        ajouterBlockBDD(ajoutEtape, nbBlock);
                         ajoutEtape.dismiss();
                     }
                 });
@@ -242,8 +260,15 @@ public class ajout_entrainement extends AppCompatActivity {
 
 
         Intent intent = getIntent();
-        if (intent.hasExtra("nEntrainement")){ // vérifie qu'une valeur est associée à la clé “edittext”
-            str = intent.getStringExtra("nEntrainement"); // on récupère la valeur associée à la clé
+
+        if (intent.hasExtra("date")){ // vérifie qu'une valeur est associée à la clé “edittext”
+            dateSaisie = intent.getStringExtra("date"); // on récupère la valeur associée à la clé
+        }
+        if (intent.hasExtra("heure")){ // vérifie qu'une valeur est associée à la clé “edittext”
+            heureSaisie = intent.getStringExtra("heure"); // on récupère la valeur associée à la clé
+        }
+        if (intent.hasExtra("lieu")){ // vérifie qu'une valeur est associée à la clé “edittext”
+            lieuSaisie = intent.getStringExtra("lieu"); // on récupère la valeur associée à la clé
         }
 
 
@@ -305,13 +330,26 @@ public class ajout_entrainement extends AppCompatActivity {
             @Override
             // i est la postion ou on clique
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                Toast.makeText(ajout_entrainement.this,"clique sur l 'item "+ i+ ""+block.get(i).toString(),Toast.LENGTH_LONG).show();
-               // popUp_detail_entrainement newEtape = new popUp_detail_entrainement(ajout_entrainement.this);
-               // newEtape.LancerAjoutEtape();
-                // pour modifier le block
-               // Intent intent = new Intent(ajout_entrainement.this, detail_block.class);
-               // intent.putExtra("nActivite",str);
-               // intent.putExtra("nBlock",String.valueOf(i));
+                block_entrainement currentBlock = block.get(i);
+                Toast.makeText(ajout_entrainement.this,"clique sur l 'item "+ i+ ""+currentBlock.toString(),Toast.LENGTH_LONG).show();
+                popUp_detail_entrainement afficheEtape = new popUp_detail_entrainement(ajout_entrainement.this);
+                afficheEtape.AfficherModifBlock(currentBlock.getTypeBlock(), currentBlock.getComBlock(), currentBlock.getTypeParam(), currentBlock.getValParam());
+                afficheEtape.getRetour().setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        afficheEtape.dismiss();
+                    }
+                });
+                afficheEtape.getValider().setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        ajouterBlockBDD(afficheEtape, i);
+                        afficheEtape.dismiss();
+                    }
+                });
+
+                /// pour modifier le block
+
                // startActivity(intent);
 
 
@@ -324,14 +362,69 @@ public class ajout_entrainement extends AppCompatActivity {
 
             }
         });
-
-
-
-
-
-
-
         FirebaseDatabase database = FirebaseDatabase.getInstance();
+
+// recherche entraiinement ici
+        DatabaseReference rechercheStr = database.getReference("activite/");
+        rechercheStr.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                for(DataSnapshot ds : snapshot.getChildren()) {
+                    // String value = ds.getValue(String.class);
+                    i+=1;
+                    String date = String.valueOf(ds.child("/date").getValue());
+                    String heure = String.valueOf(ds.child("/heure").getValue());
+                    String lieu = String.valueOf(ds.child("/lieu").getValue());
+
+                    if(date.equals(dateSaisie)&& heure.equals(heureSaisie)&& lieu.equals(lieuSaisie)){
+                        str=String.valueOf(i);
+                        Toast.makeText(ajout_entrainement.this,"trouver "+ i ,Toast.LENGTH_LONG).show();
+                        DatabaseReference myRef1 = database.getReference("activite/"+str+"/block");
+                        myRef1.addValueEventListener(new ValueEventListener() {
+                            @Override
+                            public void onDataChange(DataSnapshot dataSnapshot) {
+                                // This method is called once with the initial value and again
+                                // whenever data at this location is updated.
+                                block.clear();
+                                for(DataSnapshot ds : dataSnapshot.getChildren()) {
+                                    // String value = ds.getValue(String.class);
+
+                                    String duree = String.valueOf(ds.child("/valParam").getValue());
+                                    String notes = String.valueOf(ds.child("/comBlock").getValue());
+                                    String typeDeDuree = String.valueOf(ds.child("/typeParam").getValue());
+                                    String typeDetape = String.valueOf(ds.child("/typeBlock").getValue());
+
+                                    if(duree.equals("null")&&notes.equals("null")&&typeDeDuree.equals("null")&&typeDetape.equals("null")){
+
+                                    }else{
+                                        block_entrainement element = new block_entrainement(typeDetape,notes,typeDeDuree,duree);
+                                        block.add(element);
+                                    }
+
+                                    rafraichissementListe();
+                                }
+                            }
+                            @Override
+                            public void onCancelled(DatabaseError error) {
+                                // Failed to read value
+                            }
+                        });
+                    }else{
+                      //  Toast.makeText(ajout_entrainement.this,"pas trouver "+ i,Toast.LENGTH_LONG).show();
+                    }
+
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+
+
+        // si on trouve on prend le num = str
+
         DatabaseReference myRef1 = database.getReference("activite/"+str+"/block");
 
 
@@ -353,7 +446,7 @@ public class ajout_entrainement extends AppCompatActivity {
             }
         });
 
-        myRef1.addValueEventListener(new ValueEventListener() {
+        /*myRef1.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 // This method is called once with the initial value and again
@@ -381,25 +474,34 @@ public class ajout_entrainement extends AppCompatActivity {
             public void onCancelled(DatabaseError error) {
                 // Failed to read value
             }
-        });
-
-
-
-
+        });*/
 
     }
 
 
-
     public void rafraichissementListe(){
-
         ListView listView=(ListView) findViewById(R.id.listView);
         listView.setAdapter(null);
         listView.setAdapter(new listViewAdapterDetailsBlock(this, block));
         // Write a message to the database
     }
+
     public void AjoutActivite(View view){
         rafraichissementListe();
+    }
+
+    public void ajouterBlockBDD(popUp_detail_entrainement popUp, int i){
+       String numBlock=String.valueOf(i);
+        FirebaseDatabase database = FirebaseDatabase.getInstance();
+       // DatabaseReference blockr = database.getReference("activite/"+str+"/block");
+        DatabaseReference typeBlock = database.getReference("activite/"+str+"/block/"+numBlock+"/typeBlock");
+        typeBlock.setValue(popUp.typeDetape.getSelectedItem().toString());
+        DatabaseReference comBlock = database.getReference("activite/"+str+"/block/"+numBlock+"/comBlock");
+        comBlock.setValue(popUp.commentaire.getText().toString());
+        DatabaseReference typeParam = database.getReference("activite/"+str+"/block/"+numBlock+"/typeParam");
+        typeParam.setValue(popUp.typeDeParam.getSelectedItem().toString());
+        DatabaseReference valParam = database.getReference("activite/"+str+"/block/"+numBlock+"/valParam");
+        valParam.setValue(popUp.valParam.getText().toString());
     }
 
     private String getTodaysDate() {
