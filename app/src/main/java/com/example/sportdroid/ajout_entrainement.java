@@ -17,6 +17,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -147,6 +148,8 @@ public class ajout_entrainement extends AppCompatActivity {
     public String str = "";
     private EditText note;
     private TextView time;
+    private ImageView imgInfo;
+
     private Button newEtape;
     private int heure,minute;
     private String role;
@@ -167,6 +170,8 @@ public class ajout_entrainement extends AppCompatActivity {
         TextView t1 = (TextView) findViewById(R.id.titreHome);
         listView=(ListView) findViewById(R.id.listView);
         newEtape = (Button) findViewById(R.id.buttonAjoutEtape);
+        imgInfo=(ImageView)findViewById(R.id.imgInfo);
+
         newEtape.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -203,7 +208,15 @@ public class ajout_entrainement extends AppCompatActivity {
 
         // Gestion heure
 
-
+        imgInfo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(), Accueil.class);
+                startActivity(intent);
+                overridePendingTransition(R.anim.slide_bottom,R.anim.slide_out_bottom);
+                finish();
+            }
+        });
         time.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

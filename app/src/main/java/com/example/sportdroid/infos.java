@@ -10,6 +10,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.Toast;
@@ -86,6 +87,8 @@ public class infos extends AppCompatActivity {
     private Button ButtonCalendrier;
     private Button ButtonInfos;
     private Button Buttonhome;
+    private ImageView imgInfo;
+
     public ArrayList<info> listeInfo=new ArrayList<>();
     private ImageButton Bajouter;
     private  String role;
@@ -95,6 +98,8 @@ public class infos extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_infos);
         Bajouter = (ImageButton) findViewById(R.id.imageButton) ;
+        imgInfo=(ImageView)findViewById(R.id.imgInfo);
+
         Bajouter.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -133,6 +138,15 @@ public class infos extends AppCompatActivity {
             }
         });
 
+        imgInfo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(), Accueil.class);
+                startActivity(intent);
+                overridePendingTransition(R.anim.slide_bottom,R.anim.slide_out_bottom);
+                finish();
+            }
+        });
 
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         DatabaseReference myRef = database.getReference("infos");

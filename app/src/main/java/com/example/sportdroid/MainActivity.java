@@ -154,7 +154,7 @@ class afficheActivity extends Dialog implements Serializable {
 }
 
 public class MainActivity extends AppCompatActivity {
-
+    private ImageView imgInfo;
     private Button ButtonCalendrier;
     private Button ButtonInfos;
     private Button Buttonhome;
@@ -180,7 +180,7 @@ public class MainActivity extends AppCompatActivity {
         Resenti=(TextView)findViewById(R.id.textViewRessentie);
         vent=(TextView)findViewById(R.id.textViewVent);
         layoutPrincipalAceuil=(ConstraintLayout)findViewById(R.id.linearLayout19);
-
+        imgInfo=(ImageView)findViewById(R.id.imgInfo);
         ajoutEntrainement = (LinearLayout) findViewById(R.id.layoutAjoutEntrainement);
         Intent intent = getIntent();
 
@@ -199,6 +199,16 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onSwipeLeft(){
                 informations();
+            }
+        });
+
+        imgInfo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(), Accueil.class);
+                startActivity(intent);
+                overridePendingTransition(R.anim.slide_bottom,R.anim.slide_out_bottom);
+                finish();
             }
         });
 

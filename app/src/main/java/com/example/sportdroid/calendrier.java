@@ -11,6 +11,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.CalendarView;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -33,6 +34,8 @@ public class calendrier extends AppCompatActivity {
     CalendarView calendar;
     TextView date;
     ListView listView;
+    private ImageView imgInfo;
+
     public ArrayList<activite> tabActivite= new ArrayList<>();
     public ArrayList<activite> tabActiviteJournee= new ArrayList<>();
 
@@ -49,6 +52,7 @@ public class calendrier extends AppCompatActivity {
         int year =cal.get(Calendar.YEAR);
         int month =cal.get(Calendar.MONTH);
         int day =cal.get(Calendar.DAY_OF_MONTH);
+        imgInfo=(ImageView)findViewById(R.id.imgInfo);
 
         calendar=(CalendarView)findViewById(R.id.calendarView);
         date =(TextView) findViewById(R.id.textDate);
@@ -92,6 +96,15 @@ public class calendrier extends AppCompatActivity {
             }
         });
 
+        imgInfo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(), Accueil.class);
+                startActivity(intent);
+                overridePendingTransition(R.anim.slide_bottom,R.anim.slide_out_bottom);
+                finish();
+            }
+        });
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         DatabaseReference myRef = database.getReference("activite");
         myRef.addValueEventListener(new ValueEventListener() {
