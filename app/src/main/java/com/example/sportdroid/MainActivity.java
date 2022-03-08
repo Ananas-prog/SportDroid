@@ -34,7 +34,6 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
-import com.r0adkll.slidr.Slidr;
 
 import java.io.Serializable;
 import java.text.DecimalFormat;
@@ -292,7 +291,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             // i est la postion ou on clique
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                //Toast.makeText(MainActivity.this,"clique sur l 'item "+ i+ ""+tabActivite.get(i).toString(),Toast.LENGTH_LONG).show();
+                Toast.makeText(MainActivity.this,"clique sur l 'item "+ i+ ""+listeEntrainementJournee.get(i).toString(),Toast.LENGTH_LONG).show();
                 if(role.equals("coach")){
                     Intent intent = new Intent(MainActivity.this, ajout_entrainement.class);
                     intent.putExtra("nEntrainement", String.valueOf(i+1));
@@ -316,8 +315,6 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
-
-
 
     }
 
