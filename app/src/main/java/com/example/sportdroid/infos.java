@@ -1,6 +1,7 @@
 package com.example.sportdroid;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.constraintlayout.widget.ConstraintLayout;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -9,6 +10,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -87,6 +89,7 @@ public class infos extends AppCompatActivity {
     public ArrayList<info> listeInfo=new ArrayList<>();
     private ImageButton Bajouter;
     private  String role;
+    private ConstraintLayout layoutPrincipalInfo;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -104,9 +107,23 @@ public class infos extends AppCompatActivity {
             role = intent.getStringExtra("role"); // on récupère la valeur associée à la clé
         }
 
+
         if(role.equals("coach")){
             Bajouter.setVisibility(View.VISIBLE);
         }
+
+
+        layoutPrincipalInfo = (ConstraintLayout) findViewById(R.id.linearLayoutinfos);
+        layoutPrincipalInfo.setOnTouchListener(new OnSwipeTouchListener(infos.this){
+            @Override
+            public void onSwipeRight(){
+                home();
+            }
+            @Override
+            public void onSwipeLeft(){
+                calender();
+            }
+        });
         ListView listView=(ListView) findViewById(R.id.listViewInfos);
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override

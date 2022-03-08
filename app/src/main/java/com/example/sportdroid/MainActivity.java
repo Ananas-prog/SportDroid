@@ -2,6 +2,7 @@ package com.example.sportdroid;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.constraintlayout.widget.ConstraintLayout;
 
 import android.app.Activity;
 import android.app.Dialog;
@@ -33,6 +34,7 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.r0adkll.slidr.Slidr;
 
 import java.io.Serializable;
 import java.text.DecimalFormat;
@@ -168,6 +170,7 @@ public class MainActivity extends AppCompatActivity {
     private final String appid="73f07a7eda6bf4d485c06b24ac0d17d3";
     DecimalFormat df=new DecimalFormat("#.##");
     private Context context=this;
+    private ConstraintLayout layoutPrincipalAceuil;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -177,7 +180,7 @@ public class MainActivity extends AppCompatActivity {
         Temp=(TextView)findViewById(R.id.textViewTemp);
         Resenti=(TextView)findViewById(R.id.textViewRessentie);
         vent=(TextView)findViewById(R.id.textViewVent);
-
+        layoutPrincipalAceuil=(ConstraintLayout)findViewById(R.id.linearLayout19);
 
         ajoutEntrainement = (LinearLayout) findViewById(R.id.layoutAjoutEntrainement);
         Intent intent = getIntent();
@@ -188,6 +191,17 @@ public class MainActivity extends AppCompatActivity {
         if(role.equals("athlete")){
             ajoutEntrainement.setVisibility(View.INVISIBLE);
         }
+
+        layoutPrincipalAceuil.setOnTouchListener(new OnSwipeTouchListener(MainActivity.this){
+            @Override
+            public void onSwipeRight(){
+                calender();
+            }
+            @Override
+            public void onSwipeLeft(){
+                informations();
+            }
+        });
 
         ButtonAjouterEntrainement =(Button) findViewById(R.id.ButtonAjouterEntrainement);
         ButtonAjouterEntrainement.setOnClickListener(new View.OnClickListener() {
@@ -263,8 +277,9 @@ public class MainActivity extends AppCompatActivity {
 
                         // RECUPERER LE CODE DANS CALENDRIER
                         rafraichissementListe();
-                        getWeatherDetails();
                 }
+                getWeatherDetails();
+
             }
             @Override
             public void onCancelled(DatabaseError error) {
@@ -301,6 +316,8 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
+
+
 
     }
 
@@ -423,7 +440,8 @@ public class MainActivity extends AppCompatActivity {
         //startActivity(intent);
     }
     public void calender(){
-        Intent intent = new Intent(this, calendrier.class);
+
+        Intent intent = new Intent(getApplicationContext(), calendrier.class);
         intent.putExtra("role", role);
         startActivity(intent);
         overridePendingTransition(R.anim.slide_left,R.anim.slide_out_right);
@@ -431,7 +449,7 @@ public class MainActivity extends AppCompatActivity {
 
     }
     public void informations(){
-        Intent intent = new Intent(this, infos.class);
+        Intent intent = new Intent(getApplicationContext(), infos.class);
         intent.putExtra("role", role);
         startActivity(intent);
         overridePendingTransition(R.anim.slide_right,R.anim.slide_out_left);

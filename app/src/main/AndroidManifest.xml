@@ -12,7 +12,7 @@
         android:roundIcon="@mipmap/img"
         android:supportsRtl="true"
         android:networkSecurityConfig="@xml/network_security_config"
-        android:theme="@style/Theme.SportDroid">
+        android:theme="@style/Theme">
         <activity
             android:name=".ajout_infos"
             android:exported="false"
@@ -34,7 +34,8 @@
         <activity
             android:name=".infos"
             android:exported="false"
-            android:screenOrientation="portrait"/>
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme"/>
         <activity
             android:name=".ajout_entrainement"
             android:exported="false"
@@ -42,11 +43,13 @@
         <activity
             android:name=".calendrier"
             android:exported="false"
-            android:screenOrientation="portrait"/>
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme"/>
         <activity
             android:name=".MainActivity"
             android:exported="false"
-            android:screenOrientation="portrait"></activity>
+            android:screenOrientation="portrait"
+         ></activity>
     </application>
 
 </manifest>

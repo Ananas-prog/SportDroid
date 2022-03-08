@@ -4,7 +4,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:id="@+id/linearLayout19"
     android:background="@color/black">
+
 
     <LinearLayout
         android:id="@+id/linearLayout15"
@@ -78,7 +80,7 @@
     </LinearLayout>
 
     <LinearLayout
-        android:id="@+id/linearLayout19"
+        android:id="@+id/linearLayout190"
         android:layout_width="402dp"
         android:layout_height="0dp"
         android:layout_marginStart="1dp"
@@ -86,6 +88,7 @@
         android:background="@drawable/arrondirfond"
         android:orientation="vertical"
         android:layout_marginLeft="30dp"
+
         app:layout_constraintBottom_toTopOf="@+id/linearLayout15"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/linearLayout11">

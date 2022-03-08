@@ -4,6 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:id="@+id/linearLayoutinfos"
+
     android:background="@color/black">
 
     <LinearLayout
@@ -71,7 +73,7 @@
     </LinearLayout>
 
     <LinearLayout
-        android:id="@+id/linearLayout19"
+        android:id="@+id/linearLayoutinfoss"
         android:layout_width="402dp"
         android:layout_height="0dp"
         android:layout_marginStart="1dp"

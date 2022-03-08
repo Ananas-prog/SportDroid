@@ -354,12 +354,12 @@ public class ajout_entrainement extends AppCompatActivity {
                     String typeDeDuree = String.valueOf(ds.child("/typeDeDuree").getValue());
                     String typeDetape = String.valueOf(ds.child("/typeDetape").getValue());
 
-                    if(duree.equals("null")&&notes.equals("null")&&typeDeDuree.equals("null")&&typeDetape.equals("null")){
+                  //  if(duree.equals("null")&&notes.equals("null")&&typeDeDuree.equals("null")&&typeDetape.equals("null")){
 
-                    }else{
+                  //  }else{
                         block_entrainement element = new block_entrainement(typeDetape,notes,typeDeDuree,duree);
                         block.add(element);
-                    }
+                  //  }
 
                     rafraichissementListe();
                 }

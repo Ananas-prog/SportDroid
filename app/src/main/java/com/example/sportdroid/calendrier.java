@@ -2,13 +2,16 @@ package com.example.sportdroid;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.constraintlayout.widget.ConstraintLayout;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.CalendarView;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -34,9 +37,11 @@ public class calendrier extends AppCompatActivity {
     public ArrayList<activite> tabActiviteJournee= new ArrayList<>();
 
     public String DateSelectionner;
+    private ConstraintLayout layoutPrincipalCalendrier;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_calendar);
 
@@ -55,6 +60,17 @@ public class calendrier extends AppCompatActivity {
             role = intent.getStringExtra("role"); // on récupère la valeur associée à la clé
         }
 
+        layoutPrincipalCalendrier = (ConstraintLayout) findViewById(R.id.linearLayoutcalendar);
+        layoutPrincipalCalendrier.setOnTouchListener(new OnSwipeTouchListener(calendrier.this){
+            @Override
+            public void onSwipeRight(){
+                informations();
+            }
+            @Override
+            public void onSwipeLeft(){
+                home();
+            }
+        });
         calendar.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
             @Override
             public void onSelectedDayChange(@NonNull CalendarView calendarView, int i, int i1, int i2) {
@@ -157,6 +173,9 @@ public class calendrier extends AppCompatActivity {
             }
         });
 
+
+
+
     }
 
 
@@ -170,7 +189,6 @@ public class calendrier extends AppCompatActivity {
     public void home(){
         Intent intent = new Intent(this, MainActivity.class);
         intent.putExtra("role", role);
-
         startActivity(intent);
         overridePendingTransition(R.anim.slide_right,R.anim.slide_out_left);
         finish();
@@ -183,7 +201,6 @@ public class calendrier extends AppCompatActivity {
     public void informations(){
         Intent intent = new Intent(this, infos.class);
         intent.putExtra("role", role);
-
         startActivity(intent);
         overridePendingTransition(R.anim.slide_right,R.anim.slide_out_left);
         finish();
