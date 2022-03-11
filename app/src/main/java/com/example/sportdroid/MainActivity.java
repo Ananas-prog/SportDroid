@@ -269,7 +269,6 @@ public class MainActivity extends AppCompatActivity {
                         String note = String.valueOf(ds.child("/note").getValue());
                         String heure = String.valueOf(ds.child("/heure").getValue());
                         String lieu = String.valueOf(ds.child("/lieu").getValue());
-
                         activite element = new activite(sport, date,note,heure,lieu);
                         tabActivite.add(element);
                         listeEntrainementJournee.clear();
@@ -451,13 +450,11 @@ public class MainActivity extends AppCompatActivity {
         //startActivity(intent);
     }
     public void calender(){
-
         Intent intent = new Intent(getApplicationContext(), calendrier.class);
         intent.putExtra("role", role);
         startActivity(intent);
         overridePendingTransition(R.anim.slide_left,R.anim.slide_out_right);
         finish();
-
     }
     public void informations(){
         Intent intent = new Intent(getApplicationContext(), infos.class);
@@ -465,7 +462,5 @@ public class MainActivity extends AppCompatActivity {
         startActivity(intent);
         overridePendingTransition(R.anim.slide_right,R.anim.slide_out_left);
         finish();
-
-
     }
 }

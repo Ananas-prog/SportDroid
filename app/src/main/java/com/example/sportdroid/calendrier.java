@@ -187,13 +187,7 @@ public class calendrier extends AppCompatActivity {
                 informations();
             }
         });
-
-
-
-
     }
-
-
 
     public void rafraichissementListe(){
         ListView listView=(ListView) findViewById(R.id.listeViewCalendrier);
@@ -249,7 +243,5 @@ public class calendrier extends AppCompatActivity {
         // default
         return "JAN";
     }
-
-
-    }
+}
 

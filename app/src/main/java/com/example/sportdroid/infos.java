@@ -241,11 +241,9 @@ public class infos extends AppCompatActivity {
         DatabaseReference ajout = database.getReference("infos/"+listeInfo.size()+1);
         //ajout.setValue(un);
         rafraichissementListe();
-
         Intent intent = new Intent(infos.this, ajout_infos.class);
         intent.putExtra("nInfos", String.valueOf(listeInfo.size()));
         startActivity(intent);
-
     }
 }
 

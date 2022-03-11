@@ -19,14 +19,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class detail_block extends AppCompatActivity {
-
-
     Spinner spinnerEtape;
     Spinner spinnerDuree;
-
     EditText note;
     EditText duree;
-
     public int i;
     private EditText TexteDuree;
     public String nActivite;
@@ -38,7 +34,6 @@ public class detail_block extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detail_block);
-
         Intent intent = getIntent();
         if (intent.hasExtra("nActivite")){ // vérifie qu'une valeur est associée à la clé “edittext”
             nActivite = intent.getStringExtra("nActivite"); // on récupère la valeur associée à la clé
@@ -79,9 +74,7 @@ public class detail_block extends AppCompatActivity {
         spinnerEtape.setAdapter(adapterEtape);
 
 
-
-
-//SPINNER TYPE DE DUREE
+        //SPINNER TYPE DE DUREE
         spinnerDuree = (Spinner) findViewById(R.id.typeDuree);
         List typeDureee = new ArrayList();
         typeDureee.add("Temps");
@@ -114,6 +107,5 @@ public class detail_block extends AppCompatActivity {
         DatabaseReference typeDuree = database.getReference("activite/"+nActivite+"/block/"+nBlock+"/typeDeDuree");
         typeDuree.setValue(spinnerDuree.getSelectedItem().toString());
         finish();
-
     }
 }

@@ -71,10 +71,6 @@ public class ajout_infos extends AppCompatActivity {
 
         initDatePicker();
         dateButton.setText(getTodaysDate());
-
-
-
-
     }
     private String getTodaysDate() {
         Calendar cal= Calendar.getInstance();

@@ -36,12 +36,11 @@ public class Accueil extends AppCompatActivity {
         coach=(Button) findViewById(R.id.buttonCoach);
         valider=(Button)findViewById(R.id.buttonValiderMDP);
 
+        //permet de savoir le role de la personne pour faire oui ou non les les boutons d'ajout
         athlete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 role="athlete";
-
-
                 Intent intent = new Intent(Accueil.this, MainActivity.class);
                 intent.putExtra("role", role);
                 startActivity(intent);
@@ -66,12 +65,9 @@ public class Accueil extends AppCompatActivity {
                 myRef.addValueEventListener(new ValueEventListener() {
                     @Override
                     public void onDataChange(DataSnapshot dataSnapshot) {
-                        // This method is called once with the initial value and again
-                        // whenever data at this location is updated.
                         MDPDataBase = dataSnapshot.getValue(String.class);
                         if(mdp.getText().toString().equals(MDPDataBase)){
                             role="coach";
-
                             Intent intent = new Intent(Accueil.this, MainActivity.class);
                             intent.putExtra("role", role);
                             startActivity(intent);
