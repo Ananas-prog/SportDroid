@@ -242,7 +242,7 @@ public class infos extends AppCompatActivity {
         //ajout.setValue(un);
         rafraichissementListe();
         Intent intent = new Intent(infos.this, ajout_infos.class);
-        intent.putExtra("nInfos", String.valueOf(listeInfo.size()));
+        intent.putExtra("nInfos", String.valueOf(listeInfo.size()+1));
         startActivity(intent);
     }
 }
