@@ -181,7 +181,7 @@ public class ajout_entrainement extends AppCompatActivity {
                         ajoutEtape.dismiss();
                     }
                 });
-               ajoutEtape.getValider().setOnClickListener(new View.OnClickListener() {
+                ajoutEtape.getValider().setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
                         nbBlock=block.size();
@@ -404,7 +404,7 @@ public class ajout_entrainement extends AppCompatActivity {
 
     // ajouter le nouvelle element a la bdd
     public void ajouterBlockBDD(popUp_detail_entrainement popUp, int i){
-       String numBlock=String.valueOf(i);
+        String numBlock=String.valueOf(i);
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         DatabaseReference typeBlock = database.getReference("activite/"+str+"/block/"+numBlock+"/typeBlock");
         typeBlock.setValue(popUp.typeDetape.getSelectedItem().toString());
