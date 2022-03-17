@@ -64,15 +64,15 @@ class activite implements Serializable {
     private String heure;
     private String lieu;
 
-    //private ArrayList<detaille_entrainement> block=new ArrayList<>();
+    //ArrayList<block_entrainement> blocks;
 
-    public activite(String typeDeSport,String date, String note,String heure,String lieu) {
+    public activite(String typeDeSport,String date, String note,String heure,String lieu/*, ArrayList<block_entrainement> blocks*/) {
         this.typeDeSport=typeDeSport;
         this.date=date;
         this.note=note;
         this.heure=heure;
         this.lieu=lieu;
-        // block= new ArrayList<detaille_entrainement>("Echauffement","aucune","Temps",30);
+        //this.blocks=blocks;
     }
 
     public String getHeure() {
@@ -95,15 +95,18 @@ class activite implements Serializable {
     public void setDate(String date) {
         this.date = date;
     }
-    public String getTypeDeSport() {
-        return typeDeSport;
-    }
+
+    public String getTypeDeSport() { return typeDeSport; }
     public void setTypeDeSport(String typeDeSport) {
         this.typeDeSport = typeDeSport;
     }
+
     public String getLieu() {
         return lieu;
     }
+
+    //public ArrayList<block_entrainement> getBlocks(){ return block; }
+    //public void setBlock(ArrayList<block_entrainement> block){ this.block=block; }
 
     public String toString(){
         return  this.typeDeSport+"  "+ this.date+ " "+ this.note+" "+this.heure+" "+this.lieu;
@@ -130,8 +133,8 @@ class afficheActivity extends Dialog implements Serializable {
         this.typeEnt = (TextView) findViewById(R.id.valEntrainement);
         this.comEnt = (TextView) findViewById(R.id.valCom);
         this.lieuEnt = (TextView) findViewById(R.id.valLieu);
-        listView=(ListView)findViewById(R.id.listViewBlock);
-        /*listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        this.listView=(ListView)findViewById(R.id.listViewBlock);
+        /*this.listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 Toast.makeText(activity,"ok",Toast.LENGTH_LONG).show();
@@ -141,7 +144,7 @@ class afficheActivity extends Dialog implements Serializable {
 
     public Button getOk() { return btnOk; }
 
-    public void LancerAffichageActivity(String titre, String heure, String lieu, String commentaire, String date){
+    public void LancerAffichageActivity(String titre, String heure, String lieu, String commentaire, String date/*, ArrayList<block_entrainement> tabBlocks*/){
         dateEnt.setText(date);
         heureEnt.setText(heure);
         lieuEnt.setText(lieu);
@@ -149,6 +152,9 @@ class afficheActivity extends Dialog implements Serializable {
         if(commentaire.equals(""))
             comEnt.setText("Aucun commentaire");
         else comEnt.setText(commentaire);
+        listView=(ListView) findViewById(R.id.listViewBlock);
+        listView.setAdapter(null);
+        //listView.setAdapter(new listViewAdapterDetailsBlock(, tabBlocks));
         show();
     }
 }
@@ -315,6 +321,7 @@ public class MainActivity extends AppCompatActivity {
                     String activityHeure = currentActivity.getHeure();
                     String activityLieu = currentActivity.getLieu();
                     String activityDescription = currentActivity.getNote();
+                    //ArrayList<block_entrainement> block=new ArrayList<block_entrainement>()
                     afficheActivity showActivity = new afficheActivity(MainActivity.this);
                     showActivity.LancerAffichageActivity(activityName, activityHeure, activityLieu, activityDescription, dateActuelle);
                     showActivity.getOk().setOnClickListener(new View.OnClickListener() {

@@ -117,9 +117,24 @@ public class calendrier extends AppCompatActivity {
                     String note = String.valueOf(ds.child("/note").getValue());
                     String heure = String.valueOf(ds.child("/heure").getValue());
                     String lieu = String.valueOf(ds.child("/lieu").getValue());
-                    tabActivite.add(new activite(sport,dateR,note,heure,lieu));
+                   /* ArrayList<block_entrainement> block = new ArrayList<block_entrainement>();
+                     if(il y a des blocks){
+                        block.clear();
+                        public void onDataChange(DataSnapshot dataSnapshot){
+                            for (DataSnapshot ds : dataSnapshot.getChildren()) {
+                                String duree = String.valueOf(ds.child("/valParam").getValue());
+                                String notes = String.valueOf(ds.child("/comBlock").getValue());
+                                String typeDeDuree = String.valueOf(ds.child("/typeParam").getValue());
+                                String typeDetape = String.valueOf(ds.child("/typeBlock").getValue());
+                                block_entrainement ajoutBlock = new block_entrainement(typeDetape, notes, typeDeDuree, duree);
+                                block.add(ajoutBlock);
+                            }
+                        }
+                    }
+                   */
+                    tabActivite.add(new activite(sport,dateR,note,heure,lieu)); //tabActivite.add(new activite(sport,dateR,note,heure,lieu, block));
                     if(dateR.equals(date.getText())){
-                        activite element = new activite(sport, dateR,note,heure,lieu);
+                        activite element = new activite(sport, dateR,note,heure,lieu); //activite element = new activite(sport, dateR,note,heure,lieu, block);
                         tabActiviteJournee.add(element);
                     }
 
@@ -151,8 +166,10 @@ public class calendrier extends AppCompatActivity {
                     String activityHeure = currentActivity.getHeure();
                     String activityLieu = currentActivity.getLieu();
                     String activityDescription = currentActivity.getNote();
+                    //ArrayList<block_entrainement> tabBlocks = currentActivity.getBlocks();
                     afficheActivity showActivity = new afficheActivity(calendrier.this);
                     showActivity.LancerAffichageActivity(activityName, activityHeure, activityLieu, activityDescription, (String)date.getText());
+                    //showActivity.LancerAffichageActivity(activityName, activityHeure, activityLieu, activityDescription, (String)date.getText(), tabBlocks);
                     showActivity.getOk().setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View view) {
