@@ -153,7 +153,7 @@ public class ajout_entrainement extends AppCompatActivity {
     private Button newEtape;
     private int heure,minute;
     private String dateSaisie,lieuSaisie,heureSaisie;
-    private int i=0;
+    private int i=1;
 
 
     @Override
@@ -239,6 +239,9 @@ public class ajout_entrainement extends AppCompatActivity {
         }
         if (intent.hasExtra("lieu")){ // vérifie qu'une valeur est associée à la clé “edittext”
             lieuSaisie = intent.getStringExtra("lieu"); // on récupère la valeur associée à la clé
+        }
+        if (intent.hasExtra("nEntrainement")){ // vérifie qu'une valeur est associée à la clé “edittext”
+            str = intent.getStringExtra("nEntrainement"); // on récupère la valeur associée à la clé
         }
 
 
@@ -334,7 +337,8 @@ public class ajout_entrainement extends AppCompatActivity {
                     String lieu = String.valueOf(ds.child("/lieu").getValue());
 
                     if(date.equals(dateSaisie)&& heure.equals(heureSaisie)&& lieu.equals(lieuSaisie)){
-                        str=String.valueOf(i);
+
+                       // str=String.valueOf(i);
                         Toast.makeText(ajout_entrainement.this,"trouver "+ i ,Toast.LENGTH_LONG).show();
                         DatabaseReference myRef1 = database.getReference("activite/"+str+"/block");
                         myRef1.addValueEventListener(new ValueEventListener() {
