@@ -23,6 +23,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.security.cert.PolicyNode;
 import java.util.ArrayList;
 import java.util.Calendar;
 
@@ -38,9 +39,9 @@ public class calendrier extends AppCompatActivity {
 
     public ArrayList<activite> tabActivite= new ArrayList<>();
     public ArrayList<activite> tabActiviteJournee= new ArrayList<>();
-
     public String DateSelectionner;
     private ConstraintLayout layoutPrincipalCalendrier;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -109,32 +110,19 @@ public class calendrier extends AppCompatActivity {
         DatabaseReference myRef = database.getReference("activite");
         myRef.addValueEventListener(new ValueEventListener() {
             @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
+            public void onDataChange(DataSnapshot snapshot) {
                 tabActivite.clear();
-                for(DataSnapshot ds : dataSnapshot.getChildren()) {
+                for(DataSnapshot ds : snapshot.getChildren()) {
+                    //blocks.clear();
                     String dateR = String.valueOf(ds.child("/date").getValue());
                     String sport = String.valueOf(ds.child("/typeDeSport").getValue());
                     String note = String.valueOf(ds.child("/note").getValue());
                     String heure = String.valueOf(ds.child("/heure").getValue());
                     String lieu = String.valueOf(ds.child("/lieu").getValue());
-                   /* ArrayList<block_entrainement> block = new ArrayList<block_entrainement>();
-                     if(il y a des blocks){
-                        block.clear();
-                        public void onDataChange(DataSnapshot dataSnapshot){
-                            for (DataSnapshot ds : dataSnapshot.getChildren()) {
-                                String duree = String.valueOf(ds.child("/valParam").getValue());
-                                String notes = String.valueOf(ds.child("/comBlock").getValue());
-                                String typeDeDuree = String.valueOf(ds.child("/typeParam").getValue());
-                                String typeDetape = String.valueOf(ds.child("/typeBlock").getValue());
-                                block_entrainement ajoutBlock = new block_entrainement(typeDetape, notes, typeDeDuree, duree);
-                                block.add(ajoutBlock);
-                            }
-                        }
-                    }
-                   */
-                    tabActivite.add(new activite(sport,dateR,note,heure,lieu)); //tabActivite.add(new activite(sport,dateR,note,heure,lieu, block));
+
+                    tabActivite.add(new activite(sport,dateR,note,heure,lieu));
                     if(dateR.equals(date.getText())){
-                        activite element = new activite(sport, dateR,note,heure,lieu); //activite element = new activite(sport, dateR,note,heure,lieu, block);
+                        activite element = new activite(sport, dateR,note,heure,lieu);
                         tabActiviteJournee.add(element);
                     }
 
@@ -166,10 +154,8 @@ public class calendrier extends AppCompatActivity {
                     String activityHeure = currentActivity.getHeure();
                     String activityLieu = currentActivity.getLieu();
                     String activityDescription = currentActivity.getNote();
-                    //ArrayList<block_entrainement> tabBlocks = currentActivity.getBlocks();
                     afficheActivity showActivity = new afficheActivity(calendrier.this);
                     showActivity.LancerAffichageActivity(activityName, activityHeure, activityLieu, activityDescription, (String)date.getText());
-                    //showActivity.LancerAffichageActivity(activityName, activityHeure, activityLieu, activityDescription, (String)date.getText(), tabBlocks);
                     showActivity.getOk().setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View view) {

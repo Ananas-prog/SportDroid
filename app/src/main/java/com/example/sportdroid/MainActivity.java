@@ -64,15 +64,12 @@ class activite implements Serializable {
     private String heure;
     private String lieu;
 
-    //ArrayList<block_entrainement> blocks;
-
-    public activite(String typeDeSport,String date, String note,String heure,String lieu/*, ArrayList<block_entrainement> blocks*/) {
+    public activite(String typeDeSport,String date, String note,String heure,String lieu) {
         this.typeDeSport=typeDeSport;
         this.date=date;
         this.note=note;
         this.heure=heure;
         this.lieu=lieu;
-        //this.blocks=blocks;
     }
 
     public String getHeure() {
@@ -105,9 +102,6 @@ class activite implements Serializable {
         return lieu;
     }
 
-    //public ArrayList<block_entrainement> getBlocks(){ return block; }
-    //public void setBlock(ArrayList<block_entrainement> block){ this.block=block; }
-
     public String toString(){
         return  this.typeDeSport+"  "+ this.date+ " "+ this.note+" "+this.heure+" "+this.lieu;
     }
@@ -123,9 +117,11 @@ class afficheActivity extends Dialog implements Serializable {
     private TextView comEnt;
     private TextView lieuEnt;
     ListView listView;
+    Context context;
 
     public afficheActivity(Activity activity){
         super(activity, androidx.appcompat.R.style.Theme_AppCompat_Dialog);
+        context = activity;
         setContentView(R.layout.pop_up_affiche_entrainement);
         this.btnOk = (Button) findViewById(R.id.ok);
         this.dateEnt = (TextView) findViewById(R.id.valDate);
@@ -133,18 +129,11 @@ class afficheActivity extends Dialog implements Serializable {
         this.typeEnt = (TextView) findViewById(R.id.valEntrainement);
         this.comEnt = (TextView) findViewById(R.id.valCom);
         this.lieuEnt = (TextView) findViewById(R.id.valLieu);
-        this.listView=(ListView)findViewById(R.id.listViewBlock);
-        /*this.listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                Toast.makeText(activity,"ok",Toast.LENGTH_LONG).show();
-            }
-        });*/
     }
 
     public Button getOk() { return btnOk; }
 
-    public void LancerAffichageActivity(String titre, String heure, String lieu, String commentaire, String date/*, ArrayList<block_entrainement> tabBlocks*/){
+    public void LancerAffichageActivity(String titre, String heure, String lieu, String commentaire, String date){
         dateEnt.setText(date);
         heureEnt.setText(heure);
         lieuEnt.setText(lieu);
@@ -152,9 +141,6 @@ class afficheActivity extends Dialog implements Serializable {
         if(commentaire.equals(""))
             comEnt.setText("Aucun commentaire");
         else comEnt.setText(commentaire);
-        listView=(ListView) findViewById(R.id.listViewBlock);
-        listView.setAdapter(null);
-        //listView.setAdapter(new listViewAdapterDetailsBlock(, tabBlocks));
         show();
     }
 }
@@ -251,9 +237,6 @@ public class MainActivity extends AppCompatActivity {
 
         //TextView test = (TextView) findViewById(R.id.textView2);
 
-
-
-        //myRef.setValue("Hello, World!");
         Calendar cal = Calendar.getInstance();
         int year = cal.get(Calendar.YEAR);
         int month = cal.get(Calendar.MONTH);
@@ -306,7 +289,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             // i est la postion ou on clique
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                Toast.makeText(MainActivity.this,"clique sur l 'item "+ i+ ""+listeEntrainementJournee.get(i).toString(),Toast.LENGTH_LONG).show();
+               // Toast.makeText(MainActivity.this,"clique sur l 'item "+ i+ ""+listeEntrainementJournee.get(i).toString(),Toast.LENGTH_LONG).show();
                 if(role.equals("coach")){
                     Intent intent = new Intent(MainActivity.this, ajout_entrainement.class);
                     intent.putExtra("date", listeEntrainementJournee.get(i).getDate());
@@ -321,7 +304,6 @@ public class MainActivity extends AppCompatActivity {
                     String activityHeure = currentActivity.getHeure();
                     String activityLieu = currentActivity.getLieu();
                     String activityDescription = currentActivity.getNote();
-                    //ArrayList<block_entrainement> block=new ArrayList<block_entrainement>()
                     afficheActivity showActivity = new afficheActivity(MainActivity.this);
                     showActivity.LancerAffichageActivity(activityName, activityHeure, activityLieu, activityDescription, dateActuelle);
                     showActivity.getOk().setOnClickListener(new View.OnClickListener() {
