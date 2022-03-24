@@ -65,6 +65,13 @@ class activite implements Serializable {
     private String lieu;
     ArrayList<block_entrainement> tabBlock;
 
+    public activite(String typeDeSport,String date, String note,String heure,String lieu) {
+        this.typeDeSport=typeDeSport;
+        this.date=date;
+        this.note=note;
+        this.heure=heure;
+        this.lieu=lieu;
+    }
     public activite(String typeDeSport,String date, String note,String heure,String lieu, ArrayList<block_entrainement> tabBlock) {
         this.typeDeSport=typeDeSport;
         this.date=date;
@@ -149,7 +156,7 @@ class afficheActivity extends Dialog implements Serializable {
         listView.setAdapter(null);
         ArrayList<block_entrainement> test = new ArrayList<>();
         test.add(new block_entrainement("Course", "seuil", "Mètres", "5"));
-        listView.setAdapter(new listViewAdapterBlock(context, test));
+        listView.setAdapter(new listViewAdapterBlock(context, tabBlock));
         show();
     }
 }
@@ -171,6 +178,9 @@ public class MainActivity extends AppCompatActivity {
     DecimalFormat df=new DecimalFormat("#.##");
     private Context context=this;
     private ConstraintLayout layoutPrincipalAceuil;
+    private ArrayList<block_entrainement> tabBlock = new ArrayList<>();
+    private int u;
+    private  String str;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -254,7 +264,6 @@ public class MainActivity extends AppCompatActivity {
 
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         DatabaseReference myRef = database.getReference("activite");
-        ArrayList<block_entrainement> tabBlock = new ArrayList<>();
         myRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
@@ -269,7 +278,10 @@ public class MainActivity extends AppCompatActivity {
                         String heure = String.valueOf(ds.child("/heure").getValue());
                         String lieu = String.valueOf(ds.child("/lieu").getValue());
                         //recuperationBlock BDD
-                        activite element = new activite(sport, date,note,heure,lieu, tabBlock);
+
+
+
+                        activite element = new activite(sport, date,note,heure,lieu);
                         tabActivite.add(element);
                         listeEntrainementJournee.clear();
                         for (int j = 0; j < tabActivite.size(); j++) {
@@ -314,8 +326,59 @@ public class MainActivity extends AppCompatActivity {
                     String activityName = currentActivity.getTypeDeSport();
                     String activityHeure = currentActivity.getHeure();
                     String activityLieu = currentActivity.getLieu();
+                    String activityDate =currentActivity.getDate();
                     String activityDescription = currentActivity.getNote();
-                    ArrayList<block_entrainement> tabBlock = currentActivity.getBlock();
+                   // ArrayList<block_entrainement> tabBlock = currentActivity.getBlock();
+                    //tabBlock.add(new block_entrainement("Course", "seuil", "Mètres", "5"));
+                    // recupere les block dan sla bdd
+                    FirebaseDatabase database = FirebaseDatabase.getInstance();
+                    DatabaseReference rechercheacti = database.getReference("activite/");
+                    rechercheacti.addValueEventListener(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(@NonNull DataSnapshot snapshot) {
+                            u=0;
+                            for(DataSnapshot ds : snapshot.getChildren()){
+                                 u=u+1;
+                                String date = String.valueOf(ds.child("/date").getValue());
+                                String heure = String.valueOf(ds.child("/heure").getValue());
+                                String lieu = String.valueOf(ds.child("/lieu").getValue());
+                                if(date.equals(activityDate)&& heure.equals(activityHeure)&& lieu.equals(activityLieu)){
+                                    str=String.valueOf(u);
+                                    // Toast.makeText(ajout_entrainement.this,"trouver "+ i ,Toast.LENGTH_LONG).show();
+                                    DatabaseReference myRef1 = database.getReference("activite/"+str+"/block");
+                                    myRef1.addValueEventListener(new ValueEventListener() {
+                                        @Override
+                                        public void onDataChange(DataSnapshot dataSnapshot) {
+                                            tabBlock.clear();
+                                            for(DataSnapshot ds : dataSnapshot.getChildren()) {
+
+                                                String duree = String.valueOf(ds.child("/valParam").getValue());
+                                                String notes = String.valueOf(ds.child("/comBlock").getValue());
+                                                String typeDeDuree = String.valueOf(ds.child("/typeParam").getValue());
+                                                String typeDetape = String.valueOf(ds.child("/typeBlock").getValue());
+
+                                                if(duree.equals("null")&&notes.equals("null")&&typeDeDuree.equals("null")&&typeDetape.equals("null")){
+
+                                                }else{
+                                                    block_entrainement element = new block_entrainement(typeDetape,notes,typeDeDuree,duree);
+                                                    tabBlock.add(element);
+                                                }
+                                            }
+                                        }
+                                        @Override
+                                        public void onCancelled(DatabaseError error) {
+                                            // Failed to read value
+                                        }
+                                    });
+                                }
+                            }
+                        }
+                        @Override
+                        public void onCancelled(@NonNull DatabaseError error) {
+                        }
+                    });
+                    Toast.makeText(MainActivity.this,"trouver "+ tabBlock ,Toast.LENGTH_LONG).show();
+
                     afficheActivity showActivity = new afficheActivity(MainActivity.this);
                     showActivity.LancerAffichageActivity(activityName, activityHeure, activityLieu, activityDescription, dateActuelle, tabBlock);
                     showActivity.getOk().setOnClickListener(new View.OnClickListener() {
