@@ -72,6 +72,7 @@ class activite implements Serializable {
         this.lieu=lieu;
     }
 
+
     public String getHeure() {
         return heure;
     }
@@ -361,21 +362,23 @@ public class MainActivity extends AppCompatActivity {
                                     });
                                 }
                             }
+                            afficheActivity showActivity = new afficheActivity(MainActivity.this);
+                            showActivity.LancerAffichageActivity(activityName, activityHeure, activityLieu, activityDescription, dateActuelle, tabBlock);
+                            showActivity.getOk().setOnClickListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View view) {
+                                    showActivity.dismiss();
+                                }
+                            });
                         }
+
                         @Override
                         public void onCancelled(@NonNull DatabaseError error) {
                         }
                     });
                     Toast.makeText(MainActivity.this,"trouver "+ tabBlock ,Toast.LENGTH_LONG).show();
 
-                    afficheActivity showActivity = new afficheActivity(MainActivity.this);
-                    showActivity.LancerAffichageActivity(activityName, activityHeure, activityLieu, activityDescription, dateActuelle, tabBlock);
-                    showActivity.getOk().setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View view) {
-                            showActivity.dismiss();
-                        }
-                    });
+
                 }
 
 
@@ -486,6 +489,7 @@ public class MainActivity extends AppCompatActivity {
     }
     public void ajouterEntrainement(){
         //activiter par default
+        //tabBlockNull.add(new block_entrainement("", "", "",""));
         activite un = new activite("","","","","");
         tabActivite.add(un);
         FirebaseDatabase database = FirebaseDatabase.getInstance();
