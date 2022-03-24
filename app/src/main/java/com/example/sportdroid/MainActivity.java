@@ -63,7 +63,6 @@ class activite implements Serializable {
     private String note;
     private String heure;
     private String lieu;
-    ArrayList<block_entrainement> tabBlock;
 
     public activite(String typeDeSport,String date, String note,String heure,String lieu) {
         this.typeDeSport=typeDeSport;
@@ -71,14 +70,6 @@ class activite implements Serializable {
         this.note=note;
         this.heure=heure;
         this.lieu=lieu;
-    }
-    public activite(String typeDeSport,String date, String note,String heure,String lieu, ArrayList<block_entrainement> tabBlock) {
-        this.typeDeSport=typeDeSport;
-        this.date=date;
-        this.note=note;
-        this.heure=heure;
-        this.lieu=lieu;
-        this.tabBlock=tabBlock;
     }
 
     public String getHeure() {
@@ -106,8 +97,6 @@ class activite implements Serializable {
     public void setTypeDeSport(String typeDeSport) {
         this.typeDeSport = typeDeSport;
     }
-
-    public ArrayList<block_entrainement> getBlock(){ return tabBlock; }
 
     public String getLieu() {
         return lieu;
@@ -497,9 +486,7 @@ public class MainActivity extends AppCompatActivity {
     }
     public void ajouterEntrainement(){
         //activiter par default
-        ArrayList<block_entrainement> tabBlockNull = null;
-        //tabBlockNull.add(new block_entrainement("", "", "",""));
-        activite un = new activite("","","","","", tabBlockNull);
+        activite un = new activite("","","","","");
         tabActivite.add(un);
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         DatabaseReference myRef = database.getReference("activite/"+tabActivite.size());

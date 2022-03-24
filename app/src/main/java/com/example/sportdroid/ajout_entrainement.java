@@ -345,9 +345,7 @@ public class ajout_entrainement extends AppCompatActivity {
                             @Override
                             public void onDataChange(DataSnapshot dataSnapshot) {
                                 block.clear();
-
                                 for(DataSnapshot ds : dataSnapshot.getChildren()) {
-
                                     String duree = String.valueOf(ds.child("/valParam").getValue());
                                     String notes = String.valueOf(ds.child("/comBlock").getValue());
                                     String typeDeDuree = String.valueOf(ds.child("/typeParam").getValue());

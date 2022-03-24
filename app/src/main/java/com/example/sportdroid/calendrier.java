@@ -36,6 +36,8 @@ public class calendrier extends AppCompatActivity {
     TextView date;
     ListView listView;
     private ImageView imgInfo;
+    private int u;
+    private String str;
 
     public ArrayList<activite> tabActivite= new ArrayList<>();
     public ArrayList<activite> tabActiviteJournee= new ArrayList<>();
@@ -121,9 +123,9 @@ public class calendrier extends AppCompatActivity {
                     String heure = String.valueOf(ds.child("/heure").getValue());
                     String lieu = String.valueOf(ds.child("/lieu").getValue());
 
-                    tabActivite.add(new activite(sport,dateR,note,heure,lieu, tabBlock));
+                    tabActivite.add(new activite(sport,dateR,note,heure,lieu));
                     if(dateR.equals(date.getText())){
-                        activite element = new activite(sport, dateR,note,heure,lieu, tabBlock);
+                        activite element = new activite(sport, dateR,note,heure,lieu);
                         tabActiviteJournee.add(element);
                     }
 
@@ -154,15 +156,63 @@ public class calendrier extends AppCompatActivity {
                     String activityName = currentActivity.getTypeDeSport();
                     String activityHeure = currentActivity.getHeure();
                     String activityLieu = currentActivity.getLieu();
+                    String activityDate =currentActivity.getDate();
                     String activityDescription = currentActivity.getNote();
+                    FirebaseDatabase database = FirebaseDatabase.getInstance();
+                    DatabaseReference rechercheacti = database.getReference("activite/");
+                    rechercheacti.addValueEventListener(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(@NonNull DataSnapshot snapshot) {
+                            u=0;
+                            for(DataSnapshot ds : snapshot.getChildren()){
+                                u=u+1;
+                                String date = String.valueOf(ds.child("/date").getValue());
+                                String heure = String.valueOf(ds.child("/heure").getValue());
+                                String lieu = String.valueOf(ds.child("/lieu").getValue());
+                                if(date.equals(activityDate)&& heure.equals(activityHeure)&& lieu.equals(activityLieu)){
+                                    str=String.valueOf(u);
+                                    // Toast.makeText(ajout_entrainement.this,"trouver "+ i ,Toast.LENGTH_LONG).show();
+                                    DatabaseReference myRef1 = database.getReference("activite/"+str+"/block");
+                                    myRef1.addValueEventListener(new ValueEventListener() {
+                                        @Override
+                                        public void onDataChange(DataSnapshot dataSnapshot) {
+                                            tabBlock.clear();
+                                            for(DataSnapshot ds : dataSnapshot.getChildren()) {
+
+                                                String duree = String.valueOf(ds.child("/valParam").getValue());
+                                                String notes = String.valueOf(ds.child("/comBlock").getValue());
+                                                String typeDeDuree = String.valueOf(ds.child("/typeParam").getValue());
+                                                String typeDetape = String.valueOf(ds.child("/typeBlock").getValue());
+
+                                                if(duree.equals("null")&&notes.equals("null")&&typeDeDuree.equals("null")&&typeDetape.equals("null")){
+
+                                                }else{
+                                                    block_entrainement element = new block_entrainement(typeDetape,notes,typeDeDuree,duree);
+                                                    tabBlock.add(element);
+                                                }
+                                            }
+                                        }
+                                        @Override
+                                        public void onCancelled(DatabaseError error) {
+                                            // Failed to read value
+                                        }
+                                    });
+                                }
+                            }
+                        }
+                        @Override
+                        public void onCancelled(@NonNull DatabaseError error) {
+                        }
+                    });
+                    //Toast.makeText(MainActivity.this,"trouver "+ tabBlock ,Toast.LENGTH_LONG).show();
                     afficheActivity showActivity = new afficheActivity(calendrier.this);
-                    /*showActivity.LancerAffichageActivity(activityName, activityHeure, activityLieu, activityDescription, (String)date.getText());
+                    showActivity.LancerAffichageActivity(activityName, activityHeure, activityLieu, activityDescription, (String)date.getText(), tabBlock);
                     showActivity.getOk().setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View view) {
                             showActivity.dismiss();
                         }
-                    });*/
+                    });
                 }
             }
         });
