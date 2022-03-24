@@ -108,6 +108,7 @@ public class calendrier extends AppCompatActivity {
         });
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         DatabaseReference myRef = database.getReference("activite");
+        ArrayList<block_entrainement> tabBlock = new ArrayList<>();
         myRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot snapshot) {
@@ -120,9 +121,9 @@ public class calendrier extends AppCompatActivity {
                     String heure = String.valueOf(ds.child("/heure").getValue());
                     String lieu = String.valueOf(ds.child("/lieu").getValue());
 
-                    tabActivite.add(new activite(sport,dateR,note,heure,lieu));
+                    tabActivite.add(new activite(sport,dateR,note,heure,lieu, tabBlock));
                     if(dateR.equals(date.getText())){
-                        activite element = new activite(sport, dateR,note,heure,lieu);
+                        activite element = new activite(sport, dateR,note,heure,lieu, tabBlock);
                         tabActiviteJournee.add(element);
                     }
 
@@ -155,13 +156,13 @@ public class calendrier extends AppCompatActivity {
                     String activityLieu = currentActivity.getLieu();
                     String activityDescription = currentActivity.getNote();
                     afficheActivity showActivity = new afficheActivity(calendrier.this);
-                    showActivity.LancerAffichageActivity(activityName, activityHeure, activityLieu, activityDescription, (String)date.getText());
+                    /*showActivity.LancerAffichageActivity(activityName, activityHeure, activityLieu, activityDescription, (String)date.getText());
                     showActivity.getOk().setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View view) {
                             showActivity.dismiss();
                         }
-                    });
+                    });*/
                 }
             }
         });

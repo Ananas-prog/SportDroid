@@ -63,13 +63,15 @@ class activite implements Serializable {
     private String note;
     private String heure;
     private String lieu;
+    ArrayList<block_entrainement> tabBlock;
 
-    public activite(String typeDeSport,String date, String note,String heure,String lieu) {
+    public activite(String typeDeSport,String date, String note,String heure,String lieu, ArrayList<block_entrainement> tabBlock) {
         this.typeDeSport=typeDeSport;
         this.date=date;
         this.note=note;
         this.heure=heure;
         this.lieu=lieu;
+        this.tabBlock=tabBlock;
     }
 
     public String getHeure() {
@@ -97,6 +99,8 @@ class activite implements Serializable {
     public void setTypeDeSport(String typeDeSport) {
         this.typeDeSport = typeDeSport;
     }
+
+    public ArrayList<block_entrainement> getBlock(){ return tabBlock; }
 
     public String getLieu() {
         return lieu;
@@ -129,11 +133,12 @@ class afficheActivity extends Dialog implements Serializable {
         this.typeEnt = (TextView) findViewById(R.id.valEntrainement);
         this.comEnt = (TextView) findViewById(R.id.valCom);
         this.lieuEnt = (TextView) findViewById(R.id.valLieu);
+        this.listView = (ListView) findViewById(R.id.llstViewBlock);
     }
 
     public Button getOk() { return btnOk; }
 
-    public void LancerAffichageActivity(String titre, String heure, String lieu, String commentaire, String date){
+    public void LancerAffichageActivity(String titre, String heure, String lieu, String commentaire, String date, ArrayList<block_entrainement> tabBlock){
         dateEnt.setText(date);
         heureEnt.setText(heure);
         lieuEnt.setText(lieu);
@@ -141,6 +146,10 @@ class afficheActivity extends Dialog implements Serializable {
         if(commentaire.equals(""))
             comEnt.setText("Aucun commentaire");
         else comEnt.setText(commentaire);
+        listView.setAdapter(null);
+        ArrayList<block_entrainement> test = new ArrayList<>();
+        test.add(new block_entrainement("Course", "seuil", "Mètres", "5"));
+        listView.setAdapter(new listViewAdapterBlock(context, test));
         show();
     }
 }
@@ -245,6 +254,7 @@ public class MainActivity extends AppCompatActivity {
 
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         DatabaseReference myRef = database.getReference("activite");
+        ArrayList<block_entrainement> tabBlock = new ArrayList<>();
         myRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
@@ -258,7 +268,8 @@ public class MainActivity extends AppCompatActivity {
                         String note = String.valueOf(ds.child("/note").getValue());
                         String heure = String.valueOf(ds.child("/heure").getValue());
                         String lieu = String.valueOf(ds.child("/lieu").getValue());
-                        activite element = new activite(sport, date,note,heure,lieu);
+                        //recuperationBlock BDD
+                        activite element = new activite(sport, date,note,heure,lieu, tabBlock);
                         tabActivite.add(element);
                         listeEntrainementJournee.clear();
                         for (int j = 0; j < tabActivite.size(); j++) {
@@ -304,8 +315,9 @@ public class MainActivity extends AppCompatActivity {
                     String activityHeure = currentActivity.getHeure();
                     String activityLieu = currentActivity.getLieu();
                     String activityDescription = currentActivity.getNote();
+                    ArrayList<block_entrainement> tabBlock = currentActivity.getBlock();
                     afficheActivity showActivity = new afficheActivity(MainActivity.this);
-                    showActivity.LancerAffichageActivity(activityName, activityHeure, activityLieu, activityDescription, dateActuelle);
+                    showActivity.LancerAffichageActivity(activityName, activityHeure, activityLieu, activityDescription, dateActuelle, tabBlock);
                     showActivity.getOk().setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View view) {
@@ -422,7 +434,9 @@ public class MainActivity extends AppCompatActivity {
     }
     public void ajouterEntrainement(){
         //activiter par default
-        activite un = new activite("","","","","");
+        ArrayList<block_entrainement> tabBlockNull = null;
+        //tabBlockNull.add(new block_entrainement("", "", "",""));
+        activite un = new activite("","","","","", tabBlockNull);
         tabActivite.add(un);
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         DatabaseReference myRef = database.getReference("activite/"+tabActivite.size());
