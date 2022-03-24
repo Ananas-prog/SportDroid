@@ -153,7 +153,7 @@ public class ajout_entrainement extends AppCompatActivity {
     private Button newEtape;
     private int heure,minute;
     private String dateSaisie,lieuSaisie,heureSaisie;
-    private int i=1;
+    private int i=0;
 
 
     @Override
@@ -185,7 +185,7 @@ public class ajout_entrainement extends AppCompatActivity {
                     @Override
                     public void onClick(View view) {
                         nbBlock=block.size();
-                        ajouterBlockBDD(ajoutEtape, nbBlock);
+                        ajouterBlockBDD(ajoutEtape, nbBlock+1);
                         ajoutEtape.dismiss();
                     }
                 });
@@ -330,6 +330,7 @@ public class ajout_entrainement extends AppCompatActivity {
         rechercheStr.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
+                i=0;
                 for(DataSnapshot ds : snapshot.getChildren()) {
                     i+=1;
                     String date = String.valueOf(ds.child("/date").getValue());
@@ -337,15 +338,16 @@ public class ajout_entrainement extends AppCompatActivity {
                     String lieu = String.valueOf(ds.child("/lieu").getValue());
 
                     if(date.equals(dateSaisie)&& heure.equals(heureSaisie)&& lieu.equals(lieuSaisie)){
-
-                       // str=String.valueOf(i);
-                        Toast.makeText(ajout_entrainement.this,"trouver "+ i ,Toast.LENGTH_LONG).show();
+                       str=String.valueOf(i);
+                       // Toast.makeText(ajout_entrainement.this,"trouver "+ i ,Toast.LENGTH_LONG).show();
                         DatabaseReference myRef1 = database.getReference("activite/"+str+"/block");
                         myRef1.addValueEventListener(new ValueEventListener() {
                             @Override
                             public void onDataChange(DataSnapshot dataSnapshot) {
                                 block.clear();
+
                                 for(DataSnapshot ds : dataSnapshot.getChildren()) {
+
                                     String duree = String.valueOf(ds.child("/valParam").getValue());
                                     String notes = String.valueOf(ds.child("/comBlock").getValue());
                                     String typeDeDuree = String.valueOf(ds.child("/typeParam").getValue());
@@ -356,8 +358,9 @@ public class ajout_entrainement extends AppCompatActivity {
                                     }else{
                                         block_entrainement element = new block_entrainement(typeDetape,notes,typeDeDuree,duree);
                                         block.add(element);
+                                        rafraichissementListe();
+
                                     }
-                                    rafraichissementListe();
                                 }
                             }
                             @Override
@@ -408,6 +411,7 @@ public class ajout_entrainement extends AppCompatActivity {
 
     // ajouter le nouvelle element a la bdd
     public void ajouterBlockBDD(popUp_detail_entrainement popUp, int i){
+
         String numBlock=String.valueOf(i);
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         DatabaseReference typeBlock = database.getReference("activite/"+str+"/block/"+numBlock+"/typeBlock");
@@ -418,6 +422,8 @@ public class ajout_entrainement extends AppCompatActivity {
         typeParam.setValue(popUp.typeDeParam.getSelectedItem().toString());
         DatabaseReference valParam = database.getReference("activite/"+str+"/block/"+numBlock+"/valParam");
         valParam.setValue(popUp.valParam.getText().toString());
+        rafraichissementListe();
+
     }
 
     // recuêration de la date
