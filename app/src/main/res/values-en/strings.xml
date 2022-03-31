@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">SportDroid</string>
+    <string name="bienvenue">Welcome to</string>
+    <string name="ButtonCalendrier">Calendar</string>
+    <string name="ButtonHome">Home</string>
+    <string name="ButtonInfos">Info</string>
+    <string name="ButtonAjoutEntrainement">Add training</string>
+    <string name="presentation">Home</string>
+    <string name="date">Date :</string>
+    <string name="etape">Add step</string>
+    <string name="repetition">Add repetition</string>
+    <string name="valider">Validate</string>
+    <string name="etapetitre">step</string>
+    <string name="duree">duration</string>
+    <string name="note">Description/info session :</string>
+    <string name="supprimer">Delete activity</string>
+    <string name="mesEntrainementAjourdhui">My workouts of the day</string>
+    <string name="calendrier">Calendar</string>
+    <string name="infos">Information</string>
+    <string name="mdp">Enter the password</string>
+    <string name="supprimerBlock">Delete</string>
+    <string name="plus">+</string>
+    <string name="lactualite">The news</string>
+    <string name="nouvelleInformation">New information</string>
+    <string name="titre">Title :</string>
+    <string name="lieu">Location :</string>
+    <string name="lienphoto">Link to the photo :</string>
+    <string name="lieninfo">Link for more information :</string>
+    <string name="entrainement">Training</string>
+    <string name="heure">Time :</string>
+    <string name="popUp_etape">Adding a step</string>
+    <string name="typEtape">Type of stage :</string>
+    <string name="commentaire"> Enter a comment (optional)</string>
+    <string name="typeParamEtape">Type of parameter :</string>
+    <string name="valParam">Enter the value of the parameter</string>
+    <string name="typeSport">Type of sport :</string>
+    <string name="retour">Back</string>
+    <string name="ok">Ok</string>
+    <string name="com">Comment :</string>
+
+    <string name="credit">Application created by Anaïs MOTTIER and Simon PLANCHENAULT Updated 2022</string>
+    <string name="Athlete">ATHLETE</string>
+    <string name="coach">COACH</string>
+
+</resources>

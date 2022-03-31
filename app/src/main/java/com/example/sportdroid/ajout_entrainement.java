@@ -305,7 +305,7 @@ public class ajout_entrainement extends AppCompatActivity {
             // i est la postion ou on clique
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 block_entrainement currentBlock = block.get(i);
-                Toast.makeText(ajout_entrainement.this,"clique sur l 'item "+ i+ ""+currentBlock.toString(),Toast.LENGTH_LONG).show();
+             ///   Toast.makeText(ajout_entrainement.this,"clique sur l 'item "+ i+ ""+currentBlock.toString(),Toast.LENGTH_LONG).show();
                 popUp_detail_entrainement afficheEtape = new popUp_detail_entrainement(ajout_entrainement.this);
                 afficheEtape.AfficherModifBlock(currentBlock.getTypeBlock(), currentBlock.getComBlock(), currentBlock.getTypeParam(), currentBlock.getValParam());
                 afficheEtape.getRetour().setOnClickListener(new View.OnClickListener() {

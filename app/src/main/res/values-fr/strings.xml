@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<resources>
+    <string name="app_name">SportDroid</string>
+    <string name="bienvenue">Bienvenue sur</string>
+    <string name="ButtonCalendrier">Calendrier</string>
+    <string name="ButtonHome">Home</string>
+    <string name="ButtonInfos">Infos</string>
+    <string name="ButtonAjoutEntrainement">Ajouter entraînement</string>
+    <string name="presentation">Accueil</string>
+    <string name="date">Date :</string>
+    <string name="etape">Ajouter étape</string>
+    <string name="repetition">Ajouter répétition</string>
+    <string name="valider">Valider</string>
+    <string name="etapetitre">étape</string>
+    <string name="duree">durée</string>
+    <string name="note">Description/infos séance :</string>
+    <string name="supprimer">Supprimer activité</string>
+    <string name="mesEntrainementAjourdhui">Mes entraînements du jour</string>
+    <string name="calendrier">Calendrier</string>
+    <string name="infos">Informations</string>
+    <string name="mdp">Entrer le mot de passe</string>
+    <string name="supprimerBlock">Supprimer</string>
+    <string name="plus">+</string>
+    <string name="lactualite">Les actualités</string>
+    <string name="nouvelleInformation">Nouvelle information</string>
+    <string name="titre">Titre :</string>
+    <string name="lieu">Lieu :</string>
+    <string name="lienphoto">Lien de la photo :</string>
+    <string name="lieninfo">Lien pour plus d information :</string>
+    <string name="entrainement">Entrainement</string>
+    <string name="heure">Heure :</string>
+    <string name="popUp_etape">Ajout d\'une étape</string>
+    <string name="typEtape">Type d\'étape :</string>
+    <string name="commentaire"> Entrer un commentaire (facultatif)</string>
+    <string name="typeParamEtape">Type de paramètre :</string>
+    <string name="valParam">Entrer la valeur du paramètre</string>
+    <string name="typeSport">Type de sport :</string>
+    <string name="retour">Retour</string>
+    <string name="ok">Ok</string>
+    <string name="com">Commentaire :</string>
+
+    <string name="credit">Application créée par Anaïs MOTTIER et Simon PLANCHENAULT \n Mise à jour 2022</string>
+    <string name="Athlete">ATHLETE</string>
+    <string name="coach">COACH</string>
+
+</resources>
